@@ -3738,8 +3738,8 @@ Transform:
   m_GameObject: {fileID: 1433276095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5259938}
-  m_LocalScale: {x: 0.7517, y: 0.6336, z: 0.32956308}
+  m_LocalPosition: {x: 0, y: 0.0057, z: 0.5259938}
+  m_LocalScale: {x: 0.7517, y: 0.62218153, z: 0.32956308}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 438980179}
@@ -5061,7 +5061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.37628
+      value: 2.87628
       objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5069,7 +5069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.04
+      value: -7.54
       objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5115,6 +5115,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6605006640670634422, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a381fe339a16fe4291daff916848724, type: 2}
     - target: {fileID: 9006525157554536680, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: WalkSpeed
       value: 5
