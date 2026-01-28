@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         _rb.MovePosition(_rb.position + transform.forward * _moveAxis.y * WalkSpeed * Time.deltaTime);
-        _rb.MovePosition(_rb.position + transform.forward * _moveAxis.x * WalkSpeed * Time.deltaTime);
+        _rb.MovePosition(_rb.position + transform.right * _moveAxis.x * WalkSpeed * Time.deltaTime);
+        
+        // Next do cam rotation
     }
 }
