@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.37628, y: 2.845, z: -10.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.4017341, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5904513247696232609}
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6a381fe339a16fe4291daff916848724, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +113,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7369132
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -141,7 +141,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &9006525157554536680
@@ -157,10 +157,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  Instance: {fileID: 0}
   _camera: {fileID: 1623158191183603371}
-  WalkSpeed: 10
-  CameraSensitivity: 10
+  WalkSpeed: 5
+  CameraSensitivity: 0.15
+  RefreshRate: 60
+  InvertX: 0
+  InvertY: 0
 --- !u!114 &3787278785373460708
 MonoBehaviour:
   m_ObjectHideFlags: 0

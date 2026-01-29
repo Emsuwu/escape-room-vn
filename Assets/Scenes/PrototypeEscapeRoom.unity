@@ -5047,21 +5047,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3604328929808763110, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_Radius
-      value: 0.7369132
-      objectReference: {fileID: 0}
-    - target: {fileID: 3604328929808763110, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4017341
-      objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.87628
+      value: -2.12372
       objectReference: {fileID: 0}
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5098,34 +5086,6 @@ PrefabInstance:
     - target: {fileID: 4054689874859049562, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341904186411255205, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341904186411255205, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341904186411255205, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_Interpolate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341904186411255205, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6605006640670634422, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 6a381fe339a16fe4291daff916848724, type: 2}
-    - target: {fileID: 9006525157554536680, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: WalkSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9006525157554536680, guid: 29a5cd40f10a23c4d9b309b32396fe46, type: 3}
-      propertyPath: CameraSensitivity
-      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
