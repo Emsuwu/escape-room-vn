@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Migrate to Settings later")]
     [Range(.5f, 10f)] public float WalkSpeed = 10f;
-    [Range(0.01f,.5f)] public float CameraSensitivity = 10f;
+    [Range(0.01f, .5f)] public float CameraSensitivity = 10f;
     public float RefreshRate = 60f;
     public bool InvertX;
     public bool InvertY;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         _lookPlayerY = transform.rotation.y;
         if (Instance == null) Instance = this;
         else { Debug.LogWarning("Hey! There should only be one Player at one time!"); }
-            _moveAction = InputSystem.actions.FindAction("Move");
+        _moveAction = InputSystem.actions.FindAction("Move");
         _lookAction = InputSystem.actions.FindAction("Look");
         _interactAction = InputSystem.actions.FindAction("Interact");
         _playerInteractScript = GetComponent<PlayerInteract>();
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _lookAxis = _lookAction.ReadValue<Vector2>();
         Cursor.lockState = CursorLockMode.Locked;
-        
+
         float playerYRot = _lookAxis.x * CameraSensitivity;
         float camXRot = -_lookAxis.y * CameraSensitivity;
         if (InvertX) playerYRot *= -1;
