@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Camera _camera;
     private Rigidbody _rb;
     private PlayerInteract _playerInteractScript;
-
     [Header("Migrate to Settings later")]
     [Range(.5f, 10f)] public float WalkSpeed = 10f;
     [Range(0.01f, .5f)] public float CameraSensitivity = 10f;
