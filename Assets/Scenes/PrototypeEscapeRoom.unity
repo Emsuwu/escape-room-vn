@@ -332,7 +332,6 @@ Transform:
   - {fileID: 485241859}
   - {fileID: 1662263951}
   - {fileID: 1752319158}
-  - {fileID: 1629755433}
   - {fileID: 162261660}
   m_Father: {fileID: 1062050602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1180,6 +1179,50 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &287685077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287685078}
+  - component: {fileID: 287685079}
+  m_Layer: 0
+  m_Name: InteractionInputHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &287685078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287685077}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8861098, y: 4.95068, z: -3.7989197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 299297932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &287685079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee14a1c3787d0184aa4e500cbc7e327d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &299297931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1254,7 @@ Transform:
   m_Children:
   - {fileID: 832575519}
   - {fileID: 1152961416}
+  - {fileID: 287685078}
   - {fileID: 1212630191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4066,8 +4110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 26.743, y: 0}
-  m_SizeDelta: {x: 53.484, y: 0.00042725}
+  m_AnchoredPosition: {x: 23.4784, y: 0}
+  m_SizeDelta: {x: 60.0133, y: 0.0005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138761230
 MonoBehaviour:
@@ -5280,12 +5324,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629755432}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.326, y: 1.1441, z: -6.499999}
-  m_LocalScale: {x: 0.041572347, y: 0.20243168, z: 0.8073619}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4910949, y: 0, z: 0}
+  m_LocalScale: {x: 0.06420118, y: 0.70239997, z: 0.80737}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 76274736}
+  m_Father: {fileID: 1752319158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1629755434
 BoxCollider:
@@ -5604,9 +5648,10 @@ GameObject:
   - component: {fileID: 1752319161}
   - component: {fileID: 1752319160}
   - component: {fileID: 1752319159}
+  - component: {fileID: 1752319162}
   m_Layer: 6
   m_Name: VHSPlayer
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5623,7 +5668,8 @@ Transform:
   m_LocalPosition: {x: -7.644, y: 1.1441, z: -6.499999}
   m_LocalScale: {x: 0.6475324, y: 0.2882, z: 0.99999}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1629755433}
   m_Father: {fileID: 76274736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1752319159
@@ -5645,8 +5691,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.05331, y: 0.9999999, z: 1}
+  m_Center: {x: 0.026654968, y: 0, z: 0}
 --- !u!23 &1752319160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5704,6 +5750,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752319157}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1752319162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752319157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3f5b25353956e41b864d689c9a45f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _interactionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1752319162}
+        m_TargetAssemblyTypeName: VHSInteractable, Assembly-CSharp
+        m_MethodName: VHSInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1753254575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,6 +6685,7 @@ GameObject:
   - component: {fileID: 6996939074238585868}
   - component: {fileID: 185186683032716651}
   - component: {fileID: 6996939074238585869}
+  - component: {fileID: 6996939074238585870}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -6703,6 +6777,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8fa4a883ebf3e04fb4a22865cf6febf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &6996939074238585870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295305087639697952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c8fd490b93e654da756d40186d3a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
 --- !u!1660057539 &9223372036854775807
