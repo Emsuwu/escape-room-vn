@@ -25,9 +25,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (IsInputDisabled) return;
 
-        if (_interactAction.WasPressedThisFrame() && Interactable.CurrentlyHovered != null)
-        {
-            Interactable.CurrentlyHovered.Interact();
-        }
+        CheckInteractAction();
+    }
+
+    private void CheckInteractAction()
+    {
+        if (Interactable.CurrentlyHovered == null) return;
+        if (!_interactAction.WasPressedThisFrame()) return;
+        Interactable.CurrentlyHovered.Interact();
     }
 }
