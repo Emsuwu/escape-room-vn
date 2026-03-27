@@ -1,0 +1,45 @@
+{
+
+    "sequences" : {
+
+        "unicorn_1":
+            [
+                {"chr_delay": [ ".", 0.1 ]},
+
+                { "set_transition" : ["crossfade_alpha", 0.5] },
+                { "background" : "unicorn/forest_1.png" },
+                { "character_portrait_override" : "unicorn_1.png" },
+                { "character_name_override" : "Unicorn" },
+
+                { "dialog" : ["Hello! ", 5, "5 seconds has passed"] },
+                { "wait": 1.1 },
+                { "dialog" : ["So... what do you think?"], 
+                    "choice" : [ 
+                        {"choice_text" : "Meow!", "branch" : "unicorn_meow" },
+                        {"choice_text" : "Bwouw!"} 
+                        ]
+                },
+                { "dialog" : "Bwouw, yes, I agree!"},
+                { "is_dialog_box_visible" : false },
+                { "wait" : 5 },
+                { "is_dialog_box_visible" : true }
+            ],
+
+
+
+        "unicorn_meow":
+            [
+                { "background" : "unicorn/forest_2.png" },
+                { "character_name" : "Cat" },
+                { "dialog" : ["Wow!", 0.1, "So true!"] },
+                { "character" : null },
+                { "dialog" : null },
+                { "choice" : [
+                    {"choice_text" : "Load another dialog file", "load_dialog_file" : { "file" : "unicorn/2.json", "sequence" : "scene_1", "transition" : ["fade_to_black", 1] } },
+                    {"choice_text" : "Exit to escape room", "load_scene" : 0 }
+                ] }
+            ]
+
+    }
+
+}
