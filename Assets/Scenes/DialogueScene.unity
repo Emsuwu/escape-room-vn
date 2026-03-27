@@ -784,6 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _file: {fileID: 4900000, guid: 46e03170bd980994e8502635782cbbb1, type: 3}
+  _startSequence: unicorn_1
 --- !u!1 &1791436635
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +926,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 193.18, y: 358.3}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 386.36, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1794736132
 MonoBehaviour:
