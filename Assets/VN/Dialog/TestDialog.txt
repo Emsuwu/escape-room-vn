@@ -11,6 +11,7 @@ dialog "So... what do you think?";
 
 choice "Meow" branch "unicorn_meow";
 choice "Bwouw";
+end_choices;
 
 dialog_speed 0.75s;
 dialog "Bwouw, yes, I agree! Also, this dialog is slow!";
@@ -31,5 +32,6 @@ clear_dialog;
 
 choice "Load another dialog file" load_dialog_file "Unicorn/testDialog2.txt" "scene_1";
 choice "Exit to escape room" load_scene "0";
+end_choices;
 
 end_sequence;

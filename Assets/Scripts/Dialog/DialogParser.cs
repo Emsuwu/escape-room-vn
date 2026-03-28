@@ -39,10 +39,15 @@ public class DialogParser : MonoBehaviour
 
         /* 
          * NOTE TO SELF:
-         *  Sequences is a list of arrays.
+         *  _sequences is a list of arrays.
          *  Each array is an array of commands
          *  For example, one element of the array may be:
          *  "set_background \"Unicorn/forest_2.png\"" 
+         *  
+         *  We never want to handle this by itself when
+         *  handling dialog reading.
+         *  Instead, call DialogParser.Branch(sequence) then use
+         *  DialogParser.DequeueCommand() to get the next command.
          */
 
     }
@@ -88,6 +93,12 @@ public class DialogParser : MonoBehaviour
         Debug.LogWarning($"Sequence index of {sequenceName} not found!");
         return -1;
     }
+
+    public static DialogCommand DequeueCommand()
+    {
+        return CurrentDialogSequence.DialogCommands.Dequeue();
+    }
+
 }
 
 /// <summary>
@@ -118,10 +129,12 @@ public class DialogCommand
     public string[] Arguments { get; private set; }
     public bool IsValid { get; private set; }
     public string SequenceName { get; private set; } = null;
+    public bool PauseAfterExecution;
 
     public DialogCommand(string commandText)
     {
         IsValid = false;
+        PauseAfterExecution = false;
 
         if (String.IsNullOrEmpty(commandText)) return;
 
@@ -139,6 +152,10 @@ public class DialogCommand
         {
             if (Arguments.Length != 2) { IsValid = false; return; }
             SequenceName = Arguments[1];
+        }
+        else if (Command == "wait" || Command == "dialog") 
+        {
+            PauseAfterExecution = true;
         }
 
         IsValid = true;
@@ -163,21 +180,21 @@ public class DialogCommand
     /// <summary>
     /// Executes the dialog command
     /// </summary>
-    public void Execute()
+    public string[] Execute()
     {
         switch (Command)
         {
             default:
                 Debug.LogWarning($"Undefined command - {Command}");
-                foreach (string argument in Arguments)
-                {
-                    Debug.LogWarning($"... arg: {argument}");
-                }
                 break;
             case "dialog":
-                // Push dialog in dialog handler
+                Dialog.Instance.PrintDialog(Arguments);
+                break;
+            case "character_name":
+                Dialog.Instance.SetCharacterName(Arguments[0]); 
                 break;
         }
+        return Arguments;
 
     }
 }
