@@ -197,6 +197,10 @@ public class DialogCommand
                 Dialog.Instance.PrintDialog(Arguments);
                 break;
 
+            case "dialog_continue":
+                Dialog.Instance.PrintDialog(Arguments, false);
+                break;
+
             case "character_name":
                 if (Arguments.Length != 1)
                 {
@@ -250,6 +254,40 @@ public class DialogCommand
                     break;
                 }
                 CommandError("Requires a valid path.", Command, Arguments, 0);
+                break;
+
+            case "choice":
+                if (Arguments.Length > 2)
+                {
+                    // Form new command to pass into dialog choice button
+                    List<string> temp = Arguments.ToList<string>();
+                    temp.RemoveAt(0);
+                    string choiceCommandStr = string.Empty;
+                    foreach (string part in temp) {
+                        choiceCommandStr += part + " ";
+                    }
+                    choiceCommandStr = choiceCommandStr.Substring(0, choiceCommandStr.Length - 1);
+                    DialogCommand choiceCommand = new DialogCommand(choiceCommandStr);
+                    Dialog.Instance.AddChoice(Arguments[0], choiceCommand);
+
+                    Debug.Log("choiceCommandStr: " + choiceCommandStr);
+                }
+                CommandError("Please put a command after the choice text argument.", Command, Arguments, 2, 999);
+                break;
+
+            case "end_choices":
+                if (Arguments.Length == 0)
+                {
+                    Dialog.Instance.PauseExecution();
+                }
+                CommandError("End choice doesn't take arguments", Command, Arguments, 0);
+                break;
+
+            case "branch":
+                if (Arguments.Length == 1) {
+                    Dialog.Instance.StartSequence(Arguments[0]);
+                }
+                CommandError("Branch command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
                 break;
         }
         return Arguments;

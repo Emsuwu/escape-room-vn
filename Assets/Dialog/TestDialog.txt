@@ -13,7 +13,7 @@ clear;
 wait 1.1;
 dialog_speed 0;
 dialog "And there was a pause after clearing that dialog with the \"clear\" command!";
-dialog_continue "This dialog " .1 "." .1 "." .1 "." 0 "was continued on another line entirely";
+dialog_continue " This dialog " .1 "." .1 "." .1 "." 0 "was continued on another line entirely";
 dialog_speed default;
 
 choice "Meow" branch "unicorn_meow";

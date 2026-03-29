@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,10 @@ public class Dialog : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text _dialogText;
     [SerializeField] private TMPro.TMP_Text _characterNameText;
     [SerializeField] private Image _backgroundImage;
+    [SerializeField] private GameObject _choiceButtonPrefab;
+    [SerializeField] private GameObject _choiceBox;
+
+    private List<GameObject> _choiceList = new List<GameObject>();
     
     //[SerializeField] private RectTransform _characterNameBoxRectTransform;
 
@@ -72,6 +77,31 @@ public class Dialog : MonoBehaviour
     public void Branch(string targetSequenceName)
     {
         DialogParser.Branch(targetSequenceName);
+    }
+
+    public void ClearChoicesAndContinue()
+    {
+        foreach (GameObject choice in _choiceList) 
+        {
+            Destroy(choice);
+        }
+        _choiceList.Clear();
+        _executionPaused = false;
+    }
+    /// <summary>
+    /// Adds a choice to the choice box
+    /// </summary>
+    /// <param name="choiceText"></param>
+    /// <param name="command"></param>
+    public void AddChoice(string choiceText, DialogCommand command)
+    {
+        GameObject choiceButton = Instantiate(_choiceButtonPrefab);
+        choiceButton.transform.SetParent(_choiceBox.transform, false);
+        _choiceList.Add(choiceButton);
+    }
+    public void PauseExecution(bool pause = true)
+    {
+        _executionPaused = pause;
     }
 
     /// <summary>
@@ -170,7 +200,6 @@ public class Dialog : MonoBehaviour
         for (int i = 0; i < dialogArray.Length; i++)
         {
             string dialog = dialogArray[i];
-            dialog.Replace("%dq%", "\"");
             
             // If oddly numbered argument, interpret as a wait time
             if (i % 2 != 0)
