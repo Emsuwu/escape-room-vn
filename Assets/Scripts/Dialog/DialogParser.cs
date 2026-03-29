@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -187,14 +188,92 @@ public class DialogCommand
             default:
                 Debug.LogWarning($"Undefined command - {Command}");
                 break;
+
+            case "sequence":
+                Debug.Log($"Sequence loaded, {Arguments[0]}");
+                break;
+
             case "dialog":
                 Dialog.Instance.PrintDialog(Arguments);
                 break;
+
             case "character_name":
+                if (Arguments.Length != 1)
+                {
+                    CommandError("Could not set character name. Requires 1 string argument.", Command, Arguments, 1);
+                    break;
+                }
                 Dialog.Instance.SetCharacterName(Arguments[0]); 
+                break;
+
+            case "dialog_speed":
+                if (float.TryParse(Arguments[0], out float characterIntervalResult))
+                {
+                    Dialog.Instance.CharacterInterval = characterIntervalResult;
+                    break;
+                }
+                if (Arguments[0] == "default")
+                {
+                    Dialog.Instance.CharacterInterval = Dialog.Instance.DefaultCharacterInterval;
+                    break;
+                }
+                CommandError("Requires 1 numeric argument or keyword \"default\".", Command, Arguments, 1);
+                break;
+
+            case "wait":
+                if (float.TryParse(Arguments[0], out float waitResult))
+                {
+                    Dialog.Instance.Wait(waitResult);
+                    break;
+                }
+                CommandError("Requires 1 numeric argument.", Command, Arguments, 1);
+                break;
+
+            case "clear":
+                if (Arguments.Length == 0)
+                {
+                    Dialog.Instance.ClearDialog();
+                    break;
+                }
+                CommandError("Command doesn't take arguments.", Command, Arguments, 0);
+                break;
+
+            case "background":
+                if (Arguments.Length == 1)
+                {
+                    Dialog.Instance.SetBackground(Arguments[0]);
+                    break;
+                }
+                if (Arguments.Length == 2 && Arguments[1] == "absolute")
+                {
+                    Dialog.Instance.SetBackground(Arguments[0], true);
+                    break;
+                }
+                CommandError("Requires a valid path.", Command, Arguments, 0);
                 break;
         }
         return Arguments;
 
+    }
+
+    private void CommandError(string hint, string command, string[] arguments, int minRequiredArguments, int maxRequiredArguments = -1)
+    {
+        // Get number of required arguments as string and build error message
+        string requiredArguments;
+        if (maxRequiredArguments == -1) maxRequiredArguments = minRequiredArguments;
+        if (minRequiredArguments == maxRequiredArguments) requiredArguments = minRequiredArguments.ToString();
+        else requiredArguments = $"between {minRequiredArguments} and {maxRequiredArguments}";
+        string errorMessage = $"Dialog command error ({command}). {hint}";
+        if (arguments.Length < minRequiredArguments || arguments.Length > maxRequiredArguments)
+        {
+            errorMessage += $"Expected {requiredArguments} arguments. Got {arguments.Length} arguments: ";
+        }
+        foreach (string argument in arguments)
+        {
+            errorMessage += argument + ", ";
+        }
+
+        Debug.LogError(errorMessage);
+        Debug.Break();
     }
 }

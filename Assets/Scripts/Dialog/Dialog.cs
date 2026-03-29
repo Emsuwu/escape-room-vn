@@ -2,17 +2,21 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
     [SerializeField] private TextAsset _file;
     private Coroutine _currentSequenceCoroutine;
-    public float CharacterInterval = 0.1f;
-    private bool _isPrintingDialog;
+    public float CharacterInterval = 0.025f;
+    [HideInInspector] public float DefaultCharacterInterval;
+    private bool _executionPaused;
     public static Dialog Instance;
 
     [SerializeField] private TMPro.TMP_Text _dialogText;
     [SerializeField] private TMPro.TMP_Text _characterNameText;
+    
+    //[SerializeField] private RectTransform _characterNameBoxRectTransform;
 
     [SerializeField] InputActionAsset _inputActionAsset;
     InputAction _advanceAction;
@@ -24,6 +28,7 @@ public class Dialog : MonoBehaviour
     }
     private void Start()
     {
+        DefaultCharacterInterval = CharacterInterval;
         if (_file == null) return;
         DialogParser.LoadDialog(_file.text);
         Branch("unicorn_1");
@@ -103,24 +108,38 @@ public class Dialog : MonoBehaviour
 
             DialogCommand current_command = DialogParser.DequeueCommand();
 
-            if (current_command.PauseAfterExecution)
-            {
-                if (current_command.Command == "dialog")
-                {
-                    current_command.Execute();
-                    yield return new WaitUntil(() => !_isPrintingDialog);
-                }
-
-                yield return null;
-            }
-            yield return null;
+            current_command.Execute();
+            yield return new WaitUntil(() => !_executionPaused);
 
         }
+    }
+    public void Wait(float seconds)
+    {
+        _executionPaused = true;
+        StartCoroutine(CoWaitSeconds(seconds));
+    }
+    private IEnumerator CoWaitSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _executionPaused = false;
+    }
+
+    public void SetBackground(string path, bool absolute = false)
+    {
+        Texture2D texture;
+        if (!absolute) texture = Resources.Load<Texture2D>("Assets/Sprites/Backgrounds/"+path);
+        else texture = Resources.Load<Texture2D>(path);
+    }
+
+    public void ClearDialog()
+    {
+        _dialogText.text = string.Empty;
     }
 
     public void SetCharacterName(string characterName)
     {
         _characterNameText.text = characterName;
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(_characterNameBoxRectTransform);
     }
 
     /// <summary>
@@ -135,28 +154,31 @@ public class Dialog : MonoBehaviour
     /// Prints an array of dialog strings and pauses to the dialog box
     /// </summary>
     /// <param name="dialogArray"></param>
-    public void PrintDialog(string[] dialogArray)
+    public void PrintDialog(string[] dialogArray, bool clearLastDialog = true)
     {
-        _isPrintingDialog = true;
+        _executionPaused = true;
         StartCoroutine(CoPrintDialog(dialogArray));
     }
-    private IEnumerator CoPrintDialog(string[] dialogArray)
+    private IEnumerator CoPrintDialog(string[] dialogArray, bool clearLastDialog = true)
     {
-        _dialogText.text = string.Empty;
-        foreach (string dialog in dialogArray)
+        if (clearLastDialog) _dialogText.text = string.Empty;
+        for (int i = 0; i < dialogArray.Length; i++)
         {
-            // If it is a wait that is specified, pause for specified time
-            //if (dialog.Substring(dialog.Length-2, dialog.Length-1) == "s")
-            //{
-            //    float num;
-            //    bool isNumeric = float.TryParse((dialog.Substring(0, dialog.Length - 2)), out num);
-            //    if (isNumeric)
-            //    {
-            //        yield return new WaitForSeconds(num);
-            //        continue;
-            //    }
-            //}
-            // Otherwise add the characters to the dialog text, speeding up if click is held
+            string dialog = dialogArray[i];
+            
+            // If oddly numbered argument, interpret as a wait time
+            if (i % 2 != 0)
+            {
+                if (float.TryParse(dialog, out float waitTime))
+                {
+                    yield return new WaitForSeconds(waitTime);
+                    continue;
+                }
+                // If not a number
+                Debug.LogError("Oddly numbered arguments in a dialog command should be wait times");
+                Debug.Break();
+            }
+            // If evenly numbered argument, interpret as dialog to add
             foreach (char character in dialog)
             {
                 _dialogText.text += character;
@@ -169,7 +191,7 @@ public class Dialog : MonoBehaviour
 
         yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame());
 
-        _isPrintingDialog = false;
+        _executionPaused = false;
     }
 }
 
