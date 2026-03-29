@@ -69,6 +69,8 @@ public class DialogCommand
     /// </summary>
     public string[] Execute()
     {
+        //Debug.Log($"EXECUTING COMMAND {Command}");
+
         switch (Command)
         {
             default:
@@ -173,7 +175,7 @@ public class DialogCommand
                     Dialog.Instance.PauseExecution();
                     break;
                 }
-                CommandError("End choice doesn't take arguments", Command, Arguments, 0);
+                CommandError("\"end_choice\" doesn't take arguments", Command, Arguments, 0);
                 break;
 
             case "branch":
@@ -182,7 +184,65 @@ public class DialogCommand
                     Dialog.Instance.StartSequence(Arguments[0]);
                     break;
                 }
-                CommandError("Branch command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
+                CommandError("\"branch\" command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
+                break;
+
+            case "hide_dialog":
+                if (Arguments.Length <= 2)
+                {
+                    if (Arguments.Length == 0)
+                    {
+                        Dialog.Instance.HideDialog();
+                    }
+                    else
+                    {
+                        bool waitUntilFadedToContinue = true;
+                        if (Arguments.Length == 2)
+                        {
+                            if (Arguments[1] == "wait") { waitUntilFadedToContinue = true; }
+                            else if (Arguments[1] == "no_wait") { waitUntilFadedToContinue = false; }
+                            else
+                            {
+                                CommandError("\"hide_dialog\" malformed. Syntax: hide_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
+                                break;
+                            }
+                        }
+                        if (!float.TryParse(Arguments[0], out float hideTimeResult)) hideTimeResult = 0;
+                        Dialog.Instance.HideDialog(hideTimeResult, waitUntilFadedToContinue);
+                    }
+                    break;
+                }
+                CommandError("\"hide_dialog\" malformed. Syntax: hide_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
+                break;
+
+
+            case "show_dialog":
+                if (Arguments.Length <= 2)
+                {
+                    if (Arguments.Length == 0)
+                    {
+                        Dialog.Instance.ShowDialog();
+                    }
+                    else
+                    {
+                        bool waitUntilFadedToContinue = true;
+                        if (Arguments.Length == 2)
+                        {
+                            if (Arguments[1] == "wait") { waitUntilFadedToContinue = true; }
+                            else if (Arguments[1] == "no_wait") { waitUntilFadedToContinue = false; }
+                            else
+                            {
+                                CommandError("\"show_dialog\" error. Syntax: show_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
+                                break;
+                            }
+                        }
+
+                        if (!float.TryParse(Arguments[0], out float showTimeResult)) showTimeResult = 0;
+                        Dialog.Instance.ShowDialog(showTimeResult, waitUntilFadedToContinue);
+                    }
+                    break;
+                }
+                CommandError("\"show_dialog\" error. Syntax: show_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
                 break;
         }
         return Arguments;

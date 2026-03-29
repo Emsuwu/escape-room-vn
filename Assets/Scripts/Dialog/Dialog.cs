@@ -31,6 +31,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private GameObject _choiceBox;
     [SerializeField] private Image _backgroundImage;
 
+    [Header("...")]
     private List<GameObject> _choiceList = new List<GameObject>();
     
     //[SerializeField] private RectTransform _characterNameBoxRectTransform;
@@ -54,21 +55,33 @@ public class Dialog : MonoBehaviour
         //SetBackground()
     }
 
-    public void ShowDialog(float time = 0f)
+    public void ShowDialog(float time = 0f, bool wait = true)
     {
-        FadeDialog(0f, time);
+        FadeDialog(1f, time, wait);
     }
-    public void HideDialog(float time = 0f)
+    public void HideDialog(float time = 0f, bool wait = true)
     {
-        FadeDialog(0f, time);
+        FadeDialog(0f, time, wait);
     }
-    public void FadeDialog(float alpha, float time)
+    public void FadeDialog(float alpha, float time, bool wait = true)
     {
         _dialogBoxImage.CrossFadeAlpha(alpha, time, false);
         _dialogBoxLineImage.CrossFadeAlpha(alpha, time, false);
         _characterNameBoxImage.CrossFadeAlpha(alpha, time, false);
         _dialogText.CrossFadeAlpha(alpha, time, false);
         _characterNameText.CrossFadeAlpha(alpha, time, false);
+
+        if (wait) PauseExecutionForSeconds(time);
+    }
+    public void PauseExecutionForSeconds(float seconds)
+    {
+        _executionPaused = true;
+        StartCoroutine(CoPauseExecutionForSeconds(seconds));
+    }
+    private IEnumerator CoPauseExecutionForSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _executionPaused = false;
     }
 
     private void OnEnable()

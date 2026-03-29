@@ -2,7 +2,16 @@ sequence unicorn_1;
 set_transition crossfade_alpha 0.5;
 background "Unicorn/1";
 
-character_name "The Unicorn";
+character_name "Ems";
+
+choice "Continue explanation" pass;
+choice "Branch to \"unicorn_meow\"" branch "unicorn_meow";
+choice "Hide/Show dialog box test sequence" branch "hstest";
+choice "More buttons to test how many I can fit:3" pass;
+choice ":3" pass;
+choice ":4" pass;
+choice "wowie!" pass;
+end_choices;
 
 dialog "Don't worry" 0.1 "." 0.1 "." 0.1 "." 0.1 " Dialog works normally but I'm about to show off some fancy features!";
 dialog "So it may pause at points and do some other whacky things :3";
@@ -10,9 +19,7 @@ dialog "I am very happy with this system!";
 
 dialog "Hello!" 2.5 " 2.5 seconds has passed";
 clear;
-hide_dialog;
 wait 1.1;
-show_dialog;
 dialog_speed 0;
 dialog "And there was a pause after clearing that dialog with the \"clear\" command!";
 dialog_continue " This dialog" .1 "." .1 "." .1 "." 0 " was continued on another line entirely";
@@ -20,6 +27,7 @@ dialog_speed default;
 
 choice "Meow" branch "unicorn_meow";
 choice "Bwouw" pass;
+choice "Hide/Show dialog box test sequence" branch "hstest";
 end_choices;
 
 background "Placeholder/2";
@@ -27,16 +35,56 @@ background "Placeholder/2";
 chr_delay . 1;
 dialog_speed .5;
 dialog "Bwouw, yes, I agree! Also, this dialog is slow!";
-hide_dialog;
 clear;
 wait 1;
-hide_dialog 0.5;
 wait 5;
-show_dialog 0.5;
 dialog_speed default;
 background "Placeholder/1";
 dialog "This is the default reading speed!";
 end_sequence;
+
+
+
+sequence hstest;
+
+background "Placeholder/3";
+
+dialog_speed default;
+
+dialog "0 seconds:";
+hide_dialog;
+wait 1;
+show_dialog;
+
+dialog "0.25 seconds:";
+hide_dialog 0.25;
+wait 1;
+show_dialog 0.25;
+
+dialog "0.5 seconds:";
+hide_dialog 0.5;
+wait 1;
+show_dialog 0.5;
+
+dialog "1 seconds:";
+hide_dialog 1;
+wait 1;
+show_dialog 1;
+
+dialog "2 seconds:";
+hide_dialog 2;
+wait 1;
+show_dialog 2;
+wait 2;
+
+dialog "thank you!!!!";
+
+choice "Repeat test" branch "hstest";
+choice "Back to start" branch "unicorn_1";
+
+end_sequence;
+
+
 
 
 sequence unicorn_meow;
