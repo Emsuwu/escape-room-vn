@@ -7,18 +7,29 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
-    [SerializeField] private TextAsset _file;
     private Coroutine _currentSequenceCoroutine;
-    public float CharacterInterval = 0.025f;
     [HideInInspector] public float DefaultCharacterInterval;
     private bool _executionPaused;
     public static Dialog Instance;
 
+    [Header("Settings")]
+    [SerializeField] public float CharacterInterval = 0.025f;
+    [Header("Initial dialog file")]
+    [SerializeField] private TextAsset _file;
+
+    [Header("Dialog UI Elements")]
+    // Dialog elements
+    [SerializeField] private Image _dialogBoxImage;
+    [SerializeField] private Image _dialogBoxLineImage;
+    [SerializeField] private Image _characterNameBoxImage;
+    // Dialog text elements
     [SerializeField] private TMPro.TMP_Text _dialogText;
     [SerializeField] private TMPro.TMP_Text _characterNameText;
-    [SerializeField] private Image _backgroundImage;
+
+    [Header("Other UI Elements")]
     [SerializeField] private GameObject _choiceButtonPrefab;
     [SerializeField] private GameObject _choiceBox;
+    [SerializeField] private Image _backgroundImage;
 
     private List<GameObject> _choiceList = new List<GameObject>();
     
@@ -42,6 +53,24 @@ public class Dialog : MonoBehaviour
 
         //SetBackground()
     }
+
+    public void ShowDialog(float time = 0f)
+    {
+        FadeDialog(0f, time);
+    }
+    public void HideDialog(float time = 0f)
+    {
+        FadeDialog(0f, time);
+    }
+    public void FadeDialog(float alpha, float time)
+    {
+        _dialogBoxImage.CrossFadeAlpha(alpha, time, false);
+        _dialogBoxLineImage.CrossFadeAlpha(alpha, time, false);
+        _characterNameBoxImage.CrossFadeAlpha(alpha, time, false);
+        _dialogText.CrossFadeAlpha(alpha, time, false);
+        _characterNameText.CrossFadeAlpha(alpha, time, false);
+    }
+
     private void OnEnable()
     {
         _inputActionAsset.FindActionMap("Dialog").Enable();
