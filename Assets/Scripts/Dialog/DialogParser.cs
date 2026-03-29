@@ -189,6 +189,9 @@ public class DialogCommand
                 Debug.LogWarning($"Undefined command - {Command}");
                 break;
 
+            case "pass":
+                break;
+
             case "sequence":
                 Debug.Log($"Sequence loaded, {Arguments[0]}");
                 break;
@@ -257,7 +260,8 @@ public class DialogCommand
                 break;
 
             case "choice":
-                if (Arguments.Length > 2)
+                Debug.Log("Choice args length: " + Arguments.Length);
+                if (Arguments.Length > 0)
                 {
                     // Form new command to pass into dialog choice button
                     List<string> temp = Arguments.ToList<string>();
@@ -271,14 +275,16 @@ public class DialogCommand
                     Dialog.Instance.AddChoice(Arguments[0], choiceCommand);
 
                     Debug.Log("choiceCommandStr: " + choiceCommandStr);
+                    break;
                 }
-                CommandError("Please put a command after the choice text argument.", Command, Arguments, 2, 999);
+                CommandError("Please put a command after the choice text argument.", Command, Arguments, 1, 999);
                 break;
 
             case "end_choices":
                 if (Arguments.Length == 0)
                 {
                     Dialog.Instance.PauseExecution();
+                    break;
                 }
                 CommandError("End choice doesn't take arguments", Command, Arguments, 0);
                 break;
@@ -286,6 +292,7 @@ public class DialogCommand
             case "branch":
                 if (Arguments.Length == 1) {
                     Dialog.Instance.StartSequence(Arguments[0]);
+                    break;
                 }
                 CommandError("Branch command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
                 break;
@@ -301,7 +308,7 @@ public class DialogCommand
         if (maxRequiredArguments == -1) maxRequiredArguments = minRequiredArguments;
         if (minRequiredArguments == maxRequiredArguments) requiredArguments = minRequiredArguments.ToString();
         else requiredArguments = $"between {minRequiredArguments} and {maxRequiredArguments}";
-        string errorMessage = $"Dialog command error ({command}). {hint}";
+        string errorMessage = $"Dialog command error ({command}). {hint} ";
         if (arguments.Length < minRequiredArguments || arguments.Length > maxRequiredArguments)
         {
             errorMessage += $"Expected {requiredArguments} arguments. Got {arguments.Length} arguments: ";

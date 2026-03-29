@@ -97,6 +97,9 @@ public class Dialog : MonoBehaviour
     {
         GameObject choiceButton = Instantiate(_choiceButtonPrefab);
         choiceButton.transform.SetParent(_choiceBox.transform, false);
+        DialogChoiceButton choiceButtonScript = choiceButton.GetComponent<DialogChoiceButton>();
+        choiceButton.GetComponent<DialogChoiceButton>().Command = command;
+        choiceButtonScript.Text = choiceText;
         _choiceList.Add(choiceButton);
     }
     public void PauseExecution(bool pause = true)

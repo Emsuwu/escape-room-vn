@@ -500,7 +500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c3da344079631c4e8e8fe9f10edffbe, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -632,8 +632,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 156.03, y: -39.18}
-  m_SizeDelta: {x: 232.06, y: 0}
+  m_AnchoredPosition: {x: 291.595, y: -39.18}
+  m_SizeDelta: {x: 503.19, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1127132572
 MonoBehaviour:
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: erherhreherr
+  m_text: Character Name goes here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1418,11 +1418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is dialog. I am a character who is yapping. I hope you can't see this
-    in game as that would be embarassing. I'm going to fill out the rest of this
-    text so that it reaches the bottom and I see what happens (although, that won't
-    be possible in game anyway so what's even the point). Bingle bongle dingle dangle
-    yickety do yickety da ping pong lippy tappy too taa.
+  m_text: Dialog goes here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

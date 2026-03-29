@@ -17,7 +17,7 @@ dialog_continue " This dialog " .1 "." .1 "." .1 "." 0 "was continued on another
 dialog_speed default;
 
 choice "Meow" branch "unicorn_meow";
-choice "Bwouw";
+choice "Bwouw" pass;
 end_choices;
 
 background "Placeholder/2";
