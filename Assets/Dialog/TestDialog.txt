@@ -1,20 +1,26 @@
 sequence unicorn_1;
 set_transition crossfade_alpha 0.5;
-background "Placeholder/1.png";
+background "Unicorn/1";
+
 character_name "The Unicorn";
+
+dialog "Don't worry" 0.1 "." 0.1 "." 0.1 "." 0.1 " Dialog works normally but I'm about to show off some fancy features!";
+dialog "So it may pause at points and do some other whacky things :3";
+dialog "I am very happy with this system!";
 
 dialog "Hello!" 2.5 " 2.5 seconds has passed";
 clear;
 wait 1.1;
 dialog_speed 0;
-dialog "So... what do you think?";
+dialog "And there was a pause after clearing that dialog with the \"clear\" command!";
+dialog_continue "This dialog " .1 "." .1 "." .1 "." 0 "was continued on another line entirely";
 dialog_speed default;
 
 choice "Meow" branch "unicorn_meow";
 choice "Bwouw";
 end_choices;
 
-background "Unicorn/1.png";
+background "Placeholder/2";
 
 chr_delay . 1;
 dialog_speed .5;
@@ -24,12 +30,13 @@ clear;
 wait 5;
 show_dialog;
 dialog_speed default;
+background "Placeholder/1";
 dialog "This is the default reading speed!";
 end_sequence;
 
 
 sequence unicorn_meow;
-background "Unicorn/1.png";
+background "Unicorn/1";
 character_name "Cat";
 dialog "Wow so true!";
 clear_character;

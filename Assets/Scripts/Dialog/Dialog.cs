@@ -15,6 +15,7 @@ public class Dialog : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _dialogText;
     [SerializeField] private TMPro.TMP_Text _characterNameText;
+    [SerializeField] private Image _backgroundImage;
     
     //[SerializeField] private RectTransform _characterNameBoxRectTransform;
 
@@ -33,6 +34,8 @@ public class Dialog : MonoBehaviour
         DialogParser.LoadDialog(_file.text);
         Branch("unicorn_1");
         StartSequence();
+
+        //SetBackground()
     }
     private void OnEnable()
     {
@@ -126,9 +129,11 @@ public class Dialog : MonoBehaviour
 
     public void SetBackground(string path, bool absolute = false)
     {
-        Texture2D texture;
-        if (!absolute) texture = Resources.Load<Texture2D>("Assets/Sprites/Backgrounds/"+path);
-        else texture = Resources.Load<Texture2D>(path);
+        Debug.Log("Assets/Sprites/Backgrounds/" + path);
+        Sprite texture;
+        if (!absolute) texture = Resources.Load<Sprite>("Backgrounds/"+path);
+        else texture = Resources.Load<Sprite>(path);
+        _backgroundImage.sprite = texture;
     }
 
     public void ClearDialog()
@@ -165,6 +170,7 @@ public class Dialog : MonoBehaviour
         for (int i = 0; i < dialogArray.Length; i++)
         {
             string dialog = dialogArray[i];
+            dialog.Replace("%dq%", "\"");
             
             // If oddly numbered argument, interpret as a wait time
             if (i % 2 != 0)

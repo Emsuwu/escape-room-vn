@@ -165,12 +165,12 @@ public class DialogCommand
     // Regex is evil and confusing    
     private List<string> ParseCommandArgs(string commandText)
     {
-        string regexPattern = @"\""([^""]*)\""|([^\s]+)";
+        string regexPattern = @"\""((?:\\.|[^""])*)\""|([^\s]+)"; ;
         List<string> splitCommand = new List<string>();
         foreach (Match match in Regex.Matches(commandText, regexPattern))
         {
             if (match.Groups[1].Success)
-                splitCommand.Add(match.Groups[1].Value);
+                splitCommand.Add(match.Groups[1].Value.Replace("\\\"", "\""));
             else
                 splitCommand.Add(match.Value);
         }
