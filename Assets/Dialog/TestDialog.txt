@@ -1,8 +1,10 @@
 sequence unicorn_1;
 set_transition crossfade_alpha 0.5;
-background "Unicorn/1";
 
+background "Placeholder/1";
 character_name "Ems";
+dialog "Welcome to the dialog test!";
+dialog "Please select an option :3";
 
 choice "Continue explanation" pass;
 choice "Branch to \"unicorn_meow\"" branch "unicorn_meow";
@@ -13,6 +15,7 @@ choice ":4" pass;
 choice "wowie!" pass;
 end_choices;
 
+background "Placeholder/4";
 dialog "Don't worry" 0.1 "." 0.1 "." 0.1 "." 0.1 " Dialog works normally but I'm about to show off some fancy features!";
 dialog "So it may pause at points and do some other whacky things :3";
 dialog "I am very happy with this system!";
@@ -32,14 +35,23 @@ end_choices;
 
 background "Placeholder/2";
 
+character_name "Normang The Car";
 chr_delay . 1;
-dialog_speed .5;
+dialog_speed .2;
 dialog "Bwouw, yes, I agree! Also, this dialog is slow!";
+dialog_speed default;
+dialog "Why am I crisps :(";
+dialog "Oh no...";
+dialog "Sigh";
+dialog "Ik eet graag stamppot :D het is kankerlekker :3 Ik heb honger :(";
 clear;
 wait 1;
 wait 5;
 dialog_speed default;
+
+character_name "Ems";
 background "Placeholder/1";
+dialog "Hi again!";
 dialog "This is the default reading speed!";
 end_sequence;
 
@@ -47,6 +59,7 @@ end_sequence;
 
 sequence hstest;
 
+character_name "The E n t i t y";
 background "Placeholder/3";
 
 dialog_speed default;
@@ -88,7 +101,7 @@ end_sequence;
 
 
 sequence unicorn_meow;
-background "Unicorn/1";
+background "Placeholder/4";
 character_name "Cat";
 dialog "Wow so true!";
 clear_character;

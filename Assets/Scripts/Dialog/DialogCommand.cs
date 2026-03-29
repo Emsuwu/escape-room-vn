@@ -148,7 +148,7 @@ public class DialogCommand
                 break;
 
             case "choice":
-                Debug.Log("Choice args length: " + Arguments.Length);
+                //Debug.Log("Choice args length: " + Arguments.Length);
                 if (Arguments.Length > 0)
                 {
                     // Form new command to pass into dialog choice button
@@ -163,7 +163,7 @@ public class DialogCommand
                     DialogCommand choiceCommand = new DialogCommand(choiceCommandStr);
                     Dialog.Instance.AddChoice(Arguments[0], choiceCommand);
 
-                    Debug.Log("choiceCommandStr: " + choiceCommandStr);
+                    //Debug.Log("choiceCommandStr: " + choiceCommandStr);
                     break;
                 }
                 CommandError("Please put a command after the choice text argument.", Command, Arguments, 1, 999);

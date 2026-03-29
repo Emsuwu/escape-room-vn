@@ -204,7 +204,6 @@ public class Dialog : MonoBehaviour
 
     public void SetBackground(string path, bool absolute = false)
     {
-        Debug.Log("Assets/Sprites/Backgrounds/" + path);
         Sprite texture;
         if (!absolute) texture = Resources.Load<Sprite>("Backgrounds/"+path);
         else texture = Resources.Load<Sprite>(path);
