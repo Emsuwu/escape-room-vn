@@ -1,5 +1,5 @@
 sequence unicorn_1;
-set_transition crossfade_alpha 0.5;
+# ------- Initial Sequence ------- #
 
 background "Placeholder/1";
 character_name "Ems";
@@ -15,7 +15,7 @@ choice ":4" pass;
 choice "wowie!" pass;
 end_choices;
 
-background "Placeholder/4";
+background "Placeholder/4" crossfade 0.5;
 dialog "Don't worry" 0.1 "." 0.1 "." 0.1 "." 0.1 " Dialog works normally but I'm about to show off some fancy features!";
 dialog "So it may pause at points and do some other whacky things :3";
 dialog "I am very happy with this system!";
@@ -33,7 +33,7 @@ choice "Bwouw" pass;
 choice "Hide/Show dialog box test sequence" branch "hstest";
 end_choices;
 
-background "Placeholder/2";
+background "Placeholder/2" crossfade 5;
 
 character_name "Normang The Car";
 chr_delay . 1;
@@ -57,7 +57,9 @@ end_sequence;
 
 
 
+
 sequence hstest;
+# ------- Test for showing and hiding dialog ------- #
 
 character_name "The E n t i t y";
 background "Placeholder/3";
@@ -99,10 +101,10 @@ end_sequence;
 
 
 
-
 sequence unicorn_meow;
-background "Placeholder/4";
-character_name "Cat";
+# ------- Second Sequence ------- #
+background "Placeholder/4" crossfade 10 no_pause;
+character_name "Cat"; # This is a comment meow :3
 dialog "Wow so true!";
 clear_character;
 clear_dialog;

@@ -30,6 +30,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private GameObject _choiceButtonPrefab;
     [SerializeField] private GameObject _choiceBox;
     [SerializeField] private Image _backgroundImage;
+    [SerializeField] private Image _transitionBackgroundImage;
 
     [Header("...")]
     private List<GameObject> _choiceList = new List<GameObject>();
@@ -52,13 +53,24 @@ public class Dialog : MonoBehaviour
         Branch("unicorn_1");
         StartSequence();
 
-        //SetBackground()
+        _transitionBackgroundImage.color = new Color32(255, 255, 255, 255);
+        _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
     }
 
+    /// <summary>
+    /// Shows the dialog UI
+    /// </summary>
+    /// <param name="time">Optional fade in time</param>
+    /// <param name="wait">Whether to pause execution until crossfade ends</param>
     public void ShowDialog(float time = 0f, bool wait = true)
     {
         FadeDialog(1f, time, wait);
     }
+    /// <summary>
+    /// Hides the dialog UI
+    /// </summary>
+    /// <param name="time">Optional fade out time</param>
+    /// <param name="wait">Whether to pause execution until crossfade ends</param>
     public void HideDialog(float time = 0f, bool wait = true)
     {
         FadeDialog(0f, time, wait);
@@ -73,6 +85,11 @@ public class Dialog : MonoBehaviour
 
         if (wait) PauseExecutionForSeconds(time);
     }
+
+    /// <summary>
+    /// Pauses execution of commands in command queue for specified duration
+    /// </summary>
+    /// <param name="seconds">Duration to pause execution in seconds</param>
     public void PauseExecutionForSeconds(float seconds)
     {
         _executionPaused = true;
@@ -121,6 +138,9 @@ public class Dialog : MonoBehaviour
         DialogParser.Branch(targetSequenceName);
     }
 
+    /// <summary>
+    /// Removes all dialog choice buttons and unpauses execution
+    /// </summary>
     public void ClearChoicesAndContinue()
     {
         foreach (GameObject choice in _choiceList) 
@@ -178,7 +198,7 @@ public class Dialog : MonoBehaviour
         if (DialogParser.CurrentDialogSequence == null) return;
         _currentSequenceCoroutine = StartCoroutine(CoDialogSequence());
     }
-
+    
     private IEnumerator CoDialogSequence()
     {
         while (DialogParser.CurrentDialogSequence.DialogCommands.Count > 0)
@@ -191,6 +211,11 @@ public class Dialog : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// Pauses the execution of commands for a duration
+    /// </summary>
+    /// <param name="seconds">The duration to pause execution</param>
     public void Wait(float seconds)
     {
         _executionPaused = true;
@@ -202,19 +227,123 @@ public class Dialog : MonoBehaviour
         _executionPaused = false;
     }
 
+    /// <summary>
+    /// Sets the background color with r g b values
+    /// </summary>
+    /// <param name="r">Red value</param>
+    /// <param name="g">Green value</param>
+    /// <param name="b">Blue value</param>
+    public void SetBackgroundColor(int r, int g, int b)
+    {
+        SetBackgroundColor(new Color32((byte)r, (byte)g, (byte)b, 255));
+    }
+    /// <summary>
+    /// Sets the background color with a Color32 object
+    /// </summary>
+    /// <param name="color">Color32 object. E.g., new Color32(255, 255, 255, 255)</param>
+    public void SetBackgroundColor(Color32 color)
+    {
+        _backgroundImage.sprite = null;
+        _backgroundImage.color = color;
+    }
+    /// <summary>
+    /// Sets the background with a path )
+    /// </summary>
+    /// <param name="path">Path to image (Resources/Backgrounds/{path}</param>
+    /// <param name="absolute">If true, path starts at Resources rather than Backgrounds</param>
     public void SetBackground(string path, bool absolute = false)
     {
+        _backgroundImage.color = Color.white;
         Sprite texture;
         if (!absolute) texture = Resources.Load<Sprite>("Backgrounds/"+path);
         else texture = Resources.Load<Sprite>(path);
         _backgroundImage.sprite = texture;
     }
+    /// <summary>
+    /// Sets the image of the transitional background
+    /// </summary>
+    /// <param name="path">Path to the image (Resources/Backgrounds/{path}</param>
+    public void SetTransitionBackgroundImage(string path)
+    {
+        _transitionBackgroundImage.color = new Color32(255, 255, 255, 255);
+        _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
+        Sprite texture;
+        texture = Resources.Load<Sprite>("Backgrounds/" + path);
+        _transitionBackgroundImage.sprite = texture;
+    }
+    /// <summary>
+    /// Sets the color of the transitional background
+    /// </summary>
+    /// <param name="r">Red value</param>
+    /// <param name="g">Green value</param>
+    /// <param name="b">Blue value</param>
+    public void SetTransitionBackgroundColor(int r, int g, int b)
+    {
+        SetTransitionBackgroundColor(new Color32((byte)r, (byte)g, (byte)b, 255));
+        _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
+    }
+    /// <summary>
+    /// Sets the color of the transitional background using a Color32 object
+    /// </summary>
+    /// <param name="color">Color32 object e.g., new Color32(255, 255, 255, 255)</param>
+    public void SetTransitionBackgroundColor(Color32 color)
+    {
+        _transitionBackgroundImage.sprite = null;
+        _transitionBackgroundImage.color = color;
+    }
+    /// <summary>
+    /// Crossfades the background to the image at the specified path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="duration"></param>
+    /// <param name="no_pause">If true other commands can be executed without waiting for this to finish</param>
+    public void CrossfadeBackgroundImage(string path, float duration, bool no_pause = false)
+    {
+        _executionPaused = !no_pause;
+        SetTransitionBackgroundImage(path);
+        _transitionBackgroundImage.CrossFadeAlpha(1, duration, false);
+        StartCoroutine(CoCrossfadeBackroundImage(path, duration));
+    }
+    private IEnumerator CoCrossfadeBackroundImage(string path, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _executionPaused = false;
+        SetBackground(path);
+        _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
+    }
+    /// <summary>
+    /// Crossfades the background's color
+    /// </summary>
+    /// <param name="r">Red value</param>
+    /// <param name="g">Green value</param>
+    /// <param name="b">Blue value</param>
+    /// <param name="duration">Duration of crossfade</param>
+    public void CrossfadeBackgroundColor(int r, int g, int b, float duration)
+    {
+        _executionPaused = true;
+        SetTransitionBackgroundColor(r, g, b);
+        _transitionBackgroundImage.CrossFadeAlpha(1, duration, false);
+        StartCoroutine(CoCrossfadeBackroundColor(r, g, b, duration));
+    }
+    private IEnumerator CoCrossfadeBackroundColor(int r, int g, int b, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _executionPaused = false;
+        SetBackgroundColor(r, g, b);
+        _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
+    }
 
+    /// <summary>
+    /// Clears the dialog box text
+    /// </summary>
     public void ClearDialog()
     {
         _dialogText.text = string.Empty;
     }
-
+    /// <summary>
+    /// Sets the character name box text
+    /// </summary>
+    /// <param name="characterName">Character name to be displayed</param>
     public void SetCharacterName(string characterName)
     {
         _characterNameText.text = characterName;

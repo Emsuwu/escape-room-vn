@@ -95,6 +95,10 @@ public class DialogParser : MonoBehaviour
         return -1;
     }
 
+    /// <summary>
+    /// Returns DialogCommand object after dequeuing it from command queue
+    /// </summary>
+    /// <returns>DialogCommand object to be executed</returns>
     public static DialogCommand DequeueCommand()
     {
         return CurrentDialogSequence.DialogCommands.Dequeue();

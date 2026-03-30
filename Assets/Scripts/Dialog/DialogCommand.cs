@@ -48,7 +48,11 @@ public class DialogCommand
         IsValid = true;
     }
 
-    // Regex is evil and confusing    
+    /// <summary>
+    /// Parses the arguments into a list. Args are split by spaces. Args wrapped in quotes are kept as one argument despite spaces.
+    /// </summary>
+    /// <param name="commandText">The command in string form</param>
+    /// <returns></returns>    
     private List<string> ParseCommandArgs(string commandText)
     {
         string regexPattern = @"\""((?:\\.|[^""])*)\""|([^\s]+)"; ;
@@ -69,7 +73,8 @@ public class DialogCommand
     /// </summary>
     public string[] Execute()
     {
-        //Debug.Log($"EXECUTING COMMAND {Command}");
+        if (Command.Substring(0, 1) == "#") return Arguments;
+        Debug.Log($"EXECUTING COMMAND {Command}");
 
         switch (Command)
         {
@@ -139,13 +144,25 @@ public class DialogCommand
                     Dialog.Instance.SetBackground(Arguments[0]);
                     break;
                 }
-                if (Arguments.Length == 2 && Arguments[1] == "absolute")
+                else if (Arguments.Length == 3 || Arguments.Length == 4) // path transition duration
                 {
-                    Dialog.Instance.SetBackground(Arguments[0], true);
+                    if (!float.TryParse(Arguments[2], out float crossfadeImageDuration))
+                    {
+                        CommandError("Requires a valid transition time", Command, Arguments, 0);
+                        break;
+                    }
+                    if (Arguments[1] == "crossfade")
+                    {
+                        //Debug.Log($"Crossfading for {crossfadeImageDuration}");
+                        bool no_pause = false;
+                        if (Arguments.Length == 4 && Arguments[3] == "no_pause") no_pause = true;
+                        Dialog.Instance.CrossfadeBackgroundImage(Arguments[0], crossfadeImageDuration, no_pause);
+                    }
                     break;
                 }
-                CommandError("Requires a valid path.", Command, Arguments, 0);
+                CommandError("Syntax error: background <path> [transition e.g., crossfade] <transition duration>", Command, Arguments, 1, 4);
                 break;
+
 
             case "choice":
                 //Debug.Log("Choice args length: " + Arguments.Length);
@@ -244,6 +261,7 @@ public class DialogCommand
                 }
                 CommandError("\"show_dialog\" error. Syntax: show_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
                 break;
+
         }
         return Arguments;
 
