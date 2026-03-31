@@ -71,10 +71,13 @@ public class DialogCommand
     /// <summary>
     /// Executes the dialog command
     /// </summary>
-    public string[] Execute()
+    public void Execute()
     {
-        if (Command.Substring(0, 1) == "#") return Arguments;
-        Debug.Log($"EXECUTING COMMAND {Command}");
+        string debugExecutionOutput = $"Executed -> {Command}: ";
+        foreach (string arg in Arguments) {
+            debugExecutionOutput += arg + " | ";
+        }
+        Debug.Log(debugExecutionOutput);
 
         switch (Command)
         {
@@ -201,7 +204,14 @@ public class DialogCommand
                     Dialog.Instance.StartSequence(Arguments[0]);
                     break;
                 }
-                CommandError("\"branch\" command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
+                else if (Arguments.Length == 2)
+                {
+                    DialogParser.LoadDialogPath("Dialog/" + Arguments[0]);
+                    DialogParser.Branch(Arguments[1]);
+                    Dialog.Instance.StartSequence();
+                    break;
+                }
+                    CommandError("\"branch\" command requires a sequence name wrapped in \" only.", Command, Arguments, 1);
                 break;
 
             case "hide_dialog":
@@ -263,7 +273,6 @@ public class DialogCommand
                 break;
 
         }
-        return Arguments;
 
     }
 

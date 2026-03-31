@@ -194,6 +194,7 @@ public class Dialog : MonoBehaviour
     /// </summary>
     public void StartSequence()
     {
+        StopAllCoroutines();
         if (_file == null) return;
         if (DialogParser.CurrentDialogSequence == null) return;
         _currentSequenceCoroutine = StartCoroutine(CoDialogSequence());

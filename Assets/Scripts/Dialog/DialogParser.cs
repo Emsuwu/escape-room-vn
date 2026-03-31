@@ -20,9 +20,15 @@ public class DialogParser : MonoBehaviour
     static List<string[]> _sequences = new List<string[]>();
     static int _currentSequence;
 
+    public static void LoadDialogPath(string path)
+    {
+        TextAsset dialogTextAsset = Resources.Load<TextAsset>(path);
+        LoadDialog(dialogTextAsset);
+    }
     public static void LoadDialog(TextAsset textAsset) { LoadDialog(textAsset.text); }
     public static void LoadDialog(string text)
     {
+        Debug.Log("dialog file text: " + text);
         CurrentDialogSequence = null;
         string[] tempSequencesArray = text.Split("end_sequence;");
         _sequences.Clear();

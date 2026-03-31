@@ -1,0 +1,13 @@
+sequence 1;
+
+background "Placeholder/1";
+dialog_speed default;
+character_name "Ems";
+dialog "Wait this is another file entirely qwq";
+dialog "Well you're stuck here now >:3";
+dialog "Just kidding! Let's go back";
+
+choice "OK! Let's go back" branch "TestDialog" "unicorn_1";
+end_choices;
+
+end_sequence;

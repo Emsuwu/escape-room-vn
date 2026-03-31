@@ -1,5 +1,4 @@
 sequence unicorn_1;
-# ------- Initial Sequence ------- #
 
 background "Placeholder/1";
 character_name "Ems";
@@ -9,9 +8,9 @@ dialog "Please select an option :3";
 choice "Continue explanation" pass;
 choice "Branch to \"unicorn_meow\"" branch "unicorn_meow";
 choice "Hide/Show dialog box test sequence" branch "hstest";
+choice "Go to another dialog file" branch "TestDialog2" 1;
 choice "More buttons to test how many I can fit:3" pass;
 choice ":3" pass;
-choice ":4" pass;
 choice "wowie!" pass;
 end_choices;
 
@@ -59,7 +58,6 @@ end_sequence;
 
 
 sequence hstest;
-# ------- Test for showing and hiding dialog ------- #
 
 character_name "The E n t i t y";
 background "Placeholder/3";
@@ -99,12 +97,9 @@ choice "Back to start" branch "unicorn_1";
 
 end_sequence;
 
-
-
 sequence unicorn_meow;
-# ------- Second Sequence ------- #
 background "Placeholder/4" crossfade 10 no_pause;
-character_name "Cat"; # This is a comment meow :3
+character_name "Cat";
 dialog "Wow so true!";
 clear_character;
 clear_dialog;
