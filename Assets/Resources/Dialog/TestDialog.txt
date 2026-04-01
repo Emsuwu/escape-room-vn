@@ -98,14 +98,15 @@ choice "Back to start" branch "unicorn_1";
 end_sequence;
 
 sequence unicorn_meow;
+narrator;
 background "Placeholder/4" crossfade 10 no_pause;
-character_name "Cat";
 dialog "Wow so true!";
 clear_character;
 clear_dialog;
 
-choice "Load another dialog file" load_dialog_file "Unicorn/testDialog2.txt" "scene_1";
-choice "Exit to escape room" load_scene 0;
+choice "Load another dialog file" branch "TestDialog2" 1;
+choice "Exit to escape room" load_unity_scene number 0;
+choice "Exit to escape room but with a string" load_unity_scene path "Scenes/PrototypeEscapeRoom";
 end_choices;
 
 end_sequence;

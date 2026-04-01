@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -272,6 +274,42 @@ public class DialogCommand
                 CommandError("\"show_dialog\" error. Syntax: show_dialog [Fade Time (default 0)] [\"wait\"/\"no_wait\" (default wait)]", Command, Arguments, 0, 2);
                 break;
 
+            // What a mess :D
+            case "load_unity_scene":
+                // If there are not 2 arguments, syntax error
+                if (Arguments.Length != 2)
+                {
+                    CommandError("Syntax: load_unity_scene number <integer> OR load_unity_scene path <path string>. E.g., load_unity_scene path \"Scenes/MyScene1\"", Command, Arguments, 2);
+                    break;
+                }
+                // If the first argument is "path", load scene based on the second argument being a string
+                if (Arguments[0] == "path")
+                {
+                    Dialog.Instance.CleanUp();
+                    SceneManager.LoadScene(Arguments[1]);
+                    break;
+                }
+                // If the first argument is neither "path" nor "number", syntax error
+                else if (Arguments[0] != "number")
+                {
+                    CommandError($"Invalid argument \"{Arguments[0]}\". Syntax: load_unity_scene number <integer> OR load_unity_scene path <path string>. E.g., load_unity_scene path \"Scenes/MyScene1\"", Command, Arguments, 2);
+                    break;
+                }
+                // If first argument is number and a valid integer is given, load scene based on integer
+                else if (int.TryParse(Arguments[1], out int num))
+                {
+                    Dialog.Instance.CleanUp();
+                    SceneManager.LoadScene(num);
+                    break;
+                }
+                // If reaches the end without breaking, something went wrong, syntax error
+                CommandError("Syntax: load_unity_scene number <integer> OR load_unity_scene path <path string>. E.g., load_unity_scene path \"Scenes/MyScene1\"", Command, Arguments, 2);
+                break;
+                
+
+            case "narrator":
+                Dialog.Instance.HideName();
+                break;
         }
 
     }

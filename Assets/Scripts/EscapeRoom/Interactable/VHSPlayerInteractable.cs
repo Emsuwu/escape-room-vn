@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshCollider))]
-public class VHSInteractable : Interactable
+public class VHSPlayerInteractable : Interactable
 {
     public void VHSInteract()
     {

@@ -21,6 +21,7 @@ public class Dialog : MonoBehaviour
     // Dialog elements
     [SerializeField] private Image _dialogBoxImage;
     [SerializeField] private Image _dialogBoxLineImage;
+    [SerializeField] private GameObject _characterNameBox;
     [SerializeField] private Image _characterNameBoxImage;
     // Dialog text elements
     [SerializeField] private TMPro.TMP_Text _dialogText;
@@ -39,6 +40,7 @@ public class Dialog : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActionAsset;
     InputAction _advanceAction;
+
 
     private void Awake()
     {
@@ -347,6 +349,7 @@ public class Dialog : MonoBehaviour
     /// <param name="characterName">Character name to be displayed</param>
     public void SetCharacterName(string characterName)
     {
+        _characterNameBox.SetActive(true);
         _characterNameText.text = characterName;
         //LayoutRebuilder.ForceRebuildLayoutImmediate(_characterNameBoxRectTransform);
     }
@@ -401,6 +404,15 @@ public class Dialog : MonoBehaviour
         yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame());
 
         _executionPaused = false;
+    }
+    public void HideName()
+    {
+        _characterNameBox.SetActive(false);
+    }
+    public void CleanUp()
+    {
+        DialogParser.CurrentDialogSequence.DialogCommands.Clear();
+        StopAllCoroutines();
     }
 }
 

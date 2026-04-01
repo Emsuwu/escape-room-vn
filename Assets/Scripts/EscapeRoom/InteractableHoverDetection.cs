@@ -28,6 +28,10 @@ public class InteractableHoverDetection : MonoBehaviour
         {
             UnhoverInteractable();
         }
+        if (cachedInteractable != hit.collider.gameObject.GetComponent<Interactable>())
+        {
+            UnhoverInteractable();
+        }
     }
 
     void HoverInteractable(RaycastHit hit)

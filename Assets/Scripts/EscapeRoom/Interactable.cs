@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(MeshCollider))]
 public class Interactable : MonoBehaviour
 {
     public static Interactable CurrentlyHovered;

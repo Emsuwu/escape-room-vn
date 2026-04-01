@@ -1011,6 +1011,7 @@ MonoBehaviour:
   _file: {fileID: 4900000, guid: 46e03170bd980994e8502635782cbbb1, type: 3}
   _dialogBoxImage: {fileID: 2051513253}
   _dialogBoxLineImage: {fileID: 333382398}
+  _characterNameBox: {fileID: 1794736130}
   _characterNameBoxImage: {fileID: 1794736132}
   _dialogText: {fileID: 2083361244}
   _characterNameText: {fileID: 1127132572}
