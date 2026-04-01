@@ -101,8 +101,8 @@ sequence unicorn_meow;
 narrator;
 background "Placeholder/4" crossfade 10 no_pause;
 dialog "Wow so true!";
-clear_character;
-clear_dialog;
+narrator;
+clear;
 
 choice "Load another dialog file" branch "TestDialog2" 1;
 choice "Exit to escape room" load_unity_scene number 0;
