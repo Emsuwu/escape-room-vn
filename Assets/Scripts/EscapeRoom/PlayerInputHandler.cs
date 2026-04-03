@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _interactAction;
     private InputAction _moveAction;
     private InputAction _lookAction;
+    private Vector2 _lastMousePos;
 
     public bool IsInputDisabled;
 
@@ -31,11 +32,28 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (IsInputDisabled) return;
 
+        SetControlInputType();
         CheckInteractAction();
         DoControllerCameraRotation();
         MoveReticle();
     }
+    private void SetControlInputType()
+    {
+        Vector2 mouseMovement = Mouse.current.position.ReadValue() - _lastMousePos;
+        Vector2 moveAxis = _moveAction.ReadValue<Vector2>();
 
+        bool isMouseMoving = Mathf.Abs(mouseMovement.magnitude) > 0.05f;
+        bool isStickMoving = Mathf.Abs(moveAxis.magnitude) > 0.05;
+
+        if (isMouseMoving) Settings.IsUsingGamepad = false;
+        if (isStickMoving) Settings.IsUsingGamepad = true;
+
+
+        Debug.Log($"MOUSE {mouseMovement.magnitude} | STICK: {moveAxis.magnitude}");
+        Debug.Log($"is mouse moving? {isMouseMoving} | is stick moving? {isStickMoving} | is using gamepad? {Settings.IsUsingGamepad}");
+        
+        _lastMousePos = Mouse.current.position.ReadValue();
+    }
     private void CheckInteractAction()
     {
         if (Interactable.CurrentlyHovered == null) return;

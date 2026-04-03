@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    public static bool IsUsingGamepad;
     public static float CameraSensitivity;
     public static float ReticleSensitivity;
     public static void UpdateSettings()
     {
         PlayerPrefs.DeleteAll();
         CameraSensitivity = UpdateKey("CameraSensitivity", 25f);
-        ReticleSensitivity = UpdateKey("ReticleSensitivity", 3f);
+        ReticleSensitivity = UpdateKey("ReticleSensitivity", 2f);
     }
     private static float UpdateKey(string key, float defaultValue)
     {

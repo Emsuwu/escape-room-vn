@@ -14,11 +14,14 @@ public class InteractableHoverDetection : MonoBehaviour
 
     void CheckRaycast()
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        RaycastHit hit;
+        Settings.IsUsingGamepad = true;
 
-        if (!Physics.Raycast(ray, out hit)) return;
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray ray;
+        if (!Settings.IsUsingGamepad) ray = Camera.main.ScreenPointToRay(mousePos);
+        else ray = Camera.main.ScreenPointToRay(Reticle.Instance.transform.position);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
 
         if (hit.collider.CompareTag("Interactable"))
         {
