@@ -40,4 +40,11 @@ public class PlayerCamera : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+    public void Rotate(Vector3 dir)
+    {
+        _verticalRotation += dir.x * Time.deltaTime;
+        _verticalRotation = Mathf.Clamp(_verticalRotation, RotationClampXMin, RotationClampXMax);
+        _horizontalRotation += dir.y * Time.fixedDeltaTime;
+        transform.localRotation = Quaternion.Euler(_verticalRotation, _horizontalRotation, 0f);
+    }
 }
