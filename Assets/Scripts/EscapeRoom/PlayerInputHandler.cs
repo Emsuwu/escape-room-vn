@@ -45,13 +45,11 @@ public class PlayerInputHandler : MonoBehaviour
         bool isMouseMoving = Mathf.Abs(mouseMovement.magnitude) > 0.05f;
         bool isStickMoving = Mathf.Abs(moveAxis.magnitude) > 0.05;
 
-        if (isMouseMoving) Settings.IsUsingGamepad = false;
-        if (isStickMoving) Settings.IsUsingGamepad = true;
+        if (isStickMoving) { Settings.IsUsingGamepad = true; }
+        if (isMouseMoving) { Settings.IsUsingGamepad = false; }
+        if (Settings.IsUsingGamepad) { Reticle.Instance.gameObject.SetActive(false); }
+        else { Reticle.Instance.gameObject.SetActive(true); }
 
-
-        Debug.Log($"MOUSE {mouseMovement.magnitude} | STICK: {moveAxis.magnitude}");
-        Debug.Log($"is mouse moving? {isMouseMoving} | is stick moving? {isStickMoving} | is using gamepad? {Settings.IsUsingGamepad}");
-        
         _lastMousePos = Mouse.current.position.ReadValue();
     }
     private void CheckInteractAction()

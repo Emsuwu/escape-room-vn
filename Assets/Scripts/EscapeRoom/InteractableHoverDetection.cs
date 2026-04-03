@@ -14,8 +14,6 @@ public class InteractableHoverDetection : MonoBehaviour
 
     void CheckRaycast()
     {
-        Settings.IsUsingGamepad = true;
-
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray;
         if (!Settings.IsUsingGamepad) ray = Camera.main.ScreenPointToRay(mousePos);
