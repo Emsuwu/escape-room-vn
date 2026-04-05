@@ -28,7 +28,8 @@ public class Safe : Puzzle
         _safeCanvas.SetActive(true);
         Right(); Left();
 
-        if (Settings.IsUsingGamepad) InputHint.Instance.Show(InputHint.Instance.GamepadEast, "Back");
+        if (Settings.IsUsingGamepad) InputHint.Instance.Show(
+            InputHint.Instance.GamepadEast, "Back");
         else InputHint.Instance.Show(InputHint.Instance.KeyboardEsc, "Back");
     }
     public new void DisablePuzzleScreen()
@@ -63,8 +64,5 @@ public class Safe : Puzzle
     {
         DisablePuzzleScreen();
     }
-    public override void PuzzleProcess()
-    {
-        
-    }
+    public override void PuzzleProcess() { }
 }
