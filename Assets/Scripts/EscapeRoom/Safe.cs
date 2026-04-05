@@ -27,11 +27,15 @@ public class Safe : Puzzle
         base.EnablePuzzleScreen();
         _safeCanvas.SetActive(true);
         Right(); Left();
+
+        if (Settings.IsUsingGamepad) InputHint.Instance.Show(InputHint.Instance.GamepadEast, "Back");
+        else InputHint.Instance.Show(InputHint.Instance.KeyboardEsc, "Back");
     }
     public new void DisablePuzzleScreen()
     {
         base.DisablePuzzleScreen();
         _safeCanvas.SetActive(false);
+        InputHint.Instance.Hide();
     }
     public override void Up()
     {
@@ -54,7 +58,10 @@ public class Safe : Puzzle
         _selectedDigitIndex = (_selectedDigitIndex + 1) % (_digitHighlights.Length);
         foreach (GameObject highlight in _digitHighlights) highlight.SetActive(false);
         _digitHighlights[_selectedDigitIndex].SetActive(true);
-        Debug.Log(PinValue);
+    }
+    public override void Back()
+    {
+        DisablePuzzleScreen();
     }
     public override void PuzzleProcess()
     {

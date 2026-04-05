@@ -24,21 +24,27 @@ public class Puzzle : MonoBehaviour
         PlayerInputHandler.Instance.IsInputDisabled = false;
     }
     public virtual void PuzzleProcess() { }
-    public void SendInput(InputAction up, InputAction down, InputAction left, InputAction right)
+    public void SendInput(
+        InputAction up, 
+        InputAction down, 
+        InputAction left, 
+        InputAction right, 
+        InputAction back)
     {
         if (up.WasPressedThisFrame()) Up();
         if (down.WasPressedThisFrame()) Down();
         if (left.WasPressedThisFrame()) Left();
         if (right.WasPressedThisFrame()) Right();
+        if (back.WasPressedThisFrame()) Back();
     }
     public virtual void Up() { }
     public virtual void Down() { }
     public virtual void Left() { }
     public virtual void Right() { }
+    public virtual void Back() { }
     private void Update()
     {
         if (!IsPuzzleActive) return;
-
         PuzzleProcess();
     }
 }

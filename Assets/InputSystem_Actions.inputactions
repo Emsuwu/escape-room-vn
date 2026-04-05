@@ -131,6 +131,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PuzzleBack",
+                    "type": "Button",
+                    "id": "ebcb4694-ec6a-4d59-ac69-d2c5cd2daa2c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -411,28 +420,6 @@
                 },
                 {
                     "name": "",
-                    "id": "89bca184-ac3e-4bf1-9ce4-4ec856d4c282",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4b407799-49ee-4e06-a7e2-0425f1f80cd3",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1f5954b8-695f-4e3b-b4c9-1265b957d64b",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -659,6 +646,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "PuzzleDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed468e05-1d60-4faf-bba4-b3b1390206e7",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PuzzleBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "367e2b12-8c9b-4386-ad26-958a42d70e9a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PuzzleBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

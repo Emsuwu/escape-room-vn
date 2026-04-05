@@ -17,6 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _puzzleRightAction;
     private InputAction _puzzleDownAction;
     private InputAction _puzzleUpAction;
+    private InputAction _puzzleBackAction;
 
     public bool IsInputDisabled { 
         get {return _isInputDisabled; } 
@@ -38,6 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
         _puzzleLeftAction = InputSystem.actions.FindAction("PuzzleLeft");
         _puzzleRightAction = InputSystem.actions.FindAction("PuzzleRight");
         _puzzleUpAction = InputSystem.actions.FindAction("PuzzleUp");
+        _puzzleBackAction = InputSystem.actions.FindAction("PuzzleBack");
     }
 
     private void OnEnable()
@@ -63,7 +65,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void DoPuzzleInput()
     {
-        Puzzle.CurrentPuzzle.SendInput(_puzzleUpAction, _puzzleDownAction, _puzzleLeftAction, _puzzleRightAction);
+        Puzzle.CurrentPuzzle.SendInput(_puzzleUpAction, _puzzleDownAction, _puzzleLeftAction, _puzzleRightAction, _puzzleBackAction);
     }
     private void SetControlInputType()
     {
@@ -82,6 +84,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void CheckInteractAction()
     {
+        if (IsInputDisabled) return;
         if (Interactable.CurrentlyHovered == null) return;
         if (!_interactAction.WasPressedThisFrame()) return;
         Interactable.CurrentlyHovered.Interact();
