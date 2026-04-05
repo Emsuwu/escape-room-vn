@@ -8,14 +8,36 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _lookAction;
     private Vector2 _lastMousePos;
+    [SerializeField] private GameObject _movementUI;
+    public static PlayerInputHandler Instance;
+    private bool _isInputDisabled;
 
-    public bool IsInputDisabled;
+    [Header("PuzzleInputs")]
+    private InputAction _puzzleLeftAction;
+    private InputAction _puzzleRightAction;
+    private InputAction _puzzleDownAction;
+    private InputAction _puzzleUpAction;
+
+    public bool IsInputDisabled { 
+        get {return _isInputDisabled; } 
+        set 
+        { 
+            _isInputDisabled = value;
+            _movementUI.SetActive(!IsInputDisabled);
+        } 
+    }
 
     private void Awake()
     {
+        Instance = this;
         _interactAction = InputSystem.actions.FindAction("Interact");
         _moveAction = InputSystem.actions.FindAction("Move");
         _lookAction = InputSystem.actions.FindAction("Look");
+
+        _puzzleDownAction = InputSystem.actions.FindAction("PuzzleDown");
+        _puzzleLeftAction = InputSystem.actions.FindAction("PuzzleLeft");
+        _puzzleRightAction = InputSystem.actions.FindAction("PuzzleRight");
+        _puzzleUpAction = InputSystem.actions.FindAction("PuzzleUp");
     }
 
     private void OnEnable()
@@ -30,12 +52,18 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void Update()
     {
+        if (Puzzle.CurrentPuzzle != null) DoPuzzleInput();
+
         if (IsInputDisabled) return;
 
         SetControlInputType();
         CheckInteractAction();
         DoControllerCameraRotation();
         MoveReticle();
+    }
+    private void DoPuzzleInput()
+    {
+        Puzzle.CurrentPuzzle.SendInput(_puzzleUpAction, _puzzleDownAction, _puzzleLeftAction, _puzzleRightAction);
     }
     private void SetControlInputType()
     {
@@ -47,8 +75,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (isStickMoving) { Settings.IsUsingGamepad = true; }
         if (isMouseMoving) { Settings.IsUsingGamepad = false; }
-        if (Settings.IsUsingGamepad) { Reticle.Instance.gameObject.SetActive(false); }
-        else { Reticle.Instance.gameObject.SetActive(true); }
+        if (Settings.IsUsingGamepad) { Reticle.Instance.gameObject.SetActive(true); }
+        else { Reticle.Instance.gameObject.SetActive(false); }
 
         _lastMousePos = Mouse.current.position.ReadValue();
     }

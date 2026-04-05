@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera Instance;
+    [HideInInspector] public Camera Camera;
     Coroutine _rotationCoroutine;
 
     float RotationClampXMin = -13f;
@@ -17,6 +18,10 @@ public class PlayerCamera : MonoBehaviour
 
         _verticalRotation = transform.localEulerAngles.x;
         _horizontalRotation = transform.localEulerAngles.y;
+    }
+    private void Start()
+    {
+        Camera = GetComponent<Camera>();
     }
     public void StartRotation(Vector3 dir)
     {

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class SafeInteractable : Interactable
 {
+    [SerializeField] private Safe _safe;
     public void SafeInteract()
     {
-        Debug.Log("I feel so closed off");
+        Safe.Instance.EnablePuzzleScreen();
     }
 }
