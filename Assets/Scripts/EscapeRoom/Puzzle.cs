@@ -5,17 +5,20 @@ using UnityEngine.InputSystem;
 public class Puzzle : MonoBehaviour
 {
     public static Puzzle CurrentPuzzle;
+    [Header("Puzzle")]
+    public bool Enabled = true;
     public Camera Camera;
     public bool IsPuzzleActive { get; private set; }
-    public void EnablePuzzleScreen()
+    public void Enter()
     {
+        if (!Enabled) return;
         IsPuzzleActive = true;
         CurrentPuzzle = this;
         PlayerCamera.Instance.Camera.enabled = false;
         Camera.enabled = true;
         PlayerInputHandler.Instance.IsInputDisabled = true;
     }
-    public void DisablePuzzleScreen()
+    public void Exit()
     {
         IsPuzzleActive = false;
         CurrentPuzzle = null;

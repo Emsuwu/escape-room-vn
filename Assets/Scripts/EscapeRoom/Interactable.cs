@@ -8,8 +8,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(MeshCollider))]
 public class Interactable : MonoBehaviour
 {
+    public bool Enabled = true;
     public static Interactable CurrentlyHovered;
-
     [SerializeField, FormerlySerializedAs("hoverOutlines")] GameObject[] _hoverOutlines;
     [SerializeField] UnityEvent _interactionEvent;
     private void Start()
@@ -19,10 +19,12 @@ public class Interactable : MonoBehaviour
     }
     public void Interact()
     {
+        if (!Enabled) return;
         _interactionEvent?.Invoke();
     }
     public void Hover()
     {
+        if (!Enabled) return;
         SetOutlineVisibility(true);
         CurrentlyHovered = this;
     }

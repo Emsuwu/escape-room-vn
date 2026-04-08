@@ -4,7 +4,12 @@ using UnityEngine;
 public class Safe : Puzzle
 {
     public static Safe Instance;
+    [Header("Refs")]
     [SerializeField] private GameObject _safeCanvas;
+    [SerializeField] private BoxCollider _boxCollider;
+    [SerializeField] private Animator _doorAnimator;
+    [SerializeField] private SafeInteractable _safeInteractable;
+    [Header("Digit Arrays")]
     [SerializeField] private GameObject[] _digitHighlights;
     [SerializeField] private SafeDigit[] _digits;
     private int _selectedDigitIndex;
@@ -13,7 +18,6 @@ public class Safe : Puzzle
         get
         {
             string pin = $"{_digits[0].Value}{_digits[1].Value}{_digits[2].Value}{_digits[3].Value}";
-            Debug.Log(pin);
             return int.Parse(pin);
         } 
     }
@@ -22,9 +26,19 @@ public class Safe : Puzzle
     {
         Instance = this;
     }
-    public new void EnablePuzzleScreen()
+
+    private void Start()
     {
-        base.EnablePuzzleScreen();
+        if (SaveManager.Data.IsSafeCracked)
+        {
+            Meowtils.Defer(() => OpenSafe(true));
+        }
+    }
+
+    public new void Enter()
+    {
+        if (!Enabled) return;
+        base.Enter();
         _safeCanvas.SetActive(true);
         Right(); Left();
 
@@ -32,9 +46,9 @@ public class Safe : Puzzle
             InputHint.Instance.GamepadEast, "Back");
         else InputHint.Instance.Show(InputHint.Instance.KeyboardEsc, "Back");
     }
-    public new void DisablePuzzleScreen()
+    public new void Exit()
     {
-        base.DisablePuzzleScreen();
+        base.Exit();
         _safeCanvas.SetActive(false);
         InputHint.Instance.Hide();
     }
@@ -62,7 +76,23 @@ public class Safe : Puzzle
     }
     public override void Back()
     {
-        DisablePuzzleScreen();
+        Exit();
     }
-    public override void PuzzleProcess() { }
+    public override void PuzzleProcess() 
+    {
+        if (PinValue != CorrectPin) return;
+        OpenSafe();
+    }
+
+    public void OpenSafe(bool instant = false)
+    {
+        Enabled = false;
+        Exit();
+        _doorAnimator.SetTrigger(instant ? "OpenInstantly" : "Open");
+        _safeInteractable.Enabled = false;
+        _safeInteractable.Unhover();
+        _boxCollider.enabled = false;
+        SaveManager.Data.IsSafeCracked = true;
+        SaveManager.SaveData();
+    }
 }
