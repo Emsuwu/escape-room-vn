@@ -21,7 +21,6 @@ public class SaveManager : MonoBehaviour
     [Button("Clear save data")]
     public static void ClearData()
     {
-        SavePath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "Save.json";
         Data = new PersistentData();
         SaveData();
     }

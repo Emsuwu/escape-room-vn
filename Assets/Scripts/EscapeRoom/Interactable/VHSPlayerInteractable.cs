@@ -3,8 +3,19 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class VHSPlayerInteractable : Interactable
 {
-    public void VHSInteract()
+    [SerializeField] private GameObject _tapeAnim;
+    private AudioSource _tapeSound;
+    private bool _isTapeInserted;
+    private new void Start()
     {
-        Debug.Log("Chuck a tape in me :3");
+        base.Start();
+        _tapeSound = GetComponent<AudioSource>();
+    }
+    public void InsertTape()
+    {
+        if (_isTapeInserted) return;
+        _isTapeInserted = true;
+        _tapeAnim.SetActive(true);
+        _tapeSound.Play();
     }
 }

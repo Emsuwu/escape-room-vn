@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     public static Interactable CurrentlyHovered;
     [SerializeField, FormerlySerializedAs("hoverOutlines")] GameObject[] _hoverOutlines;
     [SerializeField] UnityEvent _interactionEvent;
-    private void Start()
+    public void Start()
     {
         gameObject.tag = "Interactable";
         SetOutlineVisibility(false);
