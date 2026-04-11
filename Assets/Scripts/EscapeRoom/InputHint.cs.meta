@@ -1,2 +1,28 @@
 fileFormatVersion: 2
 guid: ef8f981e9e94c624f833b2ba87515590
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - GamepadNorth: {fileID: 21300000, guid: dc6f728363a27ab44a0820d9bd323cc9, type: 3}
+  - GamepadSouth: {fileID: 21300000, guid: 0de04de2c6f364d4a885171cdf83b1f2, type: 3}
+  - GamepadEast: {fileID: 21300000, guid: 221b8b3a32fb38b49adba85c2dc84662, type: 3}
+  - GamepadWest: {fileID: 21300000, guid: f206c98355155934cb96d68d8e7f4e5b, type: 3}
+  - GamepadDpadUp: {fileID: 21300000, guid: b24369c59a1e3d647b28b4934223aedc, type: 3}
+  - GamepadDpadDown: {fileID: 21300000, guid: 5c54d076aa5579147b7fc47d69f93576, type: 3}
+  - GamepadDpadLeft: {fileID: 21300000, guid: 5c86ef0b0fa69814a8acdb1040481383, type: 3}
+  - GamepadDpadRight: {fileID: 21300000, guid: 8012ad4c409f22d489202f00f9f26799, type: 3}
+  - GamepadDpad: {fileID: 21300000, guid: abb7c3a040a1872489bc3cfdb7dee7a5, type: 3}
+  - KeyboardEsc: {fileID: 21300000, guid: 66514e13c68d3cd449f51cbed01503c4, type: 3}
+  - KeyboardUp: {fileID: 21300000, guid: 90592bf8a2971f9409ed394b2aa37a48, type: 3}
+  - KeyboardDown: {fileID: 21300000, guid: ac0c9cd4539c8694983165651d22f2d0, type: 3}
+  - KeyboardLeft: {fileID: 21300000, guid: e5af0cb82f0cf174e9611828428075b5, type: 3}
+  - KeyboardRight: {fileID: 21300000, guid: f48b0bb18a3689e45aad358782c021be, type: 3}
+  - _hintIcon: {instanceID: 0}
+  - _hintText: {instanceID: 0}
+  - _line: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

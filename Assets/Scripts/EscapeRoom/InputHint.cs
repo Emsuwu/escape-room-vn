@@ -10,8 +10,17 @@ public class InputHint : MonoBehaviour
     public Sprite GamepadSouth;
     public Sprite GamepadEast;
     public Sprite GamepadWest;
+    public Sprite GamepadDpadUp;
+    public Sprite GamepadDpadDown;
+    public Sprite GamepadDpadLeft;
+    public Sprite GamepadDpadRight;
+    public Sprite GamepadDpad;
     [Header("Keyboard and Mouse Icons")]
     public Sprite KeyboardEsc;
+    public Sprite KeyboardUp;
+    public Sprite KeyboardDown;
+    public Sprite KeyboardLeft;
+    public Sprite KeyboardRight;
 
     [SerializeField] private Image _hintIcon;
     [SerializeField] private TMPro.TMP_Text _hintText;
