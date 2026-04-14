@@ -50,4 +50,6 @@ public class SaveManager : MonoBehaviour
 public class PersistentData
 {
     public bool IsSafeCracked = false;
+    public bool IsTapeCollected = false;
+    public bool IsClockPuzzleSolved = false;
 }

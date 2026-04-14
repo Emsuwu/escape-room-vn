@@ -14,6 +14,7 @@ public class VHSPlayerInteractable : Interactable
     public void InsertTape()
     {
         if (_isTapeInserted) return;
+        if (!SaveManager.Data.IsTapeCollected) return;
         _isTapeInserted = true;
         _tapeAnim.SetActive(true);
         _tapeSound.Play();

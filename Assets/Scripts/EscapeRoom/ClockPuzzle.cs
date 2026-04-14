@@ -5,10 +5,14 @@ public class ClockPuzzle : Puzzle
 {
     [SerializeField] private GameObject _interactableGo;
     [SerializeField] private GameObject _outlineGo;
+
+    [SerializeField] private Floppy _floppy;
     private Coroutine _coCycleHints;
 
     [SerializeField] private GameObject _minuteHand;
     [SerializeField] private GameObject _hourHand;
+
+    [SerializeField] private string _timeSolution;
 
     private int _minutes;
     private int _hourHandNumber;
@@ -41,6 +45,12 @@ public class ClockPuzzle : Puzzle
 
     public new void Enter()
     {
+        if (SaveManager.Data.IsClockPuzzleSolved)
+        {
+            Exit();
+            return;
+        }
+
         base.Enter();
         _interactableGo.SetActive(false);
         _outlineGo.SetActive(false);
@@ -58,6 +68,12 @@ public class ClockPuzzle : Puzzle
 
     public override void Back()
     {
+        if (Time == _timeSolution)
+        {
+            SaveManager.Data.IsClockPuzzleSolved = true;
+            SaveManager.SaveData();
+            _floppy.PutUnderDoor();
+        }
         Exit();
     }
 
@@ -86,7 +102,7 @@ public class ClockPuzzle : Puzzle
                 "Take 5 minutes",
                 "Add 30 minutes",
                 "Take 30 minutes",
-                "Exit"
+                "Confirm time and exit"
             };
         while (true)
         {
