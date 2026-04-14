@@ -88,7 +88,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (Interactable.CurrentlyHovered == null) return;
         if (!_interactAction.WasPressedThisFrame()) return;
         Interactable.CurrentlyHovered.Interact();
-        Debug.Log("Interact!");
+        //Debug.Log("Interact!");
     }
     private void DoControllerCameraRotation()
     {
