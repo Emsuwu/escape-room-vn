@@ -507,7 +507,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99f6ea2daf170444289c75b03804b826, type: 2}
+  - {fileID: 2100000, guid: 1c3a4b0d62c7862488d75ef7a35fc180, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2246,15 +2246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013a0e028b1513446962e42878b6b062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PCInteractable
-  Enabled: 1
-  _hoverOutlines:
-  - {fileID: 1359555260}
-  - {fileID: 309407177}
-  _interactionEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 438980183}, m_TargetAssemblyTypeName: PCInteractable, Assembly-CSharp, m_MethodName: PCInteract, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
 --- !u!64 &438980184
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2657,7 +2648,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99f6ea2daf170444289c75b03804b826, type: 2}
+  - {fileID: 2100000, guid: 1c3a4b0d62c7862488d75ef7a35fc180, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4518,15 +4509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013a0e028b1513446962e42878b6b062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PCInteractable
-  Enabled: 1
-  _hoverOutlines:
-  - {fileID: 1359555260}
-  - {fileID: 309407177}
-  _interactionEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 1012861993}, m_TargetAssemblyTypeName: PCInteractable, Assembly-CSharp, m_MethodName: PCInteract, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
 --- !u!64 &1012861994
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7977,7 +7959,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99f6ea2daf170444289c75b03804b826, type: 2}
+  - {fileID: 2100000, guid: 1c3a4b0d62c7862488d75ef7a35fc180, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8349,7 +8331,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99f6ea2daf170444289c75b03804b826, type: 2}
+  - {fileID: 2100000, guid: 1c3a4b0d62c7862488d75ef7a35fc180, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

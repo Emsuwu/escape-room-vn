@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "02a670c0cfe54aa4a41dfdb661dc5e7b"
+        },
+        {
+            "m_Id": "43fef5ec7fd3400ebf505a3db2a2f895"
         }
     ],
     "m_Keywords": [],
@@ -803,6 +806,39 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "43fef5ec7fd3400ebf505a3db2a2f895",
+    "m_Guid": {
+        "m_GuidSerialized": "ed81cca4-13cb-4a7d-8ca1-472cf1e554d4"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Offset",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Offset",
+    "m_DefaultReferenceName": "_Offset",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "46a948ea1f4a4ca38cc8fd4a2456a8ae",
@@ -1108,6 +1144,9 @@
         },
         {
             "m_Id": "02a670c0cfe54aa4a41dfdb661dc5e7b"
+        },
+        {
+            "m_Id": "43fef5ec7fd3400ebf505a3db2a2f895"
         }
     ]
 }
