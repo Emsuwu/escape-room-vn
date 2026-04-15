@@ -11,10 +11,12 @@ public class Floppy : MonoBehaviour
         if (!SaveManager.Data.IsClockPuzzleSolved) return;
         PutUnderDoor();
     }
+
     public void PutUnderDoor()
     {
         GetComponent<Animator>().SetTrigger("ShowFloppy");
     }
+
     public void OnInteract()
     {
         SaveManager.Data.IsFloppyCollected = true;
