@@ -69,5 +69,6 @@ public class PersistentData
     public bool IsTapeCollected = false;
     public bool IsClockPuzzleSolved = false;
     public bool IsFloppyCollected = false;
+    public bool IsComicSlidUnderDoor = false;
     public List<string> Flags = new();
 }
