@@ -1,0 +1,13 @@
+sequence start;
+
+wait 0.1;
+
+background "Placeholder/Book";
+narrator;
+dialog "This is a placeholder scene for the children's book!";
+play_oneshot "MiraWhale";
+
+choice "Return" load_unity_scene number 0;
+end_choices;
+
+end_sequence;

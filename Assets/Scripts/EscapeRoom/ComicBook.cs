@@ -4,7 +4,7 @@ public class ComicBook : MonoBehaviour
 {
     public void OnInteract()
     {
-        Debug.Log("Comic book!!");
+        Dialog.StartDialogScene("Comic", "start");
     }
     private void Start()
     {

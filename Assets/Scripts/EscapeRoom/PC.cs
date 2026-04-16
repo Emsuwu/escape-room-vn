@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PC : MonoBehaviour
@@ -14,5 +16,11 @@ public class PC : MonoBehaviour
         if (!SaveManager.Data.IsFloppyCollected) return;
         _isFloppyInserted = true;
         _animator.SetTrigger("InsertFloppy");
+        StartCoroutine(CoStartFloppyScene());
+    }
+    IEnumerator CoStartFloppyScene()
+    {
+        yield return new WaitForSeconds(2);
+        Dialog.StartDialogScene("Floppy", "start");
     }
 }

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
@@ -41,6 +43,14 @@ public class Dialog : MonoBehaviour
     [SerializeField] InputActionAsset _inputActionAsset;
     InputAction _advanceAction;
 
+    public static string DialogFilePathOnStart;
+    public static string SequenceNameOnStart;
+    public static void StartDialogScene(string dialogFile, string sequenceName)
+    {
+        DialogFilePathOnStart = dialogFile;
+        SequenceNameOnStart = sequenceName;
+        SceneManager.LoadScene(1);
+    }
 
     private void Awake()
     {
@@ -49,15 +59,26 @@ public class Dialog : MonoBehaviour
     }
     private void Start()
     {
-        DefaultCharacterInterval = CharacterInterval;
-        if (_file == null) return;
-        DialogParser.LoadDialog(_file.text);
-        Branch("unicorn_1");
-        StartSequence();
+        //if (string.IsNullOrEmpty(dialogFilePathOnStart) || string.IsNullOrEmpty(sequenceNameOnStart))
+        //{
+        //    Debug.LogWarning("File path or sequence name are not set. Use StartDialogScene method when loading scene.");
+        //    return;
+        //}
 
         _transitionBackgroundImage.color = new Color32(255, 255, 255, 255);
         _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);
+
+        DefaultCharacterInterval = CharacterInterval;
+
+        _file = Resources.Load<TextAsset>("Dialog/" + DialogFilePathOnStart);
+        if (_file == null) return;
+        DialogParser.LoadDialog(_file);
+        Branch(SequenceNameOnStart);
+        StartSequence();
+
     }
+
+
 
     /// <summary>
     /// Shows the dialog UI

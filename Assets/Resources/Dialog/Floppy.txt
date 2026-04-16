@@ -1,0 +1,11 @@
+sequence start;
+
+background "Placeholder/Floppy";
+narrator;
+dialog "This is a placeholder scene for the choose your own adventure game!";
+play_oneshot "MiraWhale";
+
+choice "Return" load_unity_scene number 0;
+end_choices;
+
+end_sequence;
