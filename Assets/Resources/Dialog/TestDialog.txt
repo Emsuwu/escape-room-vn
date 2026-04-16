@@ -3,15 +3,16 @@ sequence unicorn_1;
 background "Placeholder/1";
 character_name "Ems";
 dialog "Welcome to the dialog test!";
+play_oneshot "MiraWhale";
 dialog "Please select an option :3";
 
 choice "Continue explanation" pass;
 choice "Branch to \"unicorn_meow\"" branch "unicorn_meow";
 choice "Hide/Show dialog box test sequence" branch "hstest";
 choice "Go to another dialog file" branch "TestDialog2" 1;
-choice "More buttons to test how many I can fit:3" pass;
-choice ":3" pass;
-choice "wowie!" pass;
+choice "Branch if flag \"nyan\" exists" if flag "nyan" branch "flag_nyan_branch";
+choice "Add flag \"nyan\"" flag add "nyan";
+choice "Remove flag \"nyan\"" flag remove "nyan";
 end_choices;
 
 background "Placeholder/4" crossfade 0.5;
@@ -107,6 +108,17 @@ clear;
 choice "Load another dialog file" branch "TestDialog2" 1;
 choice "Exit to escape room" load_unity_scene number 0;
 choice "Exit to escape room but with a string" load_unity_scene path "Scenes/PrototypeEscapeRoom";
+end_choices;
+
+end_sequence;
+
+
+
+sequence flag_nyan_branch;
+
+dialog "It seems the \"nyan\" flag is in the flag list!";
+
+choice "Go back" branch "unicorn_1";
 end_choices;
 
 end_sequence;

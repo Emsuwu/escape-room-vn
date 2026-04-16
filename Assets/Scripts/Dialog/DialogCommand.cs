@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -306,12 +307,77 @@ public class DialogCommand
                 CommandError("Syntax: load_unity_scene number <integer> OR load_unity_scene path <path string>. E.g., load_unity_scene path \"Scenes/MyScene1\"", Command, Arguments, 2);
                 break;
                 
-
             case "narrator":
                 Dialog.Instance.HideName();
                 break;
+
+            case "play_oneshot":
+                if (Arguments.Length == 1)
+                {
+                    AudioPlayer.Instance.PlayOneShot($"Audio/{Arguments[0]}");
+                    break;
+                }
+                CommandError("Syntax: play_oneshot <audio path (without file extension)>", Command, Arguments, 1);
+                break;
+
+            case "flag":
+                if (Arguments.Length == 2) 
+                {
+                    if (Arguments[0] == "add")
+                    {
+                        SaveManager.AddFlag(Arguments[1]);
+                        SaveManager.SaveData();
+                        break;
+                    }
+                    else if (Arguments[0] == "remove")
+                    {
+                        SaveManager.RemoveFlag(Arguments[1]);
+                        SaveManager.SaveData();
+                        break;
+                    }
+                }
+                CommandError("Syntax: flag <add/remove> <flag string>", Command, Arguments, 2);
+                break;
+
+            case "if":
+                if (Arguments.Length != 0)
+                {
+                    if (Arguments[0] == "flag")
+                    {
+                        if (!SaveManager.Data.Flags.Contains(Arguments[1])) return;
+                        DialogCommandFromArgs(Arguments, 2).Execute();
+                        break;
+                    }
+                }
+                CommandError("Syntax: if flag <flag string> <command>", Command, Arguments, 2, 9999);
+                break;
+
+            case "unless":
+                if (Arguments.Length != 0)
+                {
+                    if (Arguments[0] == "flag")
+                    {
+                        if (SaveManager.Data.Flags.Contains(Arguments[1])) return;
+                        DialogCommandFromArgs(Arguments, 2).Execute();
+                        break;
+                    }
+                }
+                CommandError("Syntax: unless flag <flag string> <command>", Command, Arguments, 2, 9999);
+                break;
+
         }
 
+    }
+
+    private DialogCommand DialogCommandFromArgs(string[] commandArgs, int trimArgs)
+    {
+        List<string> temp = commandArgs.ToList<string>();
+        for (int i = 0; i < trimArgs; i++) { temp.RemoveAt(0); }
+        string commandString = string.Empty;
+        foreach (string part in temp) { commandString += part + " "; }
+        commandString = commandString.Substring(0, commandString.Length - 1);
+        DialogCommand command = new DialogCommand(commandString);
+        return command;
     }
 
     private void CommandError(string hint, string command, string[] arguments, int minRequiredArguments, int maxRequiredArguments = -1)
