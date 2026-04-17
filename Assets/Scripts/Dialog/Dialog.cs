@@ -49,7 +49,7 @@ public class Dialog : MonoBehaviour
     {
         DialogFilePathOnStart = dialogFile;
         SequenceNameOnStart = sequenceName;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     private void Awake()

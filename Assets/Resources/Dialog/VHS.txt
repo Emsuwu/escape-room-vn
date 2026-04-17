@@ -5,7 +5,7 @@ narrator;
 dialog "This is a placeholder scene for the found footage VHS tape!";
 play_oneshot "MiraWhale";
 
-choice "Return" load_unity_scene number 0;
+choice "Return" load_unity_scene number 1;
 end_choices;
 
 end_sequence;

@@ -106,7 +106,7 @@ narrator;
 clear;
 
 choice "Load another dialog file" branch "TestDialog2" 1;
-choice "Exit to escape room" load_unity_scene number 0;
+choice "Exit to escape room" load_unity_scene number 1;
 choice "Exit to escape room but with a string" load_unity_scene path "Scenes/PrototypeEscapeRoom";
 end_choices;
 
