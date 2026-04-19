@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -9,5 +10,8 @@ public class SettingsMenu : MonoBehaviour
         _menuRoot.SetActive(false);
         gameObject.SetActive(false);
         _titleScreen.SetActive(true);
+    }
+    public void BackToTitle() {
+        SceneManager.LoadScene(0);
     }
 }

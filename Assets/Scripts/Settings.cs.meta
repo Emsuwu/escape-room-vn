@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 5d9647ab2b7a84940a700b2cf87a8aa0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _masterVolume: {fileID: 24300002, guid: 81af92e07ffef9e4c98f896e2dc55631, type: 2}
+  - _soundEffectsVolume: {fileID: -6055685127301052539, guid: 81af92e07ffef9e4c98f896e2dc55631, type: 2}
+  - _ambienceVolume: {fileID: 4076080651282323532, guid: 81af92e07ffef9e4c98f896e2dc55631, type: 2}
+  - _musicVolume: {fileID: -61545721228605504, guid: 81af92e07ffef9e4c98f896e2dc55631, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
