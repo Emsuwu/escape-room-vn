@@ -14,4 +14,8 @@ public class SettingsMenu : MonoBehaviour
     public void BackToTitle() {
         SceneManager.LoadScene(0);
     }
+    public void BackToEscapeRoom()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

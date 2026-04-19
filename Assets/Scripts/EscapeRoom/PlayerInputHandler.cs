@@ -122,33 +122,42 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Vector2 lookAxis = _lookAction.ReadValue<Vector2>();
 
+        int lookYSign = Settings.InvertCamY ? -1 : 1;
+        int lookXSign = Settings.InvertCamX ? -1 : 1;
+
         PlayerCamera.Instance.Rotate(
             new Vector3(
-                -lookAxis.y * Settings.CameraSensitivity * 800 * Time.deltaTime, 
-                lookAxis.x * Settings.CameraSensitivity * 200 * Time.deltaTime, 
+                lookYSign * -lookAxis.y * Settings.CameraSensitivity, 
+                lookXSign * lookAxis.x * Settings.CameraSensitivity / 8, 
                 0
             ));
     }
     private void DoKeyboardCameraRotation()
     {
+        int lookYSign = Settings.InvertCamY ? -1 : 1;
+        int lookXSign = Settings.InvertCamX ? -1 : 1;
+
         float w = _wAction.IsPressed() ? 1 : 0;
         float s = _sAction.IsPressed() ? 1 : 0;
         float a = _aAction.IsPressed() ? 1 : 0;
         float d = _dAction.IsPressed() ? 1 : 0;
-        Vector2 lookAxis = new Vector2(d-a, w-s);
+        Vector2 lookAxis = new Vector2(lookXSign * (d-a), lookYSign * (w-s) * 4) / 8;
 
         PlayerCamera.Instance.Rotate(
             new Vector3(
-                -lookAxis.y * Settings.CameraSensitivity * 800 * Time.deltaTime,
-                lookAxis.x * Settings.CameraSensitivity * 200 * Time.deltaTime,
+                -lookAxis.y * Settings.CameraSensitivity,
+                lookAxis.x * Settings.CameraSensitivity,
                 0
             ));
     }
     private void MoveReticle()
     {
+        int moveYSign = Settings.InvertReticleY ? -1 : 1;
+        int moveXSign = Settings.InvertReticleX ? -1 : 1;
+
         Vector2 moveAxis = _moveAction.ReadValue<Vector2>();
         Reticle.Instance.Move(
-            moveAxis.x * Settings.ReticleSensitivity, 
-            moveAxis.y * Settings.ReticleSensitivity);
+            moveYSign * moveAxis.x * Settings.ReticleSensitivity, 
+            moveXSign * moveAxis.y * Settings.ReticleSensitivity);
     }
 }

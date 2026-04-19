@@ -3,16 +3,7 @@ using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
-    public float MasterVolume
-    {
-        get
-        {
-            Instance._masterMixer.GetFloat("MasterVolume", out float mv);
-            return mv;
-        }
-    }
     [SerializeField] private AudioMixer _masterMixer;
-
     public static Settings Instance;
     public static bool IsUsingGamepad;
     public static float CameraSensitivity;
