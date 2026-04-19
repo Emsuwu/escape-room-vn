@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class SwitchMenus : MonoBehaviour
 {
     [SerializeField] GameObject[] _setActive;
