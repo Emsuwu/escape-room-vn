@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerPrefSlider : MonoBehaviour
 {
@@ -18,5 +18,6 @@ public class PlayerPrefSlider : MonoBehaviour
     {
         PlayerPrefs.SetFloat(_targetPref, _slider.value);
         Settings.UpdateSettings();
+        Debug.Log("MEOW " + PlayerPrefs.GetFloat(_targetPref) + " " + Settings.Instance.MasterVolume);
     }
 }

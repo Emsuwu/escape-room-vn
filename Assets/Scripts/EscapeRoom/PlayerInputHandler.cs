@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject _menuRoot;
+    [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private InputActionAsset _inputActionAsset;
     private InputAction _interactAction;
     private InputAction _moveAction;
@@ -11,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private GameObject _movementUI;
     public static PlayerInputHandler Instance;
     private bool _isInputDisabled;
+    public bool IsPaused;
 
     [Header("PuzzleInputs")]
     private InputAction _puzzleLeftAction;
@@ -18,6 +21,12 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _puzzleDownAction;
     private InputAction _puzzleUpAction;
     private InputAction _puzzleBackAction;
+
+    private InputAction _wAction;
+    private InputAction _aAction;
+    private InputAction _sAction;
+    private InputAction _dAction;
+    private InputAction _pauseAction;
 
     public bool IsInputDisabled { 
         get {return _isInputDisabled; } 
@@ -34,6 +43,12 @@ public class PlayerInputHandler : MonoBehaviour
         _interactAction = InputSystem.actions.FindAction("Interact");
         _moveAction = InputSystem.actions.FindAction("Move");
         _lookAction = InputSystem.actions.FindAction("Look");
+
+        _wAction = InputSystem.actions.FindAction("W");
+        _aAction = InputSystem.actions.FindAction("A");
+        _sAction = InputSystem.actions.FindAction("S");
+        _dAction = InputSystem.actions.FindAction("D");
+        _pauseAction = InputSystem.actions.FindAction("Pause");
 
         _puzzleDownAction = InputSystem.actions.FindAction("PuzzleDown");
         _puzzleLeftAction = InputSystem.actions.FindAction("PuzzleLeft");
@@ -57,11 +72,24 @@ public class PlayerInputHandler : MonoBehaviour
         if (Puzzle.CurrentPuzzle != null) DoPuzzleInput();
 
         if (IsInputDisabled) return;
+        if (IsPaused) return;
 
         SetControlInputType();
         CheckInteractAction();
         DoControllerCameraRotation();
+        DoKeyboardCameraRotation();
         MoveReticle();
+        CheckPause();
+    }
+    private void CheckPause()
+    {
+        if (Puzzle.CurrentPuzzle != null) return;
+        if (_pauseAction.IsPressed())
+        {
+            IsPaused = true;
+            _menuRoot.SetActive(true);
+            _settingsMenu.SetActive(true);
+        }
     }
     private void DoPuzzleInput()
     {
@@ -95,9 +123,26 @@ public class PlayerInputHandler : MonoBehaviour
         Vector2 lookAxis = _lookAction.ReadValue<Vector2>();
 
         PlayerCamera.Instance.Rotate(
-            new Vector3(-lookAxis.y * Settings.CameraSensitivity * 2, 
-            lookAxis.x * Settings.CameraSensitivity / 2, 
-            0));
+            new Vector3(
+                -lookAxis.y * Settings.CameraSensitivity * 800 * Time.deltaTime, 
+                lookAxis.x * Settings.CameraSensitivity * 200 * Time.deltaTime, 
+                0
+            ));
+    }
+    private void DoKeyboardCameraRotation()
+    {
+        float w = _wAction.IsPressed() ? 1 : 0;
+        float s = _sAction.IsPressed() ? 1 : 0;
+        float a = _aAction.IsPressed() ? 1 : 0;
+        float d = _dAction.IsPressed() ? 1 : 0;
+        Vector2 lookAxis = new Vector2(d-a, w-s);
+
+        PlayerCamera.Instance.Rotate(
+            new Vector3(
+                -lookAxis.y * Settings.CameraSensitivity * 800 * Time.deltaTime,
+                lookAxis.x * Settings.CameraSensitivity * 200 * Time.deltaTime,
+                0
+            ));
     }
     private void MoveReticle()
     {
