@@ -9228,6 +9228,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047949849290057201, guid: 79f781a15171b0241a7dac14f3479822, type: 3}
+      propertyPath: CorrectPin
+      value: 2008
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047949849290057201, guid: 79f781a15171b0241a7dac14f3479822, type: 3}
       propertyPath: _boxCollider
       value: 
       objectReference: {fileID: 1706175904}
