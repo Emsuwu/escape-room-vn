@@ -11,9 +11,9 @@ public class InputTypeDetector : MonoBehaviour
 
     private void Awake()
     {
-        _gamepadAction = InputSystem.actions.FindAction("Gamepad");
-        _gamepadAxisAction = InputSystem.actions.FindAction("GamepadAxis");
-        _keyboardAndMouseAction = InputSystem.actions.FindAction("KeyboardAndMouse");
+        _gamepadAction = _inputActionAsset.FindAction("Gamepad");
+        _gamepadAxisAction = _inputActionAsset.FindAction("GamepadAxis");
+        _keyboardAndMouseAction = _inputActionAsset.FindAction("KeyboardAndMouse");
     }
     private void OnEnable()
     {

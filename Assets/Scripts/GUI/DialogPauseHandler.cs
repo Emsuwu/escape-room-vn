@@ -12,6 +12,7 @@ public class DialogPauseHandler : MonoBehaviour
 
     public void OnPause()
     {
+        Debug.Log("meow");
         _menuRoot.SetActive(true);
         _settingsMenu.SetActive(true);
         Dialog.Instance.PauseExecution();

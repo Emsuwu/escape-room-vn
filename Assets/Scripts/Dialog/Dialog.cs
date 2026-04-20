@@ -55,7 +55,7 @@ public class Dialog : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _advanceAction = InputSystem.actions.FindAction("Advance");
+        _advanceAction = _inputActionAsset.FindAction("Advance");
     }
     private void Start()
     {

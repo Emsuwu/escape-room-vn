@@ -40,21 +40,21 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _interactAction = InputSystem.actions.FindAction("Interact");
-        _moveAction = InputSystem.actions.FindAction("Move");
-        _lookAction = InputSystem.actions.FindAction("Look");
+        _interactAction = _inputActionAsset.FindAction("Interact");
+        _moveAction = _inputActionAsset.FindAction("Move");
+        _lookAction = _inputActionAsset.FindAction("Look");
 
-        _wAction = InputSystem.actions.FindAction("W");
-        _aAction = InputSystem.actions.FindAction("A");
-        _sAction = InputSystem.actions.FindAction("S");
-        _dAction = InputSystem.actions.FindAction("D");
-        _pauseAction = InputSystem.actions.FindAction("Pause");
+        _wAction = _inputActionAsset.FindAction("W");
+        _aAction = _inputActionAsset.FindAction("A");
+        _sAction = _inputActionAsset.FindAction("S");
+        _dAction = _inputActionAsset.FindAction("D");
+        _pauseAction = _inputActionAsset.FindAction("Pause");
 
-        _puzzleDownAction = InputSystem.actions.FindAction("PuzzleDown");
-        _puzzleLeftAction = InputSystem.actions.FindAction("PuzzleLeft");
-        _puzzleRightAction = InputSystem.actions.FindAction("PuzzleRight");
-        _puzzleUpAction = InputSystem.actions.FindAction("PuzzleUp");
-        _puzzleBackAction = InputSystem.actions.FindAction("PuzzleBack");
+        _puzzleDownAction = _inputActionAsset.FindAction("PuzzleDown");
+        _puzzleLeftAction = _inputActionAsset.FindAction("PuzzleLeft");
+        _puzzleRightAction = _inputActionAsset.FindAction("PuzzleRight");
+        _puzzleUpAction = _inputActionAsset.FindAction("PuzzleUp");
+        _puzzleBackAction = _inputActionAsset.FindAction("PuzzleBack");
     }
 
     private void OnEnable()

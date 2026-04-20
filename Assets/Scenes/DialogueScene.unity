@@ -446,6 +446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1791436639}
     m_Modifications:
+    - target: {fileID: 1110925390516090543, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
+      propertyPath: _setActive.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2608407848845595546, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -643,10 +647,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6414243173147000267, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1744899905}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2834763503248071765, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1180468649}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
 --- !u!224 &298411793 stripped
 RectTransform:
@@ -1227,23 +1228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!1 &1180468640 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2834763503248071765, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
-  m_PrefabInstance: {fileID: 298411792}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1180468649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180468640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f1be4ac83f559448a53e61b461ef0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1576496405
 GameObject:
   m_ObjectHideFlags: 0

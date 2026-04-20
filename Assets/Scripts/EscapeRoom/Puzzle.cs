@@ -24,7 +24,7 @@ public class Puzzle : MonoBehaviour
         CurrentPuzzle = null;
         PlayerCamera.Instance.Camera.enabled = true;
         Camera.enabled = false;
-        PlayerInputHandler.Instance.IsInputDisabled = false;
+        Meowtils.Defer( () => PlayerInputHandler.Instance.IsInputDisabled = false );
     }
     public virtual void PuzzleProcess() { }
     public void SendInput(
