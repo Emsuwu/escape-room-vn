@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5718591813169711146}
   - component: {fileID: 9016747950763314179}
+  - component: {fileID: 3473881460694733253}
   m_Layer: 0
   m_Name: UIInputHandler
   m_TagString: Untagged
@@ -42,6 +43,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e4241ce2622cc04f9f9659ce74ad51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &3473881460694733253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202580781377293209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410b353a84a454e4da9052af55f3d6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   _inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

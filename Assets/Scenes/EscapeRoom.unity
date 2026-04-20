@@ -1585,6 +1585,7 @@ Transform:
   - {fileID: 1197410253}
   - {fileID: 1596829070}
   - {fileID: 651175524}
+  - {fileID: 815288640}
   - {fileID: 1212630191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3996,6 +3997,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770130622}
   m_CullTransparentMesh: 1
+--- !u!1 &815288639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815288640}
+  - component: {fileID: 815288641}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815288640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815288639}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1084.7762, y: 575.5032, z: 9.80084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 299297932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815288641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815288639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f0d0b06b7f41541857b29ec71c0eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,11 +4583,15 @@ MonoBehaviour:
   GamepadDpadLeft: {fileID: 21300000, guid: 5c86ef0b0fa69814a8acdb1040481383, type: 3}
   GamepadDpadRight: {fileID: 21300000, guid: 8012ad4c409f22d489202f00f9f26799, type: 3}
   GamepadDpad: {fileID: 21300000, guid: abb7c3a040a1872489bc3cfdb7dee7a5, type: 3}
+  GamepadLeftStick: {fileID: 21300000, guid: 5f507ce5c47fa7649ba2fbde9d97f239, type: 3}
+  GamepadRightStick: {fileID: 21300000, guid: 7806d73cfa2b1a540898a249f7b95845, type: 3}
   KeyboardEsc: {fileID: 21300000, guid: 66514e13c68d3cd449f51cbed01503c4, type: 3}
   KeyboardUp: {fileID: 21300000, guid: 90592bf8a2971f9409ed394b2aa37a48, type: 3}
   KeyboardDown: {fileID: 21300000, guid: ac0c9cd4539c8694983165651d22f2d0, type: 3}
   KeyboardLeft: {fileID: 21300000, guid: e5af0cb82f0cf174e9611828428075b5, type: 3}
   KeyboardRight: {fileID: 21300000, guid: f48b0bb18a3689e45aad358782c021be, type: 3}
+  KeyboardRightWASD: {fileID: 21300000, guid: 86759878159835c468c7e4ac51234e20, type: 3}
+  MouseMove: {fileID: 21300000, guid: bda9daeaadcd2234dace784c6f488a77, type: 3}
   _hintIcon: {fileID: 874906970}
   _hintText: {fileID: 740928863}
   _line: {fileID: 1039435949}

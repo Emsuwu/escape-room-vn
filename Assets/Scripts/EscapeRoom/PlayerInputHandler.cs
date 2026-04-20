@@ -103,8 +103,8 @@ public class PlayerInputHandler : MonoBehaviour
         bool isMouseMoving = Mathf.Abs(mouseMovement.magnitude) > 0.05f;
         bool isStickMoving = Mathf.Abs(moveAxis.magnitude) > 0.05;
 
-        if (isStickMoving) { Settings.IsUsingGamepad = true; }
-        if (isMouseMoving) { Settings.IsUsingGamepad = false; }
+        //if (isStickMoving) { Settings.IsUsingGamepad = true; }
+        //if (isMouseMoving) { Settings.IsUsingGamepad = false; }
         if (Settings.IsUsingGamepad) { Reticle.Instance.gameObject.SetActive(true); }
         else { Reticle.Instance.gameObject.SetActive(false); }
 
