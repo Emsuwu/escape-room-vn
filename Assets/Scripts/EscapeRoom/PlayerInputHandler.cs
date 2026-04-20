@@ -84,7 +84,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void CheckPause()
     {
         if (Puzzle.CurrentPuzzle != null) return;
-        if (_pauseAction.IsPressed())
+        if (_pauseAction.WasPressedThisFrame())
         {
             IsPaused = true;
             _menuRoot.SetActive(true);

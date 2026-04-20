@@ -365,6 +365,15 @@ public class DialogCommand
                 CommandError("Syntax: unless flag <flag string> <command>", Command, Arguments, 2, 9999);
                 break;
 
+            case "await_input":
+                if (Arguments.Length == 0)
+                {
+                    Dialog.Instance.PauseExecutionUntilAdvanceInputMade();
+                    break;
+                }
+                CommandError("This command does not take arguments.", Command, Arguments, 0, 0);
+                break;
+
         }
 
     }

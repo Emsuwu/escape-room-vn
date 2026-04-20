@@ -18,7 +18,7 @@ public class Settings : MonoBehaviour
     public event OnSettingsUpdated SettingsUpdated;
     public static void UpdateSettings()
     {
-        CameraSensitivity = UpdateKey("CameraSensitivity", 25f);
+        CameraSensitivity = UpdateKey("CameraSensitivity", 50f);
         ReticleSensitivity = UpdateKey("ReticleSensitivity", 2f);
         InvertCamY = UpdateKey("InvertCamY", false);
         InvertCamX = UpdateKey("InvertCamX", false);

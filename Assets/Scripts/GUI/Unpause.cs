@@ -4,6 +4,6 @@ public class Unpause : MonoBehaviour
 {
     public void OnClick()
     {
-        PlayerInputHandler.Instance.IsPaused = false;
+        Meowtils.Defer(() => PlayerInputHandler.Instance.IsPaused = false);
     }
 }

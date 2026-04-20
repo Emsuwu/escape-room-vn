@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 public class SwitchMenus : MonoBehaviour
 {
@@ -5,7 +6,7 @@ public class SwitchMenus : MonoBehaviour
     [SerializeField] GameObject[] _setInactive;
     public void OnClick()
     {
-        foreach (GameObject go in _setActive) { go.SetActive(true); }
-        foreach (GameObject go in _setInactive) { go.SetActive(false); }
+        if (_setActive != null && _setActive.Length > 0) foreach (GameObject go in _setActive) { go.SetActive(true); }
+        if (_setInactive != null && _setInactive.Length > 0) foreach (GameObject go in _setInactive) { go.SetActive(false); }
     }
 }

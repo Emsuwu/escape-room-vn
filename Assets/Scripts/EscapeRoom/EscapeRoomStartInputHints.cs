@@ -13,7 +13,6 @@ public class EscapeRoomStartInputHints : MonoBehaviour
 
     IEnumerator CoStartHints()
     {
-        Debug.Log(Settings.IsUsingGamepad);
         if (Settings.IsUsingGamepad) InputHint.Instance.Show(InputHint.Instance.GamepadRightStick, "Look around");
         else InputHint.Instance.Show(InputHint.Instance.KeyboardRightWASD, "Look around");
 

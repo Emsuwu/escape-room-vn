@@ -7,6 +7,8 @@ narrator;
 dialog "This is a placeholder scene for the children's book!";
 play_oneshot "MiraWhale";
 
+await_input;
+
 choice "Return" load_unity_scene number 1;
 end_choices;
 

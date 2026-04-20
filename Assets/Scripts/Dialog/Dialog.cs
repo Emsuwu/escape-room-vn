@@ -124,6 +124,20 @@ public class Dialog : MonoBehaviour
         _executionPaused = false;
     }
 
+    /// <summary>
+    /// Pauses execution until, for example, click or gamepad south is pressed.
+    /// </summary>
+    public void PauseExecutionUntilAdvanceInputMade()
+    {
+        _executionPaused = true;
+        StartCoroutine(CoPauseExecutionUntilAdvanceInputMade());
+    }
+    private IEnumerator CoPauseExecutionUntilAdvanceInputMade()
+    {
+        yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame());
+        _executionPaused = false;
+    }
+
     private void OnEnable()
     {
         _inputActionAsset.FindActionMap("Dialog").Enable();
