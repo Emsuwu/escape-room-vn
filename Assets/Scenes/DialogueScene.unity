@@ -612,19 +612,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1755500764}
+      objectReference: {fileID: 2087594190}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PauseExecution
+      value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Dialog, Assembly-CSharp
+      value: UnpauseDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -647,7 +647,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6414243173147000267, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1744899905}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2834763503248071765, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2087594190}
   m_SourcePrefab: {fileID: 100100000, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
 --- !u!224 &298411793 stripped
 RectTransform:
@@ -2377,6 +2380,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083361242}
   m_CullTransparentMesh: 1
+--- !u!1 &2087594189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2834763503248071765, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
+  m_PrefabInstance: {fileID: 298411792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087594190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087594189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e46a49d1f9054d40b9138a7b8715744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
