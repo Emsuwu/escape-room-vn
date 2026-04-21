@@ -51,6 +51,8 @@ character_name "Kid 1";dialog "Ha-Haa! Did you see how fast they ran!";
 character_name "Kid 2";dialog "They left their camera behind, do you think we should bring it back to them?";
 character_name "Kid 1";dialog "Nah, they're too far away. I call dibs!";
 
+flag add "Completed VHS";
+
 choice "Return" load_unity_scene number 1;
 end_choices;
 
