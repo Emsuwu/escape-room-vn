@@ -9,6 +9,7 @@ public class Safe : Puzzle
     [SerializeField] private BoxCollider _boxCollider;
     [SerializeField] private Animator _doorAnimator;
     [SerializeField] private SafeInteractable _safeInteractable;
+    [SerializeField] private GameObject _lights;
     [Header("Digit Arrays")]
     [SerializeField] private GameObject[] _digitHighlights;
     [SerializeField] private SafeDigit[] _digits;
@@ -39,6 +40,7 @@ public class Safe : Puzzle
     {
         if (!Enabled) return;
         base.Enter();
+        //_lights.SetActive(true);
         _safeCanvas.SetActive(true);
         Right(); Left();
 
@@ -49,6 +51,7 @@ public class Safe : Puzzle
     public new void Exit()
     {
         base.Exit();
+        //_lights.SetActive(false);
         _safeCanvas.SetActive(false);
         InputHint.Instance.Hide();
     }

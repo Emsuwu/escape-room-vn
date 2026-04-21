@@ -3133,6 +3133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c8fa083adb11f44a802ef1193a4ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &543240191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7970999361653426280, guid: 79f781a15171b0241a7dac14f3479822, type: 3}
+  m_PrefabInstance: {fileID: 1791353180962651231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &634946693
 GameObject:
   m_ObjectHideFlags: 0
@@ -10026,6 +10031,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1670397635010028825, guid: 7c31d94fda96a5c44a76d66c0943b288, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876798760394092519, guid: 7c31d94fda96a5c44a76d66c0943b288, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5697007794977235290, guid: 7c31d94fda96a5c44a76d66c0943b288, type: 3}
       propertyPath: m_Name
       value: Television
@@ -10297,6 +10310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3047949849290057201, guid: 79f781a15171b0241a7dac14f3479822, type: 3}
+      propertyPath: _lights
+      value: 
+      objectReference: {fileID: 543240191}
     - target: {fileID: 3047949849290057201, guid: 79f781a15171b0241a7dac14f3479822, type: 3}
       propertyPath: CorrectPin
       value: 2008
