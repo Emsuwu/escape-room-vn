@@ -1,13 +1,37 @@
 sequence start;
 
-wait 0.1;
-
-background "Placeholder/Book";
+background Black;
+ambience Unicorn/Woods 0.2;
 narrator;
-dialog "This is a placeholder scene for the children's book!";
-play_oneshot "MiraWhale";
 
-await_input;
+# Susy meets the unicorn;
+
+dialog_speed 0.03;
+
+dialog "I was wandering through the forest behind my house, one day, when I saw something beautiful...";
+hide_dialog 0.5;
+background "Unicorn/1" crossfade 2;
+wait 0.5;
+clear;
+wait 2;
+show_dialog 0.5;
+dialog "A unicorn" 0.2 . 0.2 . 0.2 .;
+dialog_continue " a real," 0.2 " flesh-and-blood" 0.2 " unicorn.";
+dialog "It was sipping from the brook and even though I got close...";
+dialog "It wasn't scared of me at all...";
+dialog "I got closer and closer, until" 0.2 . 0.2 . 0.2 .;
+dialog_continue " I could almost reach out and touch it.";
+
+hide_dialog 0.5;
+background Unicorn/2 crossfade 2;
+wait 0.5;
+clear;
+wait 2;
+show_dialog 0.5;
+character_name "Unicorn";
+dialog "Hello, Susie.";
+
+fade_ambience 0.2;
 
 choice "Return" load_unity_scene number 1;
 end_choices;

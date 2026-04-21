@@ -25,6 +25,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private Image _dialogBoxLineImage;
     [SerializeField] private GameObject _characterNameBox;
     [SerializeField] private Image _characterNameBoxImage;
+    [SerializeField] private RectTransform _characterNameBoxLayoutGroupRectTransform;
     // Dialog text elements
     [SerializeField] private TMPro.TMP_Text _dialogText;
     [SerializeField] private TMPro.TMP_Text _characterNameText;
@@ -42,6 +43,7 @@ public class Dialog : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActionAsset;
     InputAction _advanceAction;
+    InputAction _skipAction;
 
     public static string DialogFilePathOnStart;
     public static string SequenceNameOnStart;
@@ -56,6 +58,7 @@ public class Dialog : MonoBehaviour
     {
         Instance = this;
         _advanceAction = _inputActionAsset.FindAction("Advance");
+        _skipAction = _inputActionAsset.FindAction("Skip");
     }
     private void Start()
     {
@@ -385,8 +388,9 @@ public class Dialog : MonoBehaviour
     public void SetCharacterName(string characterName)
     {
         _characterNameBox.SetActive(true);
+        _characterNameBoxImage.CrossFadeAlpha(1f, 0f, false);
         _characterNameText.text = characterName;
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(_characterNameBoxRectTransform);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_characterNameBoxLayoutGroupRectTransform);
     }
 
     /// <summary>
@@ -404,7 +408,7 @@ public class Dialog : MonoBehaviour
     public void PrintDialog(string[] dialogArray, bool clearLastDialog = true)
     {
         _executionPaused = true;
-        StartCoroutine(CoPrintDialog(dialogArray));
+        StartCoroutine(CoPrintDialog(dialogArray, clearLastDialog));
     }
     private IEnumerator CoPrintDialog(string[] dialogArray, bool clearLastDialog = true)
     {
@@ -431,7 +435,7 @@ public class Dialog : MonoBehaviour
                 _dialogText.text += character;
 
                 float interval = CharacterInterval;
-                if (_advanceAction.IsPressed()) interval = .01f;
+                if (_skipAction.IsPressed()) interval = .005f;
                 yield return new WaitForSeconds(interval);
             }
         }

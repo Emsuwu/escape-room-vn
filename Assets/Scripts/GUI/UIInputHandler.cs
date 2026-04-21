@@ -19,7 +19,6 @@ public class UIInputHandler : MonoBehaviour
         Instance = this;
         _cancelAction = _inputActionAsset.FindAction("Cancel");
         _pauseAction = _inputActionAsset.FindAction("Pause");
-        Debug.Log($"UIInputHandler Awake: asset={_inputActionAsset.name}, cancel={_cancelAction}, pause={_pauseAction}");
     }
     private void OnEnable()
     {

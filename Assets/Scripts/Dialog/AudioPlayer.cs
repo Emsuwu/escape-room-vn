@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -12,10 +14,56 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] private AudioMixerGroup _musicMixerGroup;
     [SerializeField] private AudioMixerGroup _ambienceMixerGroup;
 
+    [SerializeField] private AudioSource _musicAudioSource;
+    [SerializeField] private AudioSource _ambienceAudioSource;
+    [SerializeField] private Animator _musicAudioAnimator;
+    [SerializeField] private Animator _ambienceAudioAnimator;
+
     private void Awake()
     {
         Instance = this;
         PopulateAudioSources();
+    }
+
+    public void FadeOutAmbience(float speed = 1f)
+    {
+        FadeOutLoopingAudio(_ambienceAudioSource, _ambienceAudioAnimator, speed);
+    }
+    public void FadeOutMusic(float speed = 1f)
+    {
+        FadeOutLoopingAudio(_musicAudioSource, _musicAudioAnimator, speed);
+    }
+    public void PlayMusic(string path, float speed = 1f)
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Audio/"+path);
+        PlayLoopingAudio(_musicAudioSource, _musicAudioAnimator, clip, speed);
+    }
+    public void PlayAmbience(string path, float speed = 1f)
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Audio/" + path);
+        PlayLoopingAudio(_ambienceAudioSource, _ambienceAudioAnimator, clip, speed);
+    }
+    public async void PlayLoopingAudio(AudioSource source, Animator animator, AudioClip clip, float speed = 1f)
+    {
+        animator.speed = speed;
+        if (source.isPlaying) 
+        {
+            animator.SetTrigger("FadeOut");
+            await Task.Delay((int)(1000 / speed));
+        }
+        source.clip = clip;
+        source.Play();
+        animator.SetTrigger("FadeIn");
+    }
+    private async void FadeOutLoopingAudio(AudioSource source, Animator animator, float speed = 1f)
+    {
+        animator.speed = speed;
+        animator.SetTrigger("FadeOut");
+        await Task.Delay((int)(1000 / speed));
+        if (source == null) return;
+        source?.Stop();
+        animator.speed = 1000f;
+        animator.SetTrigger("FadeIn");
     }
 
     public void PlayOneShot(string path)

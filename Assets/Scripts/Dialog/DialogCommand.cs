@@ -88,6 +88,9 @@ public class DialogCommand
                 Debug.LogWarning($"Undefined command - {Command}");
                 break;
 
+            case "#":
+                break;
+
             case "pass":
                 break;
 
@@ -374,6 +377,57 @@ public class DialogCommand
                 CommandError("This command does not take arguments.", Command, Arguments, 0, 0);
                 break;
 
+            case "ambience":
+                if (Arguments.Length == 1)
+                {
+                    AudioPlayer.Instance.PlayAmbience(Arguments[0], 1000f);
+                    break;
+                }
+                else if (Arguments.Length == 2)
+                {
+                    float.TryParse(Arguments[1], out float speed);
+                    AudioPlayer.Instance.PlayAmbience(Arguments[0], speed);
+                    break;
+                }
+                CommandError("Syntax error: ambience <path> [fade speed]", Command, Arguments, 1, 2);
+                break;
+
+            case "music":
+                if (Arguments.Length == 1)
+                {
+                    AudioPlayer.Instance.PlayMusic(Arguments[0], 1000f);
+                    break;
+                }
+                else if (Arguments.Length == 2)
+                {
+                    float.TryParse(Arguments[1], out float speed);
+                    AudioPlayer.Instance.PlayMusic(Arguments[0], speed);
+                    break;
+                }
+                CommandError("Syntax error: music <path> [fade speed]", Command, Arguments, 1, 2);
+                break;
+
+            case "fade_ambience":
+                if (Arguments.Length == 0 || Arguments.Length == 1)
+                {
+                    float speed = 1f;
+                    if (Arguments.Length == 1) { float.TryParse(Arguments[0], out speed); }
+                    AudioPlayer.Instance.FadeOutAmbience(speed);
+                    break;
+                }
+                CommandError("Syntax error: fade_ambience [fade speed]", Command, Arguments, 0, 1);
+                break;
+
+            case "fade_music":
+                if (Arguments.Length == 0 || Arguments.Length == 1)
+                {
+                    float speed = 1f;
+                    if (Arguments.Length == 1) { float.TryParse(Arguments[0], out speed); }
+                    AudioPlayer.Instance.FadeOutMusic(speed);
+                    break;
+                }
+                CommandError("Syntax error: fade_music [fade speed]", Command, Arguments, 0, 1);
+                break;
         }
 
     }
