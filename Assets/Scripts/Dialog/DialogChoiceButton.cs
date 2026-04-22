@@ -9,6 +9,7 @@ public class DialogChoiceButton : MonoBehaviour
     public DialogCommand Command;
     [SerializeField] private TMPro.TMP_Text _text;
     public string Text {  get { return _text.text; } set { _text.text = value; } }
+
     private void OnEnable()
     {
         ChoicesOnScreen += 1;

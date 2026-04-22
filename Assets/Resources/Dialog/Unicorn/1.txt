@@ -35,7 +35,7 @@ wait 1;
 show_dialog 0.5;
 
 # BRANCHES IF COMPLETE;
-if flag "UnicornEnding1Achieved" branch go_around_2;
+if flag "UnicornSecretPath" branch go_around_2;
 # OTHERWISE GO TO FILE 2;
 branch Unicorn/2 start;
 
@@ -48,7 +48,7 @@ end_sequence;
 
 sequence go_around_2;
 
-flag remove UnicornEnding1Achieved;
+flag remove UnicornSecretPath;
 
 fade_ambience 0.5;
 character_name "Unicorn";
@@ -96,8 +96,7 @@ choice "You have my word." pass;
 choice "No." branch "begone";
 end_choices;
 
-flag add "UnicornOffer";
-flag remove "UnlockUnicornSecret";
+flag add "UnicornDealMade";
 
 dialog "Then.";
 dialog "Return here again and pay attention to the grandfather clock.";

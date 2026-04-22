@@ -43,14 +43,14 @@ public class AudioPlayer : MonoBehaviour
         AudioClip clip = Resources.Load<AudioClip>("Audio/" + path);
         PlayLoopingAudio(_ambienceAudioSource, _ambienceAudioAnimator, clip, speed);
     }
-    public async void PlayLoopingAudio(AudioSource source, Animator animator, AudioClip clip, float speed = 1f)
+    public void PlayLoopingAudio(AudioSource source, Animator animator, AudioClip clip, float speed = 1f)
     {
         animator.speed = speed;
-        if (source.isPlaying) 
-        {
-            animator.SetTrigger("FadeOut");
-            await Task.Delay((int)(1000 / speed));
-        }
+        //if (source.isPlaying) 
+        //{
+        //    animator.SetTrigger("FadeOut");
+        //    await Task.Delay((int)(1000 / speed));
+        //}
         source.clip = clip;
         source.Play();
         animator.SetTrigger("FadeIn");
@@ -61,7 +61,7 @@ public class AudioPlayer : MonoBehaviour
         animator.SetTrigger("FadeOut");
         await Task.Delay((int)(1000 / speed));
         if (source == null) return;
-        source?.Stop();
+        source.Stop();
         animator.speed = 1000f;
         animator.SetTrigger("FadeIn");
     }

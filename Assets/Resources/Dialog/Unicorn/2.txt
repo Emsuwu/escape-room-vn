@@ -13,7 +13,7 @@ character_name "Susie";
 dialog "How..?";
 
 narrator;
-dialog "The unicorn chortled";
+dialog "The unicorn chortled.";
 
 # UNICORN STARTS TO BRAINWASH;
 character_name "Unicorn";
@@ -26,10 +26,45 @@ dialog "And some" 0.2 . 0.2 . 0.2 . 0.2 " terrible things.";
 character_name "Susie";
 dialog "Like what?";
 
+character_name "Unicorn";
+dialog "Come closer."; 
+dialog "Let me whisper in your ear.";
+background Black crossfade 1;
+fade_ambience 1;
 
+wait 1.25;
 
+dialog_speed 0.2;
+dialog "Your parents are imposters.";
+
+ambience Unicorn/Woods 0.5;
+background Unicorn/2a crossfade 0.2;
+
+dialog_speed default;
+dialog "They've been replaced by woodland spirits.";
+dialog "There's only one way of getting your real parents back.";
+
+narrator;
+dialog "Susie felt something in her pocket.";
+dialog "She pulled it out.";
+
+character_name "Susie";
+dialog "A matchbox?";
+
+character_name "Unicorn";
+dialog "Your parents, the imposters, have a can of petrol in the garage.";
+dialog "Do you understand what you must do to get your parents back?";
+
+narrator;
+dialog "Susie felt her lungs seize.";
+
+character_name "Unicorn";
+dialog "Yes, you know what to do.";
+
+branch Unicorn/3 start;
 
 # END;
+flag add "UnicornSecretPath";
 flag add "UnicornEnding1Achieved";
 fade_ambience 2;
 background Black crossfade 2;

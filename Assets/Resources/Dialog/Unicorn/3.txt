@@ -1,0 +1,26 @@
+sequence start;
+
+# UNICORN BRAINWASHING SESH;
+
+background Black crossfade 0.5;
+fade_ambience 0.5;
+
+narrator;
+dialog "When Susie got home that night she remembered what the unicorn had said.";
+dialog "The stares of her parents were more menacing than she had ever noticed.";
+dialog "When she made it into bed that night, she was sure of the unicorn's words.";
+
+wait 1;
+
+play_oneshot Unicorn/Petrol;
+wait 3;
+play_oneshot Unicorn/Match;
+wait 10;
+
+ambience Unicorn/Fire 0.2;
+
+
+flag add UnicornSecretPath;
+flag add UnicornStoryComplete
+
+end_sequence;

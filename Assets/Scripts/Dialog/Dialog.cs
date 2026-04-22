@@ -443,7 +443,6 @@ public class Dialog : MonoBehaviour
         }
 
         yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame() && !DialogPauseHandler.Instance.IsPaused);
-
         _executionPaused = false;
     }
     public void HideName()
