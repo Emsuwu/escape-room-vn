@@ -4,11 +4,12 @@ background Black;
 ambience Unicorn/Woods 0.2;
 narrator;
 
-# Susy meets the unicorn;
+# SUSIE MEETS THE UNICORN;
 
 dialog_speed 0.03;
 
-dialog "I was wandering through the forest behind my house, one day, when I saw something beautiful...";
+# Image 1;
+dialog "Susie was wandering through the forest behind her house, one day, when she saw something beautiful...";
 hide_dialog 0.5;
 background "Unicorn/1" crossfade 2;
 wait 0.5;
@@ -17,23 +18,123 @@ wait 2;
 show_dialog 0.5;
 dialog "A unicorn" 0.2 . 0.2 . 0.2 .;
 dialog_continue " a real," 0.2 " flesh-and-blood" 0.2 " unicorn.";
-dialog "It was sipping from the brook and even though I got close...";
-dialog "It wasn't scared of me at all...";
-dialog "I got closer and closer, until" 0.2 . 0.2 . 0.2 .;
-dialog_continue " I could almost reach out and touch it.";
+dialog "It was sipping gently from the brook," 0.2 " totally unfazed by Susie's presence.";
+dialog "She snuck closer" 0.2 . 0.2 . 0.2 . 0.2 " and closer" 0.2 . 0.2 . 0.2 . 0.2 " until" 0.2 . 0.2 . 0.2 .;
+dialog_continue " she could almost reach out and touch it.";
 
+# Image 2;
 hide_dialog 0.5;
 background Unicorn/2 crossfade 2;
 wait 0.5;
 clear;
 wait 2;
 show_dialog 0.5;
+
+# BRANCHES IF COMPLETE;
+if flag "UnicornEnding1Achieved" branch go_around_2;
+
+# OTHERWISE, CONTINUES;
 character_name "Unicorn";
 dialog "Hello, Susie.";
 
+narrator;
+dialog "Susie flinched, shocked that the creature could speak" 0.2 . 0.2 . 0.2 . 0.2 " and that it knew her name.";
+
+character_name "Susie";
+dialog "How..?";
+
+narrator;
+dialog "The unicorn chortled";
+
+# UNICORN STARTS TO BRAINWASH;
+character_name "Unicorn";
+dialog "I know many things...";
+dialog "Predictions, " 0.2 "prophecies, " 0.2 "things that no human should know.";
+dialog "Good things,";
+dialog_continue " and bad things" 0.2 . 0.2 . 0.2 .;
+dialog "And some" 0.2 . 0.2 . 0.2 . 0.2 " terrible things.";
+
+character_name "Susie";
+dialog "Like what?";
+
+# END;
 fade_ambience 0.2;
+flag add "UnicornEnding1Achieved";
+choice "Return" load_unity_scene number 1;
+end_choices;
+
+end_sequence;
+
+
+
+
+
+
+sequence go_around_2;
+
+flag remove UnicornEnding1Achieved;
+
+fade_ambience 0.5;
+character_name "Unicorn";
+dialog "Here again are we?";
+dialog "What? Are you stuck?";
+narrator;
+dialog "The unicorn grins.";
+character_name "Unicorn";
+dialog "And why would I help you?";
+dialog "What would a pitiful soul like YOU have to offer?";
+
+choice "..." pass;
+choice "I refuse to offer you anything." pass;
+choice "I can help you escape." branch offer;
+end_choices;
 
 choice "Return" load_unity_scene number 1;
+end_choices;
+
+end_sequence;
+
+
+sequence begone;
+
+background Black crossfade 0.02;
+dialog "Then begone.";
+wait 0.5;
+load_unity_scene number 1;
+
+end_sequence;
+
+
+
+
+sequence offer;
+
+character_name "Unicorn";
+dialog "What a tantalising offer.";
+dialog "I know that you will betray me as I have betrayed so many.";
+dialog "You have the upper hand here.";
+dialog "But what do I have to lose. I won't be a crab in a bucket and squander my chance";
+dialog_continue "... albeit a miniscule one.";
+dialog "Alright, " 0.2 "do I have your word?"
+
+choice "You have my word." pass;
+choice "No." branch "begone";
+end_choices;
+
+flag add "UnicornOffer";
+flag remove "UnlockUnicornSecret";
+
+dialog "Then.";
+dialog "Return here again and pay attention to the grandfather clock.";
+dialog "Then take the book with you when you leave.";
+
+background Black crossfade 0.02;
+dialog "...";
+narrator;
+dialog "The unicorn chuckles.";
+wait 0.5;
+
+load_unity_scene number 1;
 end_choices;
 
 end_sequence;

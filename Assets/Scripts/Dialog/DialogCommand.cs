@@ -77,8 +77,11 @@ public class DialogCommand
     public void Execute()
     {
         string debugExecutionOutput = $"Executed -> {Command}: ";
-        foreach (string arg in Arguments) {
-            debugExecutionOutput += arg + " | ";
+        if (Arguments != null)
+        { 
+            foreach (string arg in Arguments) {
+                debugExecutionOutput += arg + " | ";
+            }
         }
         Debug.Log(debugExecutionOutput);
 
@@ -289,8 +292,8 @@ public class DialogCommand
                 // If the first argument is "path", load scene based on the second argument being a string
                 if (Arguments[0] == "path")
                 {
-                    Dialog.Instance.CleanUp();
                     SceneManager.LoadScene(Arguments[1]);
+                    Dialog.Instance.CleanUp();
                     break;
                 }
                 // If the first argument is neither "path" nor "number", syntax error
@@ -302,8 +305,8 @@ public class DialogCommand
                 // If first argument is number and a valid integer is given, load scene based on integer
                 else if (int.TryParse(Arguments[1], out int num))
                 {
-                    Dialog.Instance.CleanUp();
                     SceneManager.LoadScene(num);
+                    Dialog.Instance.CleanUp();
                     break;
                 }
                 // If reaches the end without breaking, something went wrong, syntax error
