@@ -19,49 +19,25 @@ show_dialog 0.5;
 dialog "A unicorn" 0.2 . 0.2 . 0.2 .;
 dialog_continue " a real," 0.2 " flesh-and-blood" 0.2 " unicorn.";
 dialog "It was sipping gently from the brook," 0.2 " totally unfazed by Susie's presence.";
-dialog "She snuck closer" 0.2 . 0.2 . 0.2 . 0.2 " and closer" 0.2 . 0.2 . 0.2 . 0.2 " until" 0.2 . 0.2 . 0.2 .;
+dialog "Rubbing her eyes in disbelief, she snuck closer" 0.2 . 0.2 . 0.2 . 0.2 " and closer" 0.2 . 0.2 . 0.2 . 0.2 " until" 0.2 . 0.2 . 0.2 .;
 dialog_continue " she could almost reach out and touch it.";
 
-# Image 2;
+# Image 2a;
 hide_dialog 0.5;
-background Unicorn/2 crossfade 2;
+background Unicorn/2a crossfade 2;
+wait 4;
+
+# Image 2;
+background Unicorn/2b crossfade 0.5;
 wait 0.5;
 clear;
-wait 2;
+wait 1;
 show_dialog 0.5;
 
 # BRANCHES IF COMPLETE;
 if flag "UnicornEnding1Achieved" branch go_around_2;
-
-# OTHERWISE, CONTINUES;
-character_name "Unicorn";
-dialog "Hello, Susie.";
-
-narrator;
-dialog "Susie flinched, shocked that the creature could speak" 0.2 . 0.2 . 0.2 . 0.2 " and that it knew her name.";
-
-character_name "Susie";
-dialog "How..?";
-
-narrator;
-dialog "The unicorn chortled";
-
-# UNICORN STARTS TO BRAINWASH;
-character_name "Unicorn";
-dialog "I know many things...";
-dialog "Predictions, " 0.2 "prophecies, " 0.2 "things that no human should know.";
-dialog "Good things,";
-dialog_continue " and bad things" 0.2 . 0.2 . 0.2 .;
-dialog "And some" 0.2 . 0.2 . 0.2 . 0.2 " terrible things.";
-
-character_name "Susie";
-dialog "Like what?";
-
-# END;
-fade_ambience 0.2;
-flag add "UnicornEnding1Achieved";
-choice "Return" load_unity_scene number 1;
-end_choices;
+# OTHERWISE GO TO FILE 2;
+branch Unicorn/2 start;
 
 end_sequence;
 
@@ -89,8 +65,7 @@ choice "I refuse to offer you anything." pass;
 choice "I can help you escape." branch offer;
 end_choices;
 
-choice "Return" load_unity_scene number 1;
-end_choices;
+branch begone;
 
 end_sequence;
 
@@ -100,7 +75,7 @@ sequence begone;
 background Black crossfade 0.02;
 dialog "Then begone.";
 wait 0.5;
-load_unity_scene number 1;
+load_unity_scene number 1; 
 
 end_sequence;
 
@@ -115,7 +90,7 @@ dialog "I know that you will betray me as I have betrayed so many.";
 dialog "You have the upper hand here.";
 dialog "But what do I have to lose. I won't be a crab in a bucket and squander my chance";
 dialog_continue "... albeit a miniscule one.";
-dialog "Alright, " 0.2 "do I have your word?"
+dialog "Alright, " 0.2 "do I have your word?";
 
 choice "You have my word." pass;
 choice "No." branch "begone";

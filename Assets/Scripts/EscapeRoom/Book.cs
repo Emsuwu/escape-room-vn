@@ -4,6 +4,6 @@ public class Book : MonoBehaviour
 {
     public void OnInteract()
     {
-        Dialog.StartDialogScene("Book", "start");
+        Dialog.StartDialogScene("Unicorn/1", "start");
     }
 }

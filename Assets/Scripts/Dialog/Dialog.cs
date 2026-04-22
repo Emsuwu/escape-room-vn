@@ -248,6 +248,7 @@ public class Dialog : MonoBehaviour
             DialogCommand current_command = DialogParser.DequeueCommand();
 
             current_command.Execute();
+            yield return new WaitUntil(() => !DialogPauseHandler.Instance.IsPaused);
             yield return new WaitUntil(() => !_executionPaused);
 
         }
@@ -436,11 +437,12 @@ public class Dialog : MonoBehaviour
 
                 float interval = CharacterInterval;
                 if (_skipAction.IsPressed()) interval = .005f;
+                yield return new WaitUntil(() => !DialogPauseHandler.Instance.IsPaused);
                 yield return new WaitForSeconds(interval);
             }
         }
 
-        yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame());
+        yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame() && !DialogPauseHandler.Instance.IsPaused);
 
         _executionPaused = false;
     }

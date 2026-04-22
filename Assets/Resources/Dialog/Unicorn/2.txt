@@ -1,0 +1,40 @@
+sequence start;
+
+# UNICORN BRAINWASHING SESH;
+
+character_name "Unicorn";
+dialog "Hello, Susie.";
+
+narrator;
+background Unicorn/2a crossfade 0.1;
+dialog "Susie flinched, shocked that the creature could speak" 0.2 . 0.2 . 0.2 . 0.2 " and that it knew her name.";
+
+character_name "Susie";
+dialog "How..?";
+
+narrator;
+dialog "The unicorn chortled";
+
+# UNICORN STARTS TO BRAINWASH;
+character_name "Unicorn";
+dialog "I know many things...";
+dialog "Predictions, " 0.2 "prophecies, " 0.2 "things that no human should know.";
+dialog "Good things,";
+dialog_continue " and bad things" 0.2 . 0.2 . 0.2 .;
+dialog "And some" 0.2 . 0.2 . 0.2 . 0.2 " terrible things.";
+
+character_name "Susie";
+dialog "Like what?";
+
+
+
+
+# END;
+flag add "UnicornEnding1Achieved";
+fade_ambience 2;
+background Black crossfade 2;
+hide_dialog 2;
+wait 3;
+load_unity_scene number 1;
+
+end_sequence;

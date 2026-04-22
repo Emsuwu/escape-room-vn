@@ -619,6 +619,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2087594190}
     - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481323710447346006, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnClick
       objectReference: {fileID: 0}
@@ -641,6 +645,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 631047313830015537, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
     - {fileID: 8239633318267636884, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
+    - {fileID: 5752213436034922150, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1868495452450057238, guid: 1e74fe329bbcdd541a2878f240739ae5, type: 3}
     m_AddedGameObjects:
@@ -729,6 +734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _menuRoot: {fileID: 298411797}
   _settingsMenu: {fileID: 298411794}
+  IsPaused: 0
 --- !u!1 &333382396
 GameObject:
   m_ObjectHideFlags: 0

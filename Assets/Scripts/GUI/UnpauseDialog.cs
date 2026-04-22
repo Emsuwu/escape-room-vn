@@ -4,6 +4,8 @@ public class UnpauseDialog : MonoBehaviour
 {
     public void OnClick()
     {
-        Meowtils.Defer( () => Dialog.Instance.PauseExecution(false) );
+        DialogPauseHandler.Instance.IsPaused = false;
+
+        Debug.Log("BWA!");
     }
 }
