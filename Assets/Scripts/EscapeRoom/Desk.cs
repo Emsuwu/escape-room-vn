@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Desk : MonoBehaviour
 {
+    private void Start()
+    {
+        if (SaveManager.HasFlag("AdventureComplete"))
+        {
+            Open();
+        }
+    }
     public async void Open()
     {
         GetComponent<Animator>().SetTrigger("Open");

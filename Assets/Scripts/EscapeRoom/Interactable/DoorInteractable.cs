@@ -10,7 +10,7 @@ public class DoorInteractable : Interactable
     [SerializeField] GameObject _leaveHover;
     public async void OnDoorInteract()
     {
-        if (SaveManager.HasFlag("AdventureComplete")) {
+        if (SaveManager.HasFlag("KeyCollected")) {
             _doorScript.Open();
             
             _doorOutline.SetActive(false);
