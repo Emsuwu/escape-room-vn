@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class KeyInteractable : Interactable
 {
-    public void OnKeyInteract()
+    private new void Start()
     {
+        base.Start();
+        if (SaveManager.HasFlag("KeyCollected")) { gameObject.SetActive(false); }
+    }
+    public void OnKeyInteract()
+    { 
         if (SaveManager.HasFlag("AdventureComplete"))
         {
             SaveManager.AddFlag("KeyCollected");
