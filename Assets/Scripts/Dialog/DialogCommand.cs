@@ -440,8 +440,14 @@ public class DialogCommand
         List<string> temp = commandArgs.ToList<string>();
         for (int i = 0; i < trimArgs; i++) { temp.RemoveAt(0); }
         string commandString = string.Empty;
-        foreach (string part in temp) { commandString += part + " "; }
+        for (int i = 0; i < temp.Count; i++) 
+        {
+            string part = temp[i];
+            if (i==0) commandString += part + " ";
+            else commandString += "\"" + part + "\"" + " ";
+        }
         commandString = commandString.Substring(0, commandString.Length - 1);
+        Debug.Log("Executing new command string: " + commandString);
         DialogCommand command = new DialogCommand(commandString);
         return command;
     }

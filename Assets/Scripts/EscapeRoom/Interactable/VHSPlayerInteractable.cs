@@ -20,6 +20,6 @@ public class VHSPlayerInteractable : Interactable
         _tapeAnim.SetActive(true);
         _tapeSound.Play();
         await Task.Delay(1250);
-        Dialog.StartDialogScene("Urbex/1", "start");
+        Dialog.StartDialogScene("Urbex/1", "start", true);
     }
 }

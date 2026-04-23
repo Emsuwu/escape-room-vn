@@ -1,13 +1,14 @@
 sequence start;
 
 # UNICORN BRAINWASHING SESH;
-
 character_name "Unicorn";
-dialog "Hello, Susie.";
+if flag UrbexStoryComplete dialog "Hello, Susie.";
 
 narrator;
 background Unicorn/2a crossfade 0.1;
-dialog "Susie flinched, shocked that the creature could speak" 0.2 . 0.2 . 0.2 . 0.2 " and that it knew her name.";
+if flag UrbexStoryComplete dialog "Susie flinched, shocked that the creature could speak" 0.2 . 0.2 . 0.2 . 0.2 " and that it knew her name.";
+unless flag UrbexStoryComplete dialog "Susie flinched.";
+unless flag UrbexStoryComplete flag add UrbexStoryComplete;
 
 character_name "Susie";
 dialog "How..?";
@@ -63,13 +64,5 @@ dialog "Yes, you know what to do.";
 
 branch Unicorn/3 start;
 
-# END;
-flag add "UnicornSecretPath";
-flag add "UnicornEnding1Achieved";
-fade_ambience 2;
-background Black crossfade 2;
-hide_dialog 2;
-wait 3;
-load_unity_scene number 1;
 
 end_sequence;

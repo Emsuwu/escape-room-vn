@@ -47,11 +47,13 @@ public class Dialog : MonoBehaviour
 
     public static string DialogFilePathOnStart;
     public static string SequenceNameOnStart;
-    public static void StartDialogScene(string dialogFile, string sequenceName)
+    public static bool PreserveAspectOnStart;
+    public static void StartDialogScene(string dialogFile, string sequenceName, bool preserveAspect = false)
     {
         DialogFilePathOnStart = dialogFile;
         SequenceNameOnStart = sequenceName;
         SceneManager.LoadScene(2);
+        PreserveAspectOnStart = preserveAspect;        
     }
 
     private void Awake()
@@ -62,11 +64,12 @@ public class Dialog : MonoBehaviour
     }
     private void Start()
     {
-        //if (string.IsNullOrEmpty(dialogFilePathOnStart) || string.IsNullOrEmpty(sequenceNameOnStart))
-        //{
-        //    Debug.LogWarning("File path or sequence name are not set. Use StartDialogScene method when loading scene.");
-        //    return;
-        //}
+        if (PreserveAspectOnStart)
+        {
+            PreserveAspectOnStart = false;
+            _backgroundImage.preserveAspect = true;
+            _transitionBackgroundImage.preserveAspect = true;
+        }
 
         _transitionBackgroundImage.color = new Color32(255, 255, 255, 255);
         _transitionBackgroundImage.CrossFadeAlpha(0, 0, false);

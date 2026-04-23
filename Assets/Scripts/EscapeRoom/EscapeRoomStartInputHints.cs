@@ -9,6 +9,8 @@ public class EscapeRoomStartInputHints : MonoBehaviour
         if (_hasShownThisSession) return;
         Meowtils.Defer(() => StartCoroutine(CoStartHints()));
         _hasShownThisSession = true;
+
+        Settings.UpdateSettings();
     }
 
     IEnumerator CoStartHints()

@@ -1,6 +1,7 @@
 sequence start;
 
 ambience Urbex/Tape 0.1;
+dialog_speed 0.015;
 
 background Black;
 character_name Sylvia;dialog "Alright everyone, how're we doing?";
@@ -37,22 +38,28 @@ dialog "The culprit was never found. In the years since, Autumn Falls has become
 dialog "Supposedly, the Butcher breaks into houses and poisons people's dinners before chopping them up, but it's worth noting that there have been no such killings. It's a classic case of a campfire story and urban legend.";
 play_oneshot "Urbex/Screech";
 background "Urbex/4" crossfade 0.2;
-character_name ???;dialog "SCREEEEEEEEEECH!!!!";
+narrator;dialog "SCREEEEEEEEEECH!!!!";
 character_name Sylvia;dialog "Did you hear that?";
 character_name Argyle;dialog "Yeah, let's get out of here!";
 play_oneshot Urbex/Run;
 background "Urbex/5" crossfade 0.2;
 hide_dialog 0.5;
 wait 5;
-show_dialog 0.5;
+clear;
 background "Urbex/6" crossfade 0.2;
+narrator;
+show_dialog 0.1;
 character_name "Kid 1";dialog "Ha-Haa! Did you see how fast they ran!";
 character_name "Kid 2";dialog "They left their camera behind, do you think we should bring it back to them?";
 character_name "Kid 1";dialog "Nah, they're too far away. I call dibs!";
 
-flag add "Completed VHS";
+flag add UrbexStoryComplete;
 
-choice "Return" load_unity_scene number 1;
+fade_ambience 1;
+hide_dialog 0.5;
+background Black crossfade 2;
+wait 3;
+load_unity_scene number 1;
 end_choices;
 
 end_sequence;

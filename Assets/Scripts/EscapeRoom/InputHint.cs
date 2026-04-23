@@ -25,6 +25,8 @@ public class InputHint : MonoBehaviour
     public Sprite KeyboardRight;
     public Sprite KeyboardRightWASD;
     public Sprite MouseMove;
+    [Header("Other icons")]
+    public Sprite ThoughtBubble;
 
     [SerializeField] private Image _hintIcon;
     [SerializeField] private TMPro.TMP_Text _hintText;

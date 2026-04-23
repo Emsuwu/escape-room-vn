@@ -36,6 +36,10 @@ public class Settings : MonoBehaviour
         Instance = this;
         UpdateSettings();
     }
+    private void Start()
+    {
+        UpdateSettings();
+    }
     private static int UpdateKey(string key, int defaultValue)
     {
         if (PlayerPrefs.HasKey(key)) return PlayerPrefs.GetInt(key);

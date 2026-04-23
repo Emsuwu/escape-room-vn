@@ -6,21 +6,39 @@ background Black crossfade 0.5;
 fade_ambience 0.5;
 
 narrator;
-dialog "When Susie got home that night she remembered what the unicorn had said.";
-dialog "The stares of her parents were more menacing than she had ever noticed.";
-dialog "When she made it into bed that night, she was sure of the unicorn's words.";
+dialog "When Susie got home that night, she remembered what the unicorn had said.";
+dialog "The stares of her parents were more menacing than she had ever known before.";
+dialog "And when she made it into bed that night, her mind wouldn't stop.";
+dialog "She took shallow breaths, afraid of being too loud, afraid that the spirits would find out what she knew.";
+dialog "Pictures flashed in her mind of her parents bodies contorted.";
+dialog "She had to save her parents from the woodland spirits.";
 
+hide_dialog 0.5;
 wait 1;
 
 play_oneshot Unicorn/Petrol;
 wait 3;
 play_oneshot Unicorn/Match;
-wait 10;
+wait 8;
 
-ambience Unicorn/Fire 0.2;
+ambience Unicorn/Fire 4;
+background Unicorn/3 crossfade 0.5;
+clear;
+show_dialog 0.5;
+dialog "Susie took one last look at the house.";
+background Black crossfade 0.2;
+dialog "And then she ran.";
+hide_dialog 0.5;
+background Unicorn/4 crossfade 0.5;
+wait 5;
 
+fade_ambience 0.2;
+background Black crossfade 4;
+wait 5;
 
 flag add UnicornSecretPath;
-flag add UnicornStoryComplete
+flag add UnicornStoryComplete;
+
+load_unity_scene number 1;
 
 end_sequence;

@@ -1,9 +1,12 @@
 sequence start;
 
-background "Placeholder/Floppy";
+background Placeholder/Floppy;
 narrator;
-dialog "This is a placeholder scene for the choose your own adventure game!";
+dialog "This is a placeholder scene for the text based adventure game!";
 play_oneshot "MiraWhale";
+
+
+flag add AdventureComplete;
 
 choice "Return" load_unity_scene number 1;
 end_choices;

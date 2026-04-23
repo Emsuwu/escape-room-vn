@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Floppy : MonoBehaviour
@@ -12,9 +13,13 @@ public class Floppy : MonoBehaviour
         PutUnderDoor();
     }
 
-    public void PutUnderDoor()
+    public async void PutUnderDoor()
     {
         GetComponent<Animator>().SetTrigger("ShowFloppy");
+        await Task.Delay(1000);
+        InputHint.Instance.Show(InputHint.Instance.ThoughtBubble, "Something was slid underneath the door...");
+        await Task.Delay(8000);
+        InputHint.Instance.Hide();
     }
 
     public void OnInteract()

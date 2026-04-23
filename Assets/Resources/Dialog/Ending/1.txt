@@ -1,0 +1,12 @@
+sequence start;
+
+background Black;
+narrator;
+dialog "This is the ending";
+dialog "I'll put more here soon :3";
+play_oneshot "MiraWhale";
+
+choice "Return" load_unity_scene number 0;
+end_choices;
+
+end_sequence;

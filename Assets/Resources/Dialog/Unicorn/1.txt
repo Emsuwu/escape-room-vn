@@ -35,13 +35,36 @@ wait 1;
 show_dialog 0.5;
 
 # BRANCHES IF COMPLETE;
-if flag "UnicornSecretPath" branch go_around_2;
+if flag "UnicornSecretPath" unless flag UnicornDealMade branch go_around_2;
+
+# If skipped urbex, confront;
+unless flag UrbexStoryComplete branch confront;
+
 # OTHERWISE GO TO FILE 2;
 branch Unicorn/2 start;
 
 end_sequence;
 
 
+
+sequence confront;
+
+# CONFRONT PLAYER IF SKIPPED URBEX;
+character_name "Unicorn";
+dialog "Oh very clever.";
+narrator;
+character_name "Unicorn";
+dialog "You're an interesing one.";
+dialog "How did you know the pin then?";
+dialog "The Unicorn laughs.";
+character_name "Susie";
+dialog "Pin?";
+character_name "Unicorn";
+dialog "Ah, I was talking to myself, Susie.";
+
+branch Unicorn/2 start;
+
+end_sequence;
 
 
 
@@ -70,6 +93,7 @@ branch begone;
 end_sequence;
 
 
+
 sequence begone;
 
 background Black crossfade 0.02;
@@ -81,12 +105,11 @@ end_sequence;
 
 
 
-
 sequence offer;
 
 character_name "Unicorn";
 dialog "What a tantalising offer.";
-dialog "I know that you will betray me as I have betrayed so many.";
+dialog "I know that you will betray me just as I have betrayed so many.";
 dialog "You have the upper hand here.";
 dialog "But what do I have to lose. I won't be a crab in a bucket and squander my chance";
 dialog_continue "... albeit a miniscule one.";
