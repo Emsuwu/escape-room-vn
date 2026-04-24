@@ -71,7 +71,7 @@ end_sequence;
 
 sequence success;
 	narrator;
-	dialog "You speak \"Skull\" and a door enters, revealing a long, winding stairway.";
+	dialog "You speak \"Skull\" and a door opens, revealing a long, winding stairway.";
 	dialog "You descend deeper and deeper until you enter another room.";
 	branch Adventure/SunAndMoon start;
 end_sequence;

@@ -2,6 +2,74 @@ sequence start;
 
 	narrator;
 	dialog "You find yourself in a long corridor.";
-	dialog "You walk down until you find an ornate door";
+	dialog "You walk down until you find an ornate door.";
+	dialog "What do you do?";
 
+		choice "Keep going" branch keep_going;
+		choice "Stop and check for traps" branch stop_and_check_for_traps;
+		end_choices;
+
+end_sequence;
+
+
+
+sequence keep_going;
+	dialog "The floor opens up beneath you.";
+
+	# I find these conditionals quite confusing;
+
+	if flag EnchantedBoots dialog "The boots allow you to react swiftly. You manage to jump over the gap, reaching the other side.";
+	if flag EnchantedBoots branch other_side;
+
+	if flag Fighter dialog "Your fighter training lets you react swiftly. You manage to jump over the gap, reaching the other side.";
+	if flag Fighter branch other_side;
+
+	if flag Weakness branch pit_death;
+
+	if flag Thief dialog "Your fighter training lets you react swiftly. You manage to jump over the gap, reaching the other side.";
+	if flag Thief branch other_side;
+
+
+	if flag Spellcaster branch levitate;
+
+end_sequence;
+
+
+
+sequence levitate;
+	# I added this because the mage needs a way in this path otherwise they are just doomed;
+	dialog "Acting quick, you cast a levitation spell, crossing the pit beneath your feet.";
+	branch other_side;
+end_sequence;
+
+
+sequence stop_and_check_for_traps;
+	if flag GoblinsPursuing branch goblin_death;
+	dialog "You notice a section of the floor that is rigged to fall. You jump across.";
+	branch other_side;
+end_sequence;
+
+sequence pit_death;
+	dialog "Weakened, you fall into the pit.";
+	background Red crossfade 0.1;
+	dialog "You die."
+	wait 1;
+	background Black crossfade 0.5;
+	branch Adventure/Intro start;
+end_sequence;
+
+sequence goblin_death;
+	narrator;
+	dialog "The goblins catch up with you and...";
+	background Red crossfade 0.1;
+	dialog "You die."
+	wait 1;
+	background Black crossfade 0.5;
+	branch Adventure/Intro start;
+end_sequence;
+
+
+sequence other_side;
+	if flag GoblinsPursuing dialog "The goblins can't cross the gap. You're safe.";
+	branch Adventure/Heart start;
 end_sequence;

@@ -69,8 +69,6 @@ sequence choose_potion;
 	if flag LightPotion dialog "You decided to bring with you a potion of light.";
 	if flag MagicPotion dialog "You decided to bring with you a potion of magic.";
 
-				# TODO: REMOVE THIS; branch Adventure/Cavern start;
-
 	choice "That is correct." branch Adventure/Basin start;
 	choice "That doesn't sound right" branch choose_potion_again;
 
@@ -83,9 +81,3 @@ sequence choose_potion_again;
 end_sequence;
 
 
-sequence complete;
-	background black crossfade 0.5;
-	flag add AdventureComplete;
-	choice "Return" load_unity_scene number 1;
-	end_choices;
-end_sequence;

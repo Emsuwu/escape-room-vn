@@ -22,7 +22,7 @@ end_sequence;
 
 sequence fighter;
 	narrator;
-	dialog "The room gets so hot that your armour starts to burn your skin."
+	dialog "The room gets so hot that your armour starts to burn your skin.";
 		choice "Take it off" branch unarmored;
 		choice "Suffer through it" branch suffer_through_fighter;
 		end_choices;

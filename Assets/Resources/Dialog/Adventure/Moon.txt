@@ -26,6 +26,7 @@ end_sequence;
 
 sequence light_potion;
 	narrator;
+	flag remove LightPotion;
 	dialog "You give her the light potion.";
 	branch access;
 end_sequence;

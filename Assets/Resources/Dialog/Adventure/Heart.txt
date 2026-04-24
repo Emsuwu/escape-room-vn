@@ -1,0 +1,22 @@
+sequence start;
+
+	narrator;
+	dialog "You open the ornate door.";
+	dialog "You find the place where you father rests.";
+	dialog "You take out your knife, " 0.2 "and cut out your father's heart.";
+	dialog "The curse has been lifted!";
+	
+	branch complete;
+
+end_sequence;
+
+
+
+sequence complete;
+	background black crossfade 0.5;
+	narrator;
+	dialog "				THE END!";
+	flag add AdventureComplete;
+	wait 3;
+	load_unity_scene number 1;
+end_sequence;
