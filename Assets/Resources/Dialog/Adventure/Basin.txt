@@ -8,16 +8,21 @@ sequence start;
 
 		choice "Bleed" branch bleed;
 		if flag Spellcaster choice "Cast a spell" branch spell;
-		Spellcaster end_choices;
+		end_choices;
 
 end_sequence;
 
 
 sequence bleed;
-	dialog "You bleed";
+	narrator;
+	dialog "You bleed into the basin and the door opens.";
+	flag add Weakness;
+	branch Adventure/Riddle start;
 end_sequence;
 
 
 sequence spell;
-	dialog "You cast a spell";
+	narrator;
+	dialog "You cast a spell and the door forcefully swings open with a crash, sending dust up into the air.";
+	branch Adventure/Riddle start;
 end_sequence;

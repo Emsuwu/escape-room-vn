@@ -1,0 +1,13 @@
+sequence start;
+
+	narrator;
+	dialog "You come accross a basin, you read the text inscribed in its stone base.";
+
+	character_name "Basin engravings";
+	dialog "Only the blood of the cursed can open this door.";
+
+		choice "Bleed" branch bleed;
+		if flag Spellcaster choice "Cast a spell" branch spell;
+		Spellcaster end_choices;
+
+end_sequence;
