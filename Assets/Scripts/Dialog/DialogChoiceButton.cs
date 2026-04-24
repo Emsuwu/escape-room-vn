@@ -12,6 +12,8 @@ public class DialogChoiceButton : MonoBehaviour
 
     private void OnEnable()
     {
+        if (Dialog.Instance.DialogFontAsset != null) _text.font = Dialog.Instance.DialogFontAsset;
+
         ChoicesOnScreen += 1;
         ChoiceNumber = ChoicesOnScreen - 1;
 

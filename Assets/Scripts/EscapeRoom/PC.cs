@@ -21,6 +21,6 @@ public class PC : MonoBehaviour
     IEnumerator CoStartFloppyScene()
     {
         yield return new WaitForSeconds(2);
-        Dialog.StartDialogScene("Floppy", "start");
+        Dialog.StartDialogScene("Adventure/Intro", "start");
     }
 }

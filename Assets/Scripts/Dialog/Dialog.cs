@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -9,8 +10,10 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
-    private Coroutine _currentSequenceCoroutine;
+    [HideInInspector] public TMP_FontAsset DialogFontAsset { get; private set; } = null;
     [HideInInspector] public float DefaultCharacterInterval;
+
+    private Coroutine _currentSequenceCoroutine;
     private bool _executionPaused;
     public static Dialog Instance;
 
@@ -55,7 +58,6 @@ public class Dialog : MonoBehaviour
         SceneManager.LoadScene(2);
         PreserveAspectOnStart = preserveAspect;        
     }
-
     private void Awake()
     {
         Instance = this;
@@ -456,6 +458,72 @@ public class Dialog : MonoBehaviour
     {
         DialogParser.CurrentDialogSequence.DialogCommands.Clear();
         StopAllCoroutines();
+    }
+
+    /// <summary>
+    /// Sets the size of the dialog font
+    /// </summary>
+    /// <param name="fontSize"></param>
+    public void SetFontSize(float fontSize)
+    {
+        SetNameFontSize(fontSize);
+        SetDialogFontSize(fontSize);
+    }
+    /// <summary>
+    /// Sets the font size for character name (default 56)
+    /// </summary>
+    public void SetNameFontSize(float fontSize)
+    {
+        _characterNameText.fontSize = fontSize;
+    }
+    /// <summary>
+    /// Sets the font size for dialog (default 65)
+    /// </summary>
+    public void SetDialogFontSize(float fontSize)
+    {
+        _dialogText.fontSize = fontSize;
+    }
+    /// <summary>
+    /// Sets dialog font typeface
+    /// </summary>
+    /// <param name="fontPath">Loads asset at Resources/Fonts/{fontPath}</param>
+    public void SetFontTypeface(string fontPath)
+    {
+        TMP_FontAsset fontAsset = Resources.Load<TMP_FontAsset>("Fonts/" + fontPath);
+        Debug.Log($"Font asset: {fontAsset} | Font path: ({"Fonts/" + fontPath})");
+        SetFontTypeface(fontAsset);
+    }
+    /// <summary>
+    /// Sets dialog font typeface
+    /// </summary>
+    public void SetFontTypeface(TMP_FontAsset fontAsset)
+    {
+        DialogFontAsset = fontAsset;
+        _dialogText.font = fontAsset;
+        _characterNameText.font = fontAsset;
+    }
+
+    /// <summary>
+    /// Sets the color of the dialog and name font
+    /// </summary>
+    public void SetFontColor(Color color)
+    {
+        SetDialogFontColor(color);
+        SetNameFontColor(color);
+    }
+    /// <summary>
+    /// Sets the color of the dialog font
+    /// </summary>
+    public void SetDialogFontColor(Color color)
+    {
+        _dialogText.color = color;
+    }
+    /// <summary>
+    /// Sets the color of the character name font
+    /// </summary>
+    public void SetNameFontColor(Color color)
+    {
+        _characterNameText.color = color;
     }
 }
 

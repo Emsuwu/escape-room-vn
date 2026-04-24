@@ -431,6 +431,75 @@ public class DialogCommand
                 }
                 CommandError("Syntax error: fade_music [fade speed]", Command, Arguments, 0, 1);
                 break;
+
+            case "font":
+                // font size all <size>
+                // font size dialog <size>
+                // font size name <size>
+                // font face <path>
+                // font color all <r> <g> <b>
+                // font color dialog <r> <g> <b>
+                // font color name <r> <g> <b>
+                if (Arguments.Length == 5)
+                {
+                    if (Arguments[0] != "color")
+                    {
+                        CommandError("Syntax error: font size <all/dialog/name> <size> OR font face <path> OR font color <all/dialog/name> <r> <g> <b>", Command, Arguments, 2, 5);
+                        break;
+                    }
+                    float.TryParse(Arguments[2], out float fontR);
+                    float.TryParse(Arguments[3], out float fontG);
+                    float.TryParse(Arguments[4], out float fontB);
+                    if (Arguments[1] == "all")
+                    {
+                        Dialog.Instance.SetFontColor(new Color(fontR, fontG, fontB));
+                        break;
+                    }
+                    if (Arguments[1] == "dialog")
+                    {
+                        Dialog.Instance.SetDialogFontColor(new Color(fontR, fontG, fontB));
+                        break;
+                    }
+                    if (Arguments[1] == "name")
+                    {
+                        Dialog.Instance.SetNameFontColor(new Color(fontR, fontG, fontB));
+                        break;
+                    }
+                }
+                else if (Arguments.Length == 3)
+                {
+                    if (Arguments[0] != "size")
+                    {
+                        CommandError("Syntax error: font size <all/dialog/name> <size> OR font face <path> OR font color <all/dialog/name> <r> <g> <b>", Command, Arguments, 2, 5);
+                        break;
+                    }
+                    float.TryParse(Arguments[2], out float fontSize);
+                    if (Arguments[1] == "all")
+                    {
+                        Dialog.Instance.SetFontSize(fontSize);
+                        break;
+                    }
+                    else if (Arguments[1] == "dialog")
+                    {
+                        Dialog.Instance.SetDialogFontSize(fontSize);
+                        break;
+                    }
+                    else if (Arguments[1] == "name")
+                    {
+                        Dialog.Instance.SetNameFontSize(fontSize);
+                        break;
+                    }
+                }
+                else if (Arguments.Length == 2)
+                {
+                    if (Arguments[0] == "face")
+                    {
+                        Dialog.Instance.SetFontTypeface(Arguments[1]);
+                        break;
+                    }
+                }
+                CommandError("Syntax error: font size <all/dialog/name> <size> OR font face <path> OR font color <all/dialog/name> <r> <g> <b>", Command, Arguments, 2, 5);
+                break;
         }
 
     }

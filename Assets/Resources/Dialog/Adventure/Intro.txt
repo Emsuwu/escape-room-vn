@@ -1,0 +1,89 @@
+sequence start;
+
+	font face DOS;
+	font color name 255 255 0;
+
+	background Adventure/1 crossfade 0.5;
+	character_name "Intro";
+	dialog "You are from a wealthy household.";
+	dialog "Your Father," 0.2 " an adventurer," 0.2 " made a fortune from raiding and stealing artefacts.";
+	dialog "When you were a child," 0.2 " he heard of a tomb that had never been breached."; 
+	dialog "Breaking the seal," 0.2 " he incurred a curse on him and his bloodline," 0.2 " ensuring death before the age of 30.";
+	dialog "Around his body, the curse constructed a tomb.";
+	dialog "The only way to free yourself of this curse is to cut out his heart and take it to a priest.";
+
+	character_name "Select your class";
+	dialog "You are a...";
+
+	branch choose_class;
+
+end_sequence;
+
+sequence choose_class;
+
+	# Class selection;
+	flag remove Spellcaster;flag remove Thief;flag remove Fighter;
+		choice "Spellcaster" flag add Spellcaster;
+		choice "Thief" flag add Thief;
+		choice "Fighter" flag add Fighter;
+		end_choices;
+
+	if flag Spellcaster dialog "You are a spellcaster.";
+	if flag Thief dialog "You are a thief.";
+	if flag Fighter dialog "You are a fighter.";
+		choice "That is correct." pass;
+		choice "That doesn't sound right" branch select_class_again;
+		end_choices;
+
+	character_name "You";
+	dialog "Huzzah!";
+
+	character_name "TIP";
+	if flag Spellcaster dialog "Spellcaster can only cast 3 spells before running out of mana.";
+	if flag Thief dialog "Thieves are very sneaky.";
+	if flag Fighter dialog "Fighters have good armour and weapons.";
+
+	character_name "Choose a potion";
+	dialog "You may bring with you one potion.";
+	branch choose_potion;
+
+end_sequence;
+
+sequence select_class_again;
+	character_name "Select your class";
+	dialog "In that case, you are a...";
+	branch choose_class;
+end_sequence;
+
+
+sequence choose_potion;
+
+	flag remove HealingPotion;flag remove LightPotion;flag remove MagicPotion;
+
+		choice "Potion of healing" flag add HealingPotion;
+		choice "Potion of light" flag add LightPotion;
+		choice "Potion of magic" flag add MagicPotion;
+		end_choices;
+
+	if flag HealingPotion dialog "You decided to bring with you a potion of healing.";
+	if flag LightPotion dialog "You decided to bring with you a potion of light.";
+	if flag MagicPotion dialog "You decided to bring with you a potion of magic.";
+
+	choice "That is correct." branch Adventure/Basin start;
+	choice "That doesn't sound right" branch choose_potion_again;
+
+end_sequence;
+
+sequence choose_potion_again;
+	character_name "Choose a potion";
+	dialog "In that case...";
+	branch choose_potion;
+end_sequence;
+
+
+sequence complete;
+	background black crossfade 0.5;
+	flag add AdventureComplete;
+	choice "Return" load_unity_scene number 1;
+	end_choices;
+end_sequence;
