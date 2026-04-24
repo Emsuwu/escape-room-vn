@@ -14,8 +14,11 @@ end_sequence;
 
 
 sequence bleed;
-	narrator;
 	dialog "You bleed into the basin and the door opens.";
+	narrator;
+	font color dialog 238 75 43;
+	dialog "+ Weakness";
+	font color dialog 255 255 255;
 	flag add Weakness;
 	branch Adventure/Riddle start;
 end_sequence;
@@ -23,6 +26,6 @@ end_sequence;
 
 sequence spell;
 	narrator;
-	dialog "You cast a spell and the door forcefully swings open with a crash, sending dust up into the air.";
+	dialog "You disenchant the basin and the door swings open with a crash, sending dust up into the air.";
 	branch Adventure/Riddle start;
 end_sequence;

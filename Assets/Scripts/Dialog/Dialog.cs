@@ -516,6 +516,7 @@ public class Dialog : MonoBehaviour
     /// </summary>
     public void SetDialogFontColor(Color color)
     {
+        Debug.Log("Dialog font color changed!");
         _dialogText.color = color;
     }
     /// <summary>
@@ -524,6 +525,8 @@ public class Dialog : MonoBehaviour
     public void SetNameFontColor(Color color)
     {
         _characterNameText.color = color;
+        
+       
     }
 }
 

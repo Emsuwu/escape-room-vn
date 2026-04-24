@@ -1,0 +1,93 @@
+sequence start;
+
+	narrator;
+	dialog "A door to a narrow passage opens.";
+	dialog "Travelling through it, you come to a cavern.";
+	dialog "You see your destination but." 0.2 . 0.2 . 0.2 "it's on the other side of a small goblin camp.";
+
+		choice "Sneak around" branch sneak;
+		choice "Go through the camp" branch enter_camp;
+		if flag Spellcaster choice "Cast a sleeping spell" branch sleep_spell;
+		if flag LightPotion branch has_light_potion;
+		if flag LightPotion2 branch has_light_potion;
+		end_choices;
+
+end_sequence;
+
+
+
+sequence sleep_spell;
+	dialog "The spell is successful.";
+	dialog "You tiptoe past the horde of sleeping goblins.";
+	branch Adventure/Corridor start;
+end_sequence;
+
+
+
+sequence has_light_potion;
+		choice "Throw your light potion into the camp" branch throw_light;
+		end_choices;
+end_sequence;
+
+
+
+sequence sneak;
+	narrator;
+	if flag Thief branch thief_sneak;
+	dialog "The goblins notice you as you try to sneak by.";
+	flag add GoblinsPursuing;
+	branch Adventure/Corridor start;
+end_sequence;
+
+
+
+sequence thief_sneak;
+	dialog "Being a thief, you saneak by without issue.";
+end_sequence;
+
+
+
+sequence enter_camp;
+	if flag Thief branch sneak_kill;
+	if flag Fighter unless flag Unarmored branch fighter_kill;
+	dialog "You battle the goblins and take heavy damage before fleeing.";
+	narrator;
+	font color dialog 238 75 43;
+	dialog "+ Weakness";
+	font color dialog 255 255 255;
+	flag add Weakness;
+	flag add GoblinsPursuing;
+	branch Adventure/Corridor start;
+end_sequence;
+
+sequence sneak_kill;
+	dialog "You sneak through the camp, taking out the goblins one by one.";
+	branch Adventure/Corridor start;
+end_sequence;
+
+sequence fighter_kill;
+	dialog "You yell, announcing your presence, taking on all the goblins, one after another.";
+	dialog "You stand victorious over a pile of dead goblins and loot a pair of enchanted boots.";
+	flag add EnchantedBoots;
+	branch Adventure/Corridor start;
+end_sequence;
+
+
+sequence throw_light;
+	if flag LightPotion branch remove_light_potion_1;
+	if flag LightPotion2 branch remove_light_potion_2;
+end_sequence;
+sequence remove_light_potion_1;
+	flag remove LightPotion;
+	branch blind_goblins;
+sequence_end;
+sequence remove_light_potion_2;
+	flag remove LightPotion2;
+	branch blind_goblins;
+sequence_end;
+sequence blind_goblins;
+	dialog "You throw your light potion into the camp.";
+	dialog "It shatters, blinding the goblins.";
+	dialog "As they are dazed, you run through unscathed.";
+	branch Adventure/Corridor start;
+end_sequence;

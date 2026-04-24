@@ -1,0 +1,77 @@
+sequence start;
+
+	narrator;
+	dialog "You head through the door engraved with the moon.";
+	dialog "SLAM!";
+	dialog "The door has closed behind you.";
+	dialog "You find yourself in a wooden room that looks like an antique shop.";
+	dialog "An illusory woman at the desk asks for a sacrifice of energy.";
+
+		# I think it would be cool if we had unique options for combat for spellcaster and fighter here;
+		# Both could end in death :3;
+		choice "Let her take it from you" branch drain;
+		if flag Spellcaster choice "Give her magic energy" branch magic_energy;
+		if flag LightPotion choice "Give her the light potion" branch light_potion;
+		end_choices;
+
+end_sequence;
+
+sequence drain;
+	dialog "She stretches out a hand and you feel fatigue set in.";
+	font color dialog 238 75 43;
+	dialog "+ Weakness";
+	font color dialog 255 255 255;
+	branch access;
+end_sequence;
+
+sequence light_potion;
+	narrator;
+	dialog "You give her the light potion.";
+	branch access;
+end_sequence;
+
+sequence magic_energy;
+	narrator;
+	dialog "You give her some magic energy.";
+	branch access;
+end_sequence;
+
+
+sequence access;
+	narrator;
+	dialog "The woman smiles and draws a key from her shawl, unlocking the door behind her.";
+
+	if flag thief branch pickpocket;
+	branch Adventure/Cavern start;
+
+end_sequence;
+
+sequence pickpocket;
+	dialog "Try to pickpocket as you pass?";
+		choice "Do not pickpocket" branch Adventure/Cavern start;
+		choice "Try to sneak a light potion" branch steal_light_potion;
+		choice "Try to sneak a magic potion" branch steal_magic_potion;
+		choice "Try to sneak a healing potion" branch steal_healing_potion;
+		end_choices;
+end_sequence;
+
+sequence steal_light_potion;
+	narrator;
+	dialog "You successfully steal a light potion!";
+	flag add LightPotion2;
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence steal_magic_potion;
+	narrator;
+	dialog "You successfully steal a magic potion!";
+	flag add MagicPotion2;
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence steal_healing_potion;
+	narrator;
+	dialog "You successfully steal a healing potion!";
+	flag add HealingPotion2;
+	branch Adventure/Cavern start;
+end_sequence;

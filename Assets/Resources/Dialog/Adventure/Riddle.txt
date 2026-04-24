@@ -1,13 +1,77 @@
 sequence start;
 
 	narrator;
-	dialog "You come accross a basin, you read the text inscribed in its stone base.";
+	dialog "Walking into the next room, you see a stone engraving upon a pillar.";
+	dialog "It reads:";
 
-	character_name "Basin engravings";
-	dialog "Only the blood of the cursed can open this door.";
+	branch riddle;
 
-		choice "Bleed" branch bleed;
-		if flag Spellcaster choice "Cast a spell" branch spell;
-		Spellcaster end_choices;
+end_sequence;
 
+
+sequence riddle;
+
+	character_name "Stone engraving";
+	dialog "I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty. What am I?";
+
+	narrator;
+	clear;
+
+	branch page1;
+
+end_sequence;
+
+
+sequence page1;
+
+		choice "[HEAR THE RIDDLE AGAIN]" branch riddle;
+		choice "A blind person" branch death;
+		choice "A hurricane" branch death;
+		choice "A needle" branch death;
+		choice "A Jack O' Lantern" branch death;
+		choice "[PAGE 2 ->]" branch page2;
+		end_choices;
+
+end_sequence;
+
+sequence page2;
+
+		choice "[HEAR THE RIDDLE AGAIN]" branch riddle;
+		choice "A snake" branch death;
+		choice "Foam on the beach" branch death;
+		choice "A riddle" branch death;
+		choice "A wheel" branch death;
+		choice "[PAGE 3 ->]" branch page3;
+		end_choices;
+
+end_sequence;
+
+sequence page3;
+
+		choice "[HEAR THE RIDDLE AGAIN]" branch riddle;
+		choice "A snail" branch death;
+		choice "A skull" branch success;
+		choice "An apple" branch death;
+		choice "A spade" branch death;
+		choice "[PAGE 1 ->]" branch page1;
+		end_choices;
+
+end_sequence;
+
+
+sequence death;
+	narrator;
+	dialog "You hear a rumbling from above and before you know it you have been impaled by falling spikes.";
+	background Red crossfade 0.1;
+	wait 1;
+	background Black crossfade 0.5;
+	branch Adventure/Intro start;
+end_sequence;
+
+
+sequence success;
+	narrator;
+	dialog "You speak \"Skull\" and a door enters, revealing a long, winding stairway.";
+	dialog "You descend deeper and deeper until you enter another room.";
+	branch Adventure/SunAndMoon start;
 end_sequence;

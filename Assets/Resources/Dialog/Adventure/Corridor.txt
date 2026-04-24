@@ -1,0 +1,7 @@
+sequence start;
+
+	narrator;
+	dialog "You find yourself in a long corridor.";
+	dialog "You walk down until you find an ornate door";
+
+end_sequence;

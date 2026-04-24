@@ -1,0 +1,15 @@
+sequence start;
+
+	narrator;
+	dialog "Before you are two doors.";
+	dialog "Both are marked with intricate designs.";
+	dialog "The first door, " 0.2 "the sun, the second, " 0.2 "the moon.";
+	dialog "Which door will you go through?";
+
+		choice "The sun door" branch Adventure/Sun start;
+		choice "The moon door" branch Adventure/Moon start;
+		end_choices;
+
+	dialog "Oops I don't know how you got here :(";
+
+end_sequence;

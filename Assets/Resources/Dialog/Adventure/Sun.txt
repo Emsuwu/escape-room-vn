@@ -1,0 +1,71 @@
+sequence start;
+
+	narrator;
+	dialog "You head through the door engraved with the sun.";
+	dialog "SLAM!";
+	dialog "The door has closed behind you.";
+	dialog "You feel the room get hotter and hotter.";
+
+	if flag Spellcaster branch spellcaster;
+	if flag Thief branch thief;
+	if flag Fighter branch fighter;
+
+end_sequence;
+
+sequence thief;
+	narrator;
+	dialog "You've experienced worse.";
+	dialog "You cast off your equipment easily enough.";
+	dialog "The room cools down and you put it back on before continuing";
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence fighter;
+	narrator;
+	dialog "The room gets so hot that your armour starts to burn your skin."
+		choice "Take it off" branch unarmored;
+		choice "Suffer through it" branch suffer_through_fighter;
+		end_choices;
+end_sequence;
+
+sequence spellcaster;
+	narrator;
+		choice "Cast an ice spell" branch ice_spell;
+		choice "Do nothing" branch suffer_through_spellcaster;
+		end_choices;
+end_sequence;
+
+sequence ice_spell;
+	narrator;
+	dialog "You cast an ice spell and the room cools.";
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence unarmored;
+	narrator;
+	dialog "You are cooler now but you armour is warped.";
+	narrator;
+	font color dialog 238 75 43;
+	dialog "+ Unarmoured";
+	flag add Unarmored;
+	font color dialog 255 255 255;
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence suffer_through_fighter;
+	narrator;
+	dialog "Your armour remains sturdy but you are weakened by the heat.";
+	font color dialog 238 75 43;
+	dialog "+ Weakness";
+	font color dialog 255 255 255;
+	branch Adventure/Cavern start;
+end_sequence;
+
+sequence suffer_through_spellcaster;
+	narrator;
+	dialog "You are weakened by the heat.";
+	font color dialog 238 75 43;
+	dialog "+ Weakness";
+	font color dialog 255 255 255;
+	branch Adventure/Cavern start;
+end_sequence;

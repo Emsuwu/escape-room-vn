@@ -452,17 +452,17 @@ public class DialogCommand
                     float.TryParse(Arguments[4], out float fontB);
                     if (Arguments[1] == "all")
                     {
-                        Dialog.Instance.SetFontColor(new Color(fontR, fontG, fontB));
+                        Dialog.Instance.SetFontColor(new Color(fontR/255, fontG / 255, fontB / 255));
                         break;
                     }
                     if (Arguments[1] == "dialog")
                     {
-                        Dialog.Instance.SetDialogFontColor(new Color(fontR, fontG, fontB));
+                        Dialog.Instance.SetDialogFontColor(new Color(fontR / 255, fontG / 255, fontB / 255));
                         break;
                     }
                     if (Arguments[1] == "name")
                     {
-                        Dialog.Instance.SetNameFontColor(new Color(fontR, fontG, fontB));
+                        Dialog.Instance.SetNameFontColor(new Color(fontR / 255, fontG / 255, fontB / 255));
                         break;
                     }
                 }
