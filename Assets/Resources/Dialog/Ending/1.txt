@@ -1,12 +1,129 @@
 sequence start;
 
-background Black;
-narrator;
-dialog "This is the ending";
-dialog "I'll put more here soon :3";
-play_oneshot "MiraWhale";
+	ambience Ending/VoidWindQuiet 1.5;
 
-choice "Return" load_unity_scene number 0;
-end_choices;
+	background Black;
+	narrator;
+	dialog "You take one last look behind you";
+	if flag UnicornDealMade dialog "When you here a menacing voice coming from the safe...";
+	if flag UnicornDealMade character_name "???";
+	if flag UnicornDealMade dialog "So what will it be?";
+	narrator;
 
+		if flag UnicornDealMade choice "Take the book" branch city;
+		if flag UnicornDealMade choice "Break the promise" branch field;
+		if flag UnicornDealMade end_choices;
+	branch field;
+
+end_sequence;
+
+
+sequence field;
+	narrator;
+	if flag UnicornDealMade dialog "You leave the book behind as you step through the door and fall into the cold, inky void.";
+	unless flag UnicornDealMade dialog "You step through the door and fall into the inky void.";
+	dialog "You seem to pick up speed, the wind whipping past your ears as you plummet...";
+	dialog "Faster and faster.";
+	fade_ambience 1;
+	dialog "And then you feel your body crash into the ground.";
+	dialog "You pick yourself up and look around.";
+	hide_dialog 0.5;
+	wait 1;
+	clear;
+	show_dialog 0.5;
+	ambience Unicorn/Woods 1;
+	background Wheat crossfade 0.5;
+	dialog "It's... bright?";
+	dialog "You feel the sun's warmth upon your skin and something soft brushing against you...";
+	dialog "You're in a field of wheat.";
+	dialog "It seems like it stretches on for miles but in the distance you spot a building.";
+	dialog "Outside, sits a grey-haired man, smoking a pipe.";
+	dialog "You walk through the swathes of wheat eventually ending up at the building.";
+
+
+	if flag UnicornDealMade branch field_bad;
+
+	dialog "The man offers you to come inside.";
+	dialog "Something about this place and the man feel familiar.";
+	dialog "And you feel at home";
+
+	hide_dialog 0.5;
+	background Black crossfade 0.5;
+	fade_ambience 0.5;
+	clear;
+	wait 1;
+	show_dialog;
+	dialog "Good ending.";
+	flag add GoodEnding;
+
+	wait 3;
+	load_unity_scene number 0;
+
+end_sequence;
+
+
+sequence field_bad;
+	narrator;
+	dialog "The man turns his head slowly to face you. He speaks...";
+	fade_ambience 1;
+	dialog_speed 0.1;
+	character_name "???";
+	dialog "As expected.";
+	dialog "If you think I can't find my own way out, you'd be sorely mistaken.";
+	dialog "One day, another lost soul will wander into the box.";
+	dialog "And on that day, I will be free.";
+	dialog "And I will not" 0.3 " forget you.";
+	dialog_speed default;
+
+	hide_dialog 0.5;
+	background Black crossfade 0.5;
+	fade_ambience 0.5;
+	clear;
+	narrator;
+	wait 1;
+	show_dialog;
+	dialog "Neutral ending.";
+	flag add NeutralEnding;
+
+	wait 3;
+	load_unity_scene number 0;
+
+end_sequence;
+
+
+sequence city;
+	narrator;
+	dialog "You take the book with you as you step through the door and fall into the cold, inky void.";
+
+	character_name "???";
+	dialog "Gooood, gooood.";
+
+	narrator;
+	dialog "You ignore the sickening voice as you keep falling.";
+	ambience Ending/VoidWind 2;
+	dialog "You seem to fall faster and faster, the wind whipping past your ears as you plummet...";
+	fade_ambience 1;
+	dialog "And then you feel your body crash into the ground.";
+	dialog "You pick yourself up and look around.";
+	dialog "You stand in a junkyard, the moon beaming down.";
+	dialog "There's a city in the distance.";
+	dialog "It looks long abandoned, vines climbing every building.";
+	dialog "There's a white haze surrounding you.";
+	dialog "Just what is this place?";
+	dialog "That creature...";
+	dialog "You feel your stomach drop...";
+	dialog "You should have left it behind.";
+
+	hide_dialog 0.5;
+	background Black crossfade 0.5;
+	fade_ambience 0.5;
+	clear;
+	narrator;
+	wait 1;
+	show_dialog;
+	dialog "Bad ending.";
+	flag add BadEnding;
+	
+	wait 3;
+	load_unity_scene number 0;
 end_sequence;
