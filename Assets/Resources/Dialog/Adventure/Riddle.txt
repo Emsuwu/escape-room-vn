@@ -2,7 +2,7 @@ sequence start;
 
 	narrator;
 	background Black crossfade 0.5;
-	dialog "A large stone slab in the floor slides away, revealing a staircase downwards, which you follow.";
+	dialog "A large stone slab in the floor slides away, revealing a staircase downwards which you follow.";
 	background Adventure/6a crossfade 0.5;
 	dialog "A stone pillar with a hole in the top stands in the middle of the room at the bottom of the stairs.";
 	dialog "A voice echoes through the room:";

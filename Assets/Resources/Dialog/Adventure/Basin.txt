@@ -5,7 +5,7 @@ sequence start;
 	dialog "The mausoleum stands before you." 0.2 " You step inside.";
 	background Adventure/4 crossfade 0.5;
 	dialog "Instead of a tomb, " 0.2 "there is a basin upon a pillar in the centre of the room.";
-	dialog "Etched into the rim is the text \"Prove your relation with blood.\"";
+	dialog "Etched into the rim is the text: \"Prove your relation with blood.\"";
 
 		choice "Bleed yourself into the basin" branch bleed;
 		if flag Spellcaster choice "Cast a spell to bypass the basin" branch spell;
@@ -42,6 +42,6 @@ end_sequence;
 sequence spell;
 	narrator;
 	dialog "You attune yourself into the magic of the basin," 0.2 " and sense the mechanism beneath.";
-	dialog "You see that the basin detects blood close to your father's, and triggers a mechanism. You use your powers to activate the mechanism.";
+	dialog "You see that the basin detects blood related to your father's, and triggers a mechanism. You use your powers to activate the mechanism.";
 	branch Adventure/Riddle start;
 end_sequence;

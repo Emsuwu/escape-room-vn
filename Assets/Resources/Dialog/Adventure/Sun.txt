@@ -8,7 +8,7 @@ sequence start;
 	dialog "There is a door on the other side but it seems to be locked like the one behind you.";
 	dialog "You begin to feel sweat trickling down your neck, and arms.";
 	dialog "You think it's just stress for a moment but as it gets worse," 0.2 " you realise the room is getting warmer.";
-	dialog "You’re being cooked alive.";
+	dialog "You're being cooked alive.";
 
 	if flag Spellcaster branch spellcaster;
 	if flag Thief branch thief;
@@ -18,7 +18,7 @@ end_sequence;
 
 sequence thief;
 	narrator;
-	dialog "You know this room would be unbearably hot to anyone else," 0.2 " but you’ve experienced worse.";
+	dialog "You know this room would be unbearably hot to anyone else," 0.2 " but you've experienced worse.";
 	dialog "You simply cast off your leather outfit," 0.2 " tools and accessories."
 	dialog "Then when the room cools down, you put them back on.";
 	branch Adventure/Cavern start;
@@ -47,7 +47,7 @@ sequence ice_spell;
 	dialog "You say the incantation, and allow your mana to flow through your body, cooling you down.";
 	dialog "Though you can feel the room growing hotter," 0.2 " you put more energy into the spell and the room feels comfortable again.";
 	dialog "The room starts to cool down.";
-	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
 	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
@@ -63,7 +63,7 @@ sequence unarmored;
 	flag add Unarmored;
 	font color dialog 255 255 255;
 	dialog "The room starts to cool down.";
-	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
 	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
@@ -92,7 +92,7 @@ sequence suffer_through_fighter;
 		if flag HealthPotion font color dialog 255 255 255;
 
 	dialog "The room starts to cool down.";
-	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
 	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
@@ -121,7 +121,7 @@ sequence suffer_through_spellcaster;
 		if flag HealthPotion font color dialog 255 255 255;
 
 	dialog "The room starts to cool down.";
-	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
 	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;

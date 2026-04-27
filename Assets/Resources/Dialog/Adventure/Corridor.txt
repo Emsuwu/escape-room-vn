@@ -13,11 +13,11 @@ end_sequence;
 
 sequence keep_going;
 	dialog "As you walk," 0.2 " you feel the floor shift as it begins to fall down beneath you!";
-	dialog "Spikes begin to emerge through the swiftly descending flooor," 0.2 " stabbing out at you!";
+	dialog "Spikes begin to emerge through the swiftly descending floor," 0.2 " stabbing out at you!";
 
 	# I find these conditionals quite confusing;
 
-	if flag EnchantedBoots dialog "The boots allow you to react swiftly."
+	if flag EnchantedBoots dialog "The boots allow you to react swiftly.";
 	if flag EnchantedBoots dialog "You use your enhanced agility to leap from the descending floor," 0.2 " reaching the other side.";
 	if flag EnchantedBoots branch other_side;
 
@@ -26,6 +26,7 @@ sequence keep_going;
 	if flag Fighter branch other_side;
 
 	unless flag Weakness dialog "As you are uninjured," 0.2 " you are able to react in time to catch yourself and avoid falling into the spikes.";
+	unless flag Weakness branch other_side;
 
 	branch pit_death;
 

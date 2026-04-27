@@ -7,10 +7,10 @@ sequence start;
 	dialog "A small, old woman sits behind the counter, and greets you.";
 	
 	character_name "Old Woman";
-	dialog "Hello, dearie. It’s been a while since I've seen anyone come through here.";
+	dialog "Hello, dearie. It's been a while since I've seen anyone come through here.";
 
 		choice "Who are you?" pass;
-		choice "Whatt are you doing here?" pass;
+		choice "What are you doing here?" pass;
 		choice "Where are we?" pass;
 		end_choices;
 

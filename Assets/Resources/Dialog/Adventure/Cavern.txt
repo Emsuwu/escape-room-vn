@@ -5,7 +5,8 @@ sequence start;
 	dialog "The next hallway has caved in."; 
 	dialog "Part of the wall has gone with it," 0.2 " revealing a cavern."; 
 	dialog "You can see where the cave has intercepted another dungeon hallway," 0.2 " but in the centre of the cavern is a goblin camp."; 
-	dialog "They seem to be having a party, with goblins banging on and plucking improvised instruments made of animal hide, crates, and rope in accordance with no particular melody or rhythm."; 
+	dialog "They seem to be having a party.";
+	dialog "Goblins bang and pluck on improvised instruments made of animal hide, crates, and rope in accordance with no particular melody or rhythm."; 
 	dialog "The cavern is dimly illuminated by the goblins' torches and campfires, wall-to-wall, except for sparse shadows cast by rocks and the cave terrain.";
 	dialogg "Given there is no other way around, you will need to work out how to deal with the goblins.";
 
@@ -22,7 +23,7 @@ end_sequence;
 
 sequence sleep_spell;
 	dialog "You channel your mana through your arm and send it upwards, casting your arm out in an arc to cover the area in a sleeping spell.";
-	dialog "It doesn’t take hold immediately, so you sit down and wait.";
+	dialog "It doesn't take hold immediately, so you sit down and wait.";
 	dialog "Soon enough, the noise from the camp begins to fade.";
 	dialog "There's less conversation, shouting, and \"music\" as the camp comes to rest, even the guards on shift turning in for bed.";
 	dialog "You pick your way through the camp without drawing any attention.";
@@ -88,7 +89,7 @@ sequence sneak_kill;
 	dialog "You sneak through the camp, starting at the edges, and picking off the guards before they can raise the alarm.";
 	dialog "You use your dagger and bow and arrow to kill them all at similar times.";
 	dialog "Next, you start working inwards, blowing out candles and lanterns as you go.";
-	dialog "The goblins are so inebriated that they hardly seem to notice you until it’s too late.";
+	dialog "The goblins are so inebriated that they hardly seem to notice you until it's too late.";
 	dialog "Before long, the last few survivors lay dead on the floor.";
 
 	dialog "On one of the goblins, you find a pair of boots that seem to reflect light strangely.";
@@ -108,7 +109,7 @@ end_sequence;
 
 sequence fighter_kill;
 	dialog "You yell, announcing your presence.";
-	dialog "The goblins come charging towards you, scrambling and emerging from tents in numbers you didn’t expect.";
+	dialog "The goblins come charging towards you, scrambling and emerging from tents in numbers you didn't expect.";
 	dialog "They are no match for you, even in their numbers, and before long you stand victorious, coated with blood, on a pile of bodies.";
 	
 	dialog "On one of the goblins, you find a pair of boots that seem to reflect light strangely.";
@@ -131,14 +132,17 @@ sequence throw_light;
 	if flag LightPotion branch remove_light_potion_1;
 	if flag LightPotion2 branch remove_light_potion_2;
 end_sequence;
+
 sequence remove_light_potion_1;
 	flag remove LightPotion;
 	branch blind_goblins;
-sequence_end;
+end_sequence;
+
 sequence remove_light_potion_2;
 	flag remove LightPotion2;
 	branch blind_goblins;
-sequence_end;
+end_sequence;
+
 sequence blind_goblins;
 	dialog "You stab a needle into the cork of your light potion, and throw it into the air.";
 	dialog "You turn away and close your eyes, covering your face.";

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class VisualEffect : MonoBehaviour
+public class VFX : MonoBehaviour
 {
     [SerializeField] private GameObject _itemPickupPrefab;
-    public static VisualEffect Instance;
+    public static VFX Instance;
     private void Awake()
     {
         Instance = this;

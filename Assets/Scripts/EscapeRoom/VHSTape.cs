@@ -6,7 +6,7 @@ public class VHSTape : MonoBehaviour
     {
         SaveManager.Data.IsTapeCollected = true;
         SaveManager.SaveData();
-        VisualEffect.ItemPickup(transform.position);
+        VFX.ItemPickup(transform.position);
         if (SaveManager.Data.IsTapeCollected) gameObject.SetActive(false);
     }
     private void Start()

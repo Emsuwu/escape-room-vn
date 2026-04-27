@@ -3,7 +3,7 @@ sequence start;
 	narrator;
 	dialog "You see the ornate door before you.";
 	dialog "Pushing it," 0.2 " it creaks open."; 
-	dialog "Inside," 0.2 " you see your father’s corpse laying on a stone altar.";
+	dialog "Inside," 0.2 " you see your father's corpse laying on a stone altar.";
 	dialog "You've never seen him in person before," 0.2 " but you can see your eyes," 0.2 " your nose," 0.2 " and your lips on the stranger's perfectly preserved face.";
 	dialog "Preserved by sacrificing the lifespan of your kin.";
 	dialog "You feel no remorse as you dig a blade into his chest and," 0.2 " tearing at his ribcage," 0.2 " extract the still-beating heart of the monster.";
