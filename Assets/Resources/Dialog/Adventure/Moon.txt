@@ -1,46 +1,85 @@
 sequence start;
 
 	narrator;
-	dialog "You head through the door engraved with the moon.";
-	dialog "SLAM!";
-	dialog "The door has closed behind you.";
-	dialog "You find yourself in a wooden room that looks like an antique shop.";
-	dialog "An illusory woman at the desk asks for a sacrifice of energy.";
 
-		# I think it would be cool if we had unique options for combat for spellcaster and fighter here;
-		# Both could end in death :3;
-		choice "Let her take it from you" branch drain;
-		if flag Spellcaster choice "Give her magic energy" branch magic_energy;
-		if flag LightPotion choice "Give her the light potion" branch light_potion;
+	dialog "As you travel down the dark narrow hall," 0.2 " the stone brick wall seamlessly transitions into wooden planks.";
+	dialog "You enter a room that looks like an antique shop.";
+	dialog "A small, old woman sits behind the counter, and greets you.";
+	
+	character_name "Old Woman";
+	dialog "Hello, dearie. It’s been a while since I've seen anyone come through here.";
+
+		choice "Who are you?" pass;
+		choice "Whatt are you doing here?" pass;
+		choice "Where are we?" pass;
+		end_choices;
+
+	narrator;
+	dialog "As you approach the woman, you realise you can see through her.";
+	dialog "She does not respond to your question, and seems to be looking through you.";
+	dialog "You realise she is an illusion, an automatic part of the dungeon.";
+	
+	character_name "Old Woman";
+	dialog "My shop is so dark, as of late.";
+	dialog "The back door cannot be opened by any means without power.";
+	dialog "Would you offer me some of your energy, so that I may open it for you?";
+	dialog "You need only offer me your hand for a moment.";
+	narrator;
+
+		choice "Hold out your hand" branch drain;
+		if flag Spellcaster choice "Give her some of your magic energy" branch magic_energy;
+		if flag LightPotion choice "Give her your light potion" branch light_potion;
 		end_choices;
 
 end_sequence;
 
 sequence drain;
-	dialog "She stretches out a hand and you feel fatigue set in.";
+	narrator;
+	dialog "The woman grips your hand," 0.2 " and you feel drained, " 0.2 "like she is drawing your energy out from you.";
+	dialog "When she releases her grip you feel fatigued, like you've been up for days.";
+	dialog "You are weakened.";
 	font color dialog 238 75 43;
+	flag add Weakness;
 	dialog "+ Weakness";
+	clear;
 	font color dialog 255 255 255;
+
+		# Drink potion if weakened;
+		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealthPotion font color dialog 66 245 129;
+		if flag HealthPotion dialog "Weakness cured";
+		if flag HealthPotion clear;
+		if flag HealthPotion flag remove HealthPotion;
+		if flag HealthPotion flag remove Weakness;
+
+		if flag HealthPotion font color dialog 255 255 255;
+
 	branch access;
 end_sequence;
 
 sequence light_potion;
 	narrator;
 	flag remove LightPotion;
-	dialog "You give her the light potion.";
+	dialog "She takes the small glowing vial you offer her, and stares into it.";
+	dialog "The potion's glow fades.";
 	branch access;
 end_sequence;
 
 sequence magic_energy;
 	narrator;
-	dialog "You give her some magic energy.";
+	dialog "You hold your hand out slightly and push your mana into it.";
+	dialog "Your hand begins to glow a pale blue.";
+	dialog "She grabs your hand, and you feel your mana being drawn out as the glow fades.";
 	branch access;
 end_sequence;
 
 
 sequence access;
 	narrator;
-	dialog "The woman smiles and draws a key from her shawl, unlocking the door behind her.";
+	dialog "The woman smiles at you, and you notice her eyes are a piercing blue.";
+	dialog "She gestures towards the door behind her, and it creaks open."; 
+	dialog "You leave, and she fades away as you walk through the door.";
 
 	if flag thief branch pickpocket;
 	branch Adventure/Cavern start;
@@ -48,11 +87,13 @@ sequence access;
 end_sequence;
 
 sequence pickpocket;
-	dialog "Try to pickpocket as you pass?";
-		choice "Do not pickpocket" branch Adventure/Cavern start;
+	narrator;
+	dialog "As you leave, you see a shelf of potions.";
+	dialog "You can't see the harm in pocketing one, especially as the woman is actively fading away when you move.";
 		choice "Try to sneak a light potion" branch steal_light_potion;
 		choice "Try to sneak a magic potion" branch steal_magic_potion;
 		choice "Try to sneak a healing potion" branch steal_healing_potion;
+		choice "Don't take one" branch Adventure/Cavern start;
 		end_choices;
 end_sequence;
 

@@ -1,31 +1,47 @@
 sequence start;
 
 	narrator;
-	dialog "You come accross a basin, you read the text inscribed in its stone base.";
+	background Adventure/3 crossfade 0.5;
+	dialog "The mausoleum stands before you." 0.2 " You step inside.";
+	background Adventure/4 crossfade 0.5;
+	dialog "Instead of a tomb, " 0.2 "there is a basin upon a pillar in the centre of the room.";
+	dialog "Etched into the rim is the text \"Prove your relation with blood.\"";
 
-	character_name "Basin engravings";
-	dialog "Only the blood of the cursed can open this door.";
-
-		choice "Bleed" branch bleed;
-		if flag Spellcaster choice "Cast a spell" branch spell;
+		choice "Bleed yourself into the basin" branch bleed;
+		if flag Spellcaster choice "Cast a spell to bypass the basin" branch spell;
 		end_choices;
 
 end_sequence;
 
 
 sequence bleed;
-	dialog "You bleed into the basin and the door opens.";
+	background Adventure/5 crossfade 0.5;
+	unless flag Fighter dialog "You feel weakened, watching your blood flow into the basin. The pain distracts you.";
+	if flag Fighter dialog "Your combat experience allows you to find a mostly inconsequential place to draw blood from and ignore the pain.";
 	narrator;
-	font color dialog 238 75 43;
-	dialog "+ Weakness";
-	font color dialog 255 255 255;
-	flag add Weakness;
+	unless flag Fighter font color dialog 238 75 43;
+	unless flag Fighter dialog "+ Weakness";
+	unless flag Fighter flag add Weakness;
+	clear;
+	unless flag Fighter font color dialog 255 255 255;
+
+		# Drink potion if weakened;
+		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealthPotion font color dialog 66 245 129;
+		if flag HealthPotion dialog "Weakness cured";
+		if flag HealthPotion clear;
+		if flag HealthPotion flag remove HealthPotion;
+		if flag HealthPotion flag remove Weakness;
+		if flag HealthPotion font color dialog 255 255 255;
+
 	branch Adventure/Riddle start;
 end_sequence;
 
 
 sequence spell;
 	narrator;
-	dialog "You disenchant the basin and the door swings open with a crash, sending dust up into the air.";
+	dialog "You attune yourself into the magic of the basin," 0.2 " and sense the mechanism beneath.";
+	dialog "You see that the basin detects blood close to your father's, and triggers a mechanism. You use your powers to activate the mechanism.";
 	branch Adventure/Riddle start;
 end_sequence;

@@ -1,8 +1,11 @@
 sequence start;
 
 	narrator;
-	dialog "Walking into the next room, you see a stone engraving upon a pillar.";
-	dialog "It reads:";
+	background Black crossfade 0.5;
+	dialog "A large stone slab in the floor slides away, revealing a staircase downwards, which you follow.";
+	background Adventure/6a crossfade 0.5;
+	dialog "A stone pillar with a hole in the top stands in the middle of the room at the bottom of the stairs.";
+	dialog "A voice echoes through the room:";
 
 	branch riddle;
 
@@ -10,9 +13,11 @@ end_sequence;
 
 
 sequence riddle;
-
-	character_name "Stone engraving";
+	
+	narrator;
+	font color dialog 110 255 199;
 	dialog "I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty. What am I?";
+	font color dialog 255 255 255;
 
 	narrator;
 	clear;
@@ -61,17 +66,25 @@ end_sequence;
 
 sequence death;
 	narrator;
-	dialog "You hear a rumbling from above and before you know it you have been impaled by falling spikes.";
-	background Red crossfade 0.1;
-	wait 1;
-	background Black crossfade 0.5;
-	branch Adventure/Intro start;
+	background Adventure/6b crossfade 0.05;
+	play_oneshot Adventure/Stab;
+	dialog "As you touch the pedestal, a metal spike leaps out, impaling your hand, spearing through bone and flesh.";
+	dialog "Though you try to move, the pain is blinding and you cannot.";
+	dialog "You hear clockwork behind the walls, ratcheting.";
+	play_oneshot Adventure/Impale;
+	background Adventure/6c crossfade 0.05;
+	dialog "Faster than you can blink, more spikes leap out from holes hidden between the bricks," 0.2 " spearing you.";
+	dialog "The world starts getting darker...";
+	background Black crossfade 2;
+	wait 0.5;
+	branch Adventure/Intro restart;
 end_sequence;
 
 
 sequence success;
 	narrator;
-	dialog "You speak \"Skull\" and a door opens, revealing a long, winding stairway.";
-	dialog "You descend deeper and deeper until you enter another room.";
+	background Adventure/6d crossfade 0.2;
+	dialog "You speak: \"Skull\".";
+	dialog "Bricks in the wall begin to slide apart, revealing a winding staircase that descends into the earth.";
 	branch Adventure/SunAndMoon start;
 end_sequence;

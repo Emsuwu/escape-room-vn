@@ -1,9 +1,7 @@
 sequence start;
 
 	narrator;
-	dialog "You find yourself in a long corridor.";
-	dialog "You walk down until you find an ornate door.";
-	dialog "What do you do?";
+	dialog "You find yourself in a long corridor, unremarkable, with an ornate door at the end.";
 
 		choice "Keep going" branch keep_going;
 		choice "Stop and check for traps" branch stop_and_check_for_traps;
@@ -14,33 +12,25 @@ end_sequence;
 
 
 sequence keep_going;
-	dialog "The floor opens up beneath you.";
+	dialog "As you walk," 0.2 " you feel the floor shift as it begins to fall down beneath you!";
+	dialog "Spikes begin to emerge through the swiftly descending flooor," 0.2 " stabbing out at you!";
 
 	# I find these conditionals quite confusing;
 
-	if flag EnchantedBoots dialog "The boots allow you to react swiftly. You manage to jump over the gap, reaching the other side.";
+	if flag EnchantedBoots dialog "The boots allow you to react swiftly."
+	if flag EnchantedBoots dialog "You use your enhanced agility to leap from the descending floor," 0.2 " reaching the other side.";
 	if flag EnchantedBoots branch other_side;
 
-	if flag Fighter dialog "Your fighter training lets you react swiftly. You manage to jump over the gap, reaching the other side.";
+	if flag Fighter dialog "Your fighter training lets you react swiftly.";
+	if flag Fighter dialog "You throw yourself forwards," 0.2 " gripping onto the ledge of the pit and hauling yourself up.";
 	if flag Fighter branch other_side;
 
-	if flag Weakness branch pit_death;
+	unless flag Weakness dialog "As you are uninjured," 0.2 " you are able to react in time to catch yourself and avoid falling into the spikes.";
 
-	if flag Thief dialog "Your fighter training lets you react swiftly. You manage to jump over the gap, reaching the other side.";
-	if flag Thief branch other_side;
-
-
-	if flag Spellcaster branch levitate;
+	branch pit_death;
 
 end_sequence;
 
-
-
-sequence levitate;
-	# I added this because the mage needs a way in this path otherwise they are just doomed;
-	dialog "Acting quick, you cast a levitation spell, crossing the pit beneath your feet.";
-	branch other_side;
-end_sequence;
 
 
 sequence stop_and_check_for_traps;
@@ -50,26 +40,39 @@ sequence stop_and_check_for_traps;
 end_sequence;
 
 sequence pit_death;
-	dialog "Weakened, you fall into the pit.";
 	background Red crossfade 0.1;
-	dialog "You die."
-	wait 1;
-	background Black crossfade 0.5;
-	branch Adventure/Intro start;
+	play_oneshot Adventure/Impale; 
+	dialog "You are already weakened and, unable to act in time, are plunged into the spikes.";
+	dialog "You can taste something metallic.";
+	dialog "The world is going dark" 0.2 . 0.2 . 0.2 .;
+	background Black crossfade 2;
+	wait 0.5;
+	branch Adventure/Intro restart;
 end_sequence;
 
 sequence goblin_death;
 	narrator;
-	dialog "The goblins catch up with you and...";
-	background Red crossfade 0.1;
-	dialog "You die."
-	wait 1;
-	background Black crossfade 0.5;
-	branch Adventure/Intro start;
+	dialog "You notice a section of the floor that is rigged to fall.";
+	dialog "The screams of the goblins are growing louder and louder.";
+	dialog "Soon," 0.2 " they catch up with you," 0.2 " stabbing you with hooks and barbed shivs and slashing you with serrated knives and blades."; 
+	dialog "You hear them cackling.";
+	dialog "The world is going dark...";
+	background Black crossfade 2;
+	wait 0.5;
+	branch Adventure/Intro restart;
 end_sequence;
 
 
 sequence other_side;
-	if flag GoblinsPursuing dialog "The goblins can't cross the gap. You're safe.";
+	if flag GoblinsPursuing branch goblins_fall_into_pit;
+	branch Adventure/Heart start;
+end_sequence;
+
+sequence goblins_fall_into_pit;
+	
+	dialog "The goblins at the front stop," 0.2 " but the ones behind pump into them," 0.2 " knocking them into the spike pit.";
+	dialog "The others see their kin impaled and make a disappointed screech," 0.2 " before turning around and going back to their camp.";
+	dialog "Soon enough, you hear the music starting up again.";
+	
 	branch Adventure/Heart start;
 end_sequence;

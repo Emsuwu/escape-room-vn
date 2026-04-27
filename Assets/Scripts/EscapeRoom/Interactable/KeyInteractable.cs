@@ -13,6 +13,7 @@ public class KeyInteractable : Interactable
         {
             SaveManager.AddFlag("KeyCollected");
             SaveManager.SaveData();
+            VisualEffect.ItemPickup(transform.position);
             gameObject.SetActive(false);
         }
     }

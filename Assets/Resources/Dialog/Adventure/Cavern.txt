@@ -1,9 +1,13 @@
 sequence start;
 
 	narrator;
-	dialog "A door to a narrow passage opens.";
-	dialog "Travelling through it, you come to a cavern.";
-	dialog "You see your destination but." 0.2 . 0.2 . 0.2 "it's on the other side of a small goblin camp.";
+	
+	dialog "The next hallway has caved in."; 
+	dialog "Part of the wall has gone with it," 0.2 " revealing a cavern."; 
+	dialog "You can see where the cave has intercepted another dungeon hallway," 0.2 " but in the centre of the cavern is a goblin camp."; 
+	dialog "They seem to be having a party, with goblins banging on and plucking improvised instruments made of animal hide, crates, and rope in accordance with no particular melody or rhythm."; 
+	dialog "The cavern is dimly illuminated by the goblins' torches and campfires, wall-to-wall, except for sparse shadows cast by rocks and the cave terrain.";
+	dialogg "Given there is no other way around, you will need to work out how to deal with the goblins.";
 
 		choice "Sneak around" branch sneak;
 		choice "Go through the camp" branch enter_camp;
@@ -17,8 +21,11 @@ end_sequence;
 
 
 sequence sleep_spell;
-	dialog "The spell is successful.";
-	dialog "You tiptoe past the horde of sleeping goblins.";
+	dialog "You channel your mana through your arm and send it upwards, casting your arm out in an arc to cover the area in a sleeping spell.";
+	dialog "It doesn’t take hold immediately, so you sit down and wait.";
+	dialog "Soon enough, the noise from the camp begins to fade.";
+	dialog "There's less conversation, shouting, and \"music\" as the camp comes to rest, even the guards on shift turning in for bed.";
+	dialog "You pick your way through the camp without drawing any attention.";
 	branch Adventure/Corridor start;
 end_sequence;
 
@@ -34,7 +41,9 @@ end_sequence;
 sequence sneak;
 	narrator;
 	if flag Thief branch thief_sneak;
-	dialog "The goblins notice you as you try to sneak by.";
+	dialog "You try to sneak by but in the dark you stumble over a rock, alerting the goblins to your presence.";
+	dialog "You hear a screech and see the goblins charging towards you.";
+	dialog "You make a break for the next hallway.";
 	flag add GoblinsPursuing;
 	branch Adventure/Corridor start;
 end_sequence;
@@ -42,7 +51,9 @@ end_sequence;
 
 
 sequence thief_sneak;
-	dialog "Being a thief, you saneak by without issue.";
+	dialog "You pick through the darkness around the edge of the cavern," 0.2 " using a match to light your way, and covering it when you would be in sight.";
+	dialog "Blending into the darkness with your clothes, the goblins do not see you.";
+	branch Adventure/Corridor start;
 end_sequence;
 
 
@@ -50,25 +61,68 @@ end_sequence;
 sequence enter_camp;
 	if flag Thief branch sneak_kill;
 	if flag Fighter unless flag Unarmored branch fighter_kill;
-	dialog "You battle the goblins and take heavy damage before fleeing.";
+	dialog "Though you assume the goblins will be easy enough to take out," 0.2 " you are shocked by the numbers that crawl from the sparse tents as soon as the first one screams.";
+	dialog "You are sent fleeing towards the next hallway, with the entire goblin camp chasing after you.";
 	narrator;
 	font color dialog 238 75 43;
 	dialog "+ Weakness";
+	clear;
 	font color dialog 255 255 255;
 	flag add Weakness;
 	flag add GoblinsPursuing;
+
+	# Drink potion if weakened;
+		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealthPotion font color dialog 66 245 129;
+		if flag HealthPotion dialog "Weakness cured";
+		if flag HealthPotion clear;
+		if flag HealthPotion flag remove HealthPotion;
+		if flag HealthPotion flag remove Weakness;
+		if flag HealthPotion font color dialog 255 255 255;
+
 	branch Adventure/Corridor start;
 end_sequence;
 
 sequence sneak_kill;
-	dialog "You sneak through the camp, taking out the goblins one by one.";
+	dialog "You sneak through the camp, starting at the edges, and picking off the guards before they can raise the alarm.";
+	dialog "You use your dagger and bow and arrow to kill them all at similar times.";
+	dialog "Next, you start working inwards, blowing out candles and lanterns as you go.";
+	dialog "The goblins are so inebriated that they hardly seem to notice you until it’s too late.";
+	dialog "Before long, the last few survivors lay dead on the floor.";
+
+	dialog "On one of the goblins, you find a pair of boots that seem to reflect light strangely.";
+	dialog "Picking them up, they feel oddly light.";
+	dialog "You put the boots on and immediately feel the difference.";
+	dialog "You're much faster and more agile.";
+	flag add EnchantedBoots;
+
+	font color dialog 255 255 0;
+	narrator;
+	dialog "+ Enchanted boots have been added to your inventory";
+	clear;
+	font color dialog 255 255 255;
+
 	branch Adventure/Corridor start;
 end_sequence;
 
 sequence fighter_kill;
-	dialog "You yell, announcing your presence, taking on all the goblins, one after another.";
-	dialog "You stand victorious over a pile of dead goblins and loot a pair of enchanted boots.";
+	dialog "You yell, announcing your presence.";
+	dialog "The goblins come charging towards you, scrambling and emerging from tents in numbers you didn’t expect.";
+	dialog "They are no match for you, even in their numbers, and before long you stand victorious, coated with blood, on a pile of bodies.";
+	
+	dialog "On one of the goblins, you find a pair of boots that seem to reflect light strangely.";
+	dialog "Picking them up, they feel oddly light.";
+	dialog "You put the boots on and immediately feel the difference.";
+	dialog "You're much faster and more agile.";
 	flag add EnchantedBoots;
+
+	font color dialog 255 255 0;
+	narrator;
+	dialog "+ Enchanted boots have been added to your inventory";
+	clear;
+	font color dialog 255 255 255;
+
 	branch Adventure/Corridor start;
 end_sequence;
 
@@ -86,8 +140,12 @@ sequence remove_light_potion_2;
 	branch blind_goblins;
 sequence_end;
 sequence blind_goblins;
-	dialog "You throw your light potion into the camp.";
-	dialog "It shatters, blinding the goblins.";
-	dialog "As they are dazed, you run through unscathed.";
+	dialog "You stab a needle into the cork of your light potion, and throw it into the air.";
+	dialog "You turn away and close your eyes, covering your face.";
+	dialog "For a moment you can see the red of your hands and eyelids as the bottle reaches the apex of your throw and shatters.";
+	dialog "A violent flash of light is unleashed directly above the goblin camp.";
+	dialog "There is deafening commotion as they run around blindly, trying to find the attacker.";
+	dialog "Some of them even start fights with other goblins in confusion as you walk around the camp.";
+
 	branch Adventure/Corridor start;
 end_sequence;

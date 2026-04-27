@@ -1,10 +1,14 @@
 sequence start;
 
 	narrator;
-	dialog "You head through the door engraved with the sun.";
-	dialog "SLAM!";
-	dialog "The door has closed behind you.";
-	dialog "You feel the room get hotter and hotter.";
+	dialog "You head through the sun door.";
+	dialog "THUD!";
+	dialog "The door slams behind you.";
+	dialog "The room is plain," 0.2 " and almost cubic in shape.";
+	dialog "There is a door on the other side but it seems to be locked like the one behind you.";
+	dialog "You begin to feel sweat trickling down your neck, and arms.";
+	dialog "You think it's just stress for a moment but as it gets worse," 0.2 " you realise the room is getting warmer.";
+	dialog "You’re being cooked alive.";
 
 	if flag Spellcaster branch spellcaster;
 	if flag Thief branch thief;
@@ -14,58 +18,111 @@ end_sequence;
 
 sequence thief;
 	narrator;
-	dialog "You've experienced worse.";
-	dialog "You cast off your equipment easily enough.";
-	dialog "The room cools down and you put it back on before continuing";
+	dialog "You know this room would be unbearably hot to anyone else," 0.2 " but you’ve experienced worse.";
+	dialog "You simply cast off your leather outfit," 0.2 " tools and accessories."
+	dialog "Then when the room cools down, you put them back on.";
 	branch Adventure/Cavern start;
 end_sequence;
 
 sequence fighter;
 	narrator;
-	dialog "The room gets so hot that your armour starts to burn your skin.";
+	dialog "Your heavy armour weighs you down, burning into your shoulders through your gambeson.";
+	dialog "You rest your glistening hand on it, and the sweat causes it to sizzle, searing into your fingers.";
 		choice "Take it off" branch unarmored;
-		choice "Suffer through it" branch suffer_through_fighter;
+		choice "Power through" branch suffer_through_fighter;
 		end_choices;
 end_sequence;
 
 sequence spellcaster;
 	narrator;
+	dialog "Your adventures have taken you though places like this before.";
+	dialog "A fellow spellcaster taught you a spell you could use in situations where it is too warm.";
 		choice "Cast an ice spell" branch ice_spell;
-		choice "Do nothing" branch suffer_through_spellcaster;
+		choice "Power through" branch suffer_through_spellcaster;
 		end_choices;
 end_sequence;
 
 sequence ice_spell;
 	narrator;
-	dialog "You cast an ice spell and the room cools.";
+	dialog "You say the incantation, and allow your mana to flow through your body, cooling you down.";
+	dialog "Though you can feel the room growing hotter," 0.2 " you put more energy into the spell and the room feels comfortable again.";
+	dialog "The room starts to cool down.";
+	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "You gulp it down with relief.";
+	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
 end_sequence;
 
 sequence unarmored;
 	narrator;
-	dialog "You are cooler now but you armour is warped.";
+	dialog "You take your armour off, stripping to your undergarments.";
+	dialog "The temperature of the room causes you to feel faint, but is much more manageable than before.";
 	narrator;
 	font color dialog 238 75 43;
 	dialog "+ Unarmoured";
 	flag add Unarmored;
 	font color dialog 255 255 255;
+	dialog "The room starts to cool down.";
+	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "You gulp it down with relief.";
+	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
 end_sequence;
 
 sequence suffer_through_fighter;
 	narrator;
-	dialog "Your armour remains sturdy but you are weakened by the heat.";
+	dialog "You grit your teeth, and try to dissociate.";
+	dialog "The heat is intense, making your armour feel heavier and heavier.";
+	dialog "You pant, trying to cool down, but each breath you take is warmer than the last.";
+	dialog "You are weakened.";
+	flag add Weakness;
 	font color dialog 238 75 43;
 	dialog "+ Weakness";
+	clear;
 	font color dialog 255 255 255;
+
+		# Drink potion if weakened;
+		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealthPotion font color dialog 66 245 129;
+		if flag HealthPotion dialog "Weakness cured";
+		if flag HealthPotion clear;
+		if flag HealthPotion flag remove HealthPotion;
+		if flag HealthPotion flag remove Weakness;
+		if flag HealthPotion font color dialog 255 255 255;
+
+	dialog "The room starts to cool down.";
+	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "You gulp it down with relief.";
+	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
 end_sequence;
 
 sequence suffer_through_spellcaster;
 	narrator;
-	dialog "You are weakened by the heat.";
+	dialog "You grit your teeth, and try to dissociate.";
+	dialog "The heat is intense, making your robes damp with sweat.";
+	dialog "You pant, trying to cool down, but each breath you take is warmer than the last.";
+	dialog "You are weakened.";
 	font color dialog 238 75 43;
+	flag add Weakness;
 	dialog "+ Weakness";
+	clear;
 	font color dialog 255 255 255;
+
+		# Drink potion if weakened;
+		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealthPotion font color dialog 66 245 129;
+		if flag HealthPotion dialog "Weakness cured";
+		if flag HealthPotion clear;
+		if flag HealthPotion flag remove HealthPotion;
+		if flag HealthPotion flag remove Weakness;
+		if flag HealthPotion font color dialog 255 255 255;
+
+	dialog "The room starts to cool down.";
+	dialog "The cold air isn’t fresh, but it’s refreshing compared to what you were breathing in just moments before.";
+	dialog "You gulp it down with relief.";
+	dialog "You hear stone grinding as the doors open, and move onwards.";
 	branch Adventure/Cavern start;
 end_sequence;

@@ -1,19 +1,30 @@
+sequence restart;
+	clear;
+	dialog "The next heir comes along...";
+	branch start;
+end_sequence;
+
+
 sequence start;
 
 	font face DOS;
 	font color name 255 255 0;
 
 	background Adventure/1 crossfade 0.5;
-	character_name "Intro";
-	dialog "You are from a wealthy household.";
-	dialog "Your Father," 0.2 " an adventurer," 0.2 " made a fortune from raiding and stealing artefacts.";
-	dialog "When you were a child," 0.2 " he heard of a tomb that had never been breached."; 
-	dialog "Breaking the seal," 0.2 " he incurred a curse on him and his bloodline," 0.2 " ensuring death before the age of 30.";
-	dialog "Around his body, the curse constructed a tomb.";
-	dialog "The only way to free yourself of this curse is to cut out his heart and take it to a priest.";
-
-	character_name "Select your class";
-	dialog "You are a...";
+	character_name Intro;
+	dialog "Your father was an explorer," 0.2 " dungeon delver," 0.2 " and mage of great renown.";
+	dialog "With his status and money, he left a trail of children across the land.";
+	background Adventure/2 crossfade 0.2;
+	dialog "That trail became constant line of deaths," 0.2 " starting with the oldest and working onwards."; 
+	dialog "They all passed away on their 20th birthday, " 0.2 "each from an accident or bad luck.";
+	dialog "Eventually a pattern started being noticed.";
+	dialog "Stories say that he was harvesting you for power but even when he passed away the trend continued.";
+	dialog "You are next in line, having only a few days before your predetermined death.";
+	dialog "In your research of curses," 0.2 " bargains," 0.2 " and stolen power," 0.2 " you believe you should be able to collect your father's heart and take it to an enchanter for cleansing."; 
+	dialog "Hopefully," 0.2 " that will save you and your kin.";
+	dialog "It won't be easy," 0.2 " whatever pact he made entombed his body in a dungeon that none have been able to break into.";
+	dialog "You believe your lineage should allow you entry.";
+	dialog "Growing up," 0.2 " you studied in the art of...";
 
 	branch choose_class;
 
@@ -23,9 +34,9 @@ sequence choose_class;
 
 	# Class selection;
 	flag remove Spellcaster;flag remove Thief;flag remove Fighter;
-		choice "Spellcaster" flag add Spellcaster;
-		choice "Thief" flag add Thief;
-		choice "Fighter" flag add Fighter;
+		choice "Magic" flag add Spellcaster;
+		choice "Stealth" flag add Thief;
+		choice "Combat" flag add Fighter;
 		end_choices;
 
 	if flag Spellcaster dialog "You are a spellcaster.";
@@ -39,12 +50,12 @@ sequence choose_class;
 	dialog "Huzzah!";
 
 	character_name "TIP";
-	if flag Spellcaster dialog "Spellcaster can only cast 3 spells before running out of mana.";
-	if flag Thief dialog "Thieves are very sneaky.";
-	if flag Fighter dialog "Fighters have good armour and weapons.";
+	if flag Spellcaster dialog "You can only cast 3 spells before running out of mana.";
+	if flag Thief dialog "Your light armour and experience allows you the ability to sneak around without detection.";
+	if flag Fighter dialog "Your ability combat ability and endurance are unrivaled and you have the equipment to match.";
 
 	character_name "Choose a potion";
-	dialog "You may bring with you one potion.";
+	dialog "And before leaving for the dungeon," 0.2 " you stocked up on supplies and found some extra money with which to buy a potion...";
 	branch choose_potion;
 
 end_sequence;

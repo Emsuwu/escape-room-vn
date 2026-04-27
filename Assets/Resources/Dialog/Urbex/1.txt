@@ -20,7 +20,7 @@ character_name Sylvia;dialog "Today we're looking at the case of the Kingshelm B
 character_name Frank;dialog "Autumn falls.";
 character_name Sylvia;dialog "This is Argyle, our researcher,";
 character_name Sylvia;dialog "And this is Frank!";
-character_name Frank;dialog "I wrote the script and actually *learned my lines*";
+character_name Frank;dialog "I wrote the script and <i>actually learned my lines</i>";
 character_name Sylvia;dialog "Anyway, Let's get on with it!";
 background "Urbex/2" crossfade 0.2;
 character_name Sylvia;dialog "The Kingshelm Mall opened in the late nineties, and swiftly became the main shopping location for everyone in Autumn Falls. Small shops closed because people took their traffic to the new chain superstores, and even more businesses shut down as the mall expanded, with a food court and clothing stores.";

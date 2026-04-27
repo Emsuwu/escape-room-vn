@@ -26,6 +26,7 @@ public class Floppy : MonoBehaviour
     {
         SaveManager.Data.IsFloppyCollected = true;
         SaveManager.SaveData();
+        VisualEffect.ItemPickup(transform.position);
         gameObject.SetActive(false);
     }
 }
