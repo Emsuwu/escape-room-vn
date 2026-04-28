@@ -65,22 +65,7 @@ sequence enter_camp;
 	dialog "Though you assume the goblins will be easy enough to take out," 0.2 " you are shocked by the numbers that crawl from the sparse tents as soon as the first one screams.";
 	dialog "You are sent fleeing towards the next hallway, with the entire goblin camp chasing after you.";
 	narrator;
-	font color dialog 238 75 43;
-	dialog "+ Weakness";
-	clear;
-	font color dialog 255 255 255;
-	flag add Weakness;
 	flag add GoblinsPursuing;
-
-	# Drink potion if weakened;
-		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
-		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
-		if flag HealthPotion font color dialog 66 245 129;
-		if flag HealthPotion dialog "Weakness cured";
-		if flag HealthPotion clear;
-		if flag HealthPotion flag remove HealthPotion;
-		if flag HealthPotion flag remove Weakness;
-		if flag HealthPotion font color dialog 255 255 255;
 
 	branch Adventure/Corridor start;
 end_sequence;

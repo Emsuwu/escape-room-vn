@@ -92,6 +92,7 @@ public class Safe : Puzzle
         Enabled = false;
         Exit();
         _doorAnimator.SetTrigger(instant ? "OpenInstantly" : "Open");
+        if (!instant) GetComponent<AudioSource>().Play();
         _safeInteractable.Enabled = false;
         _safeInteractable.Unhover();
         _boxCollider.enabled = false;

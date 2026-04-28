@@ -82,14 +82,14 @@ sequence suffer_through_fighter;
 	font color dialog 255 255 255;
 
 		# Drink potion if weakened;
-		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
-		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
-		if flag HealthPotion font color dialog 66 245 129;
-		if flag HealthPotion dialog "Weakness cured";
-		if flag HealthPotion clear;
-		if flag HealthPotion flag remove HealthPotion;
-		if flag HealthPotion flag remove Weakness;
-		if flag HealthPotion font color dialog 255 255 255;
+		if flag HealingPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealingPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealingPotion font color dialog 66 245 129;
+		if flag HealingPotion dialog "Weakness cured";
+		if flag HealingPotion clear;
+		if flag HealingPotion flag remove Weakness;
+		if flag HealingPotion font color dialog 255 255 255;
+		if flag HealingPotion flag remove HealingPotion;
 
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
@@ -111,14 +111,14 @@ sequence suffer_through_spellcaster;
 	font color dialog 255 255 255;
 
 		# Drink potion if weakened;
-		if flag HealthPotion dialog "You uncork the health potion and drink it all in one motion.";
-		if flag HealthPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
-		if flag HealthPotion font color dialog 66 245 129;
-		if flag HealthPotion dialog "Weakness cured";
-		if flag HealthPotion clear;
-		if flag HealthPotion flag remove HealthPotion;
-		if flag HealthPotion flag remove Weakness;
-		if flag HealthPotion font color dialog 255 255 255;
+		if flag HealingPotion dialog "You uncork the health potion and drink it all in one motion.";
+		if flag HealingPotion dialog "You feel reinvigorated, like the weakness has passed from your body.";
+		if flag HealingPotion font color dialog 66 245 129;
+		if flag HealingPotion dialog "Weakness cured";
+		if flag HealingPotion clear;
+		if flag HealingPotion flag remove Weakness;
+		if flag HealingPotion font color dialog 255 255 255;
+		if flag HealingPotion flag remove HealingPotion;
 
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
