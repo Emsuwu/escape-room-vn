@@ -21,7 +21,7 @@ public class Puzzle : MonoBehaviour
     public void Exit()
     {
         IsPuzzleActive = false;
-        CurrentPuzzle = null;
+        Meowtils.Defer(() => CurrentPuzzle = null);
         PlayerCamera.Instance.Camera.enabled = true;
         Camera.enabled = false;
         Meowtils.Defer( () => PlayerInputHandler.Instance.IsInputDisabled = false );

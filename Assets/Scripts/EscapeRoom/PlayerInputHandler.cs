@@ -56,7 +56,10 @@ public class PlayerInputHandler : MonoBehaviour
         _puzzleUpAction = _inputActionAsset.FindAction("PuzzleUp");
         _puzzleBackAction = _inputActionAsset.FindAction("PuzzleBack");
     }
-
+    private void Start()
+    {
+        UIInputHandler.Instance.OnPause += Pause;
+    }
     private void OnEnable()
     {
         _inputActionAsset.FindActionMap("Player").Enable();
@@ -79,17 +82,14 @@ public class PlayerInputHandler : MonoBehaviour
         DoControllerCameraRotation();
         DoKeyboardCameraRotation();
         MoveReticle();
-        CheckPause();
     }
-    private void CheckPause()
+    private void Pause()
     {
         if (Puzzle.CurrentPuzzle != null) return;
-        if (_pauseAction.WasPressedThisFrame())
-        {
-            IsPaused = true;
-            _menuRoot.SetActive(true);
-            _settingsMenu.SetActive(true);
-        }
+        if (IsPaused) return;
+        IsPaused = true;
+        _menuRoot.SetActive(true);
+        _settingsMenu.SetActive(true);
     }
     private void DoPuzzleInput()
     {

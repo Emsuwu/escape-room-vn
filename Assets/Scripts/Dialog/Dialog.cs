@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,6 +41,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private Image _transitionBackgroundImage;
 
     [Header("...")]
+    [SerializeField] private AudioSource _printAudioSource;
     private List<GameObject> _choiceList = new List<GameObject>();
     
     //[SerializeField] private RectTransform _characterNameBoxRectTransform;
@@ -274,6 +276,18 @@ public class Dialog : MonoBehaviour
         _executionPaused = false;
     }
 
+    public void SetPrintSound(AudioClip clip)
+    {
+        _printAudioSource.resource = null;
+        _printAudioSource.clip = clip;
+    }
+    public void SetPrintSound(AudioResource resource)
+    {
+        Debug.Log("RES: " + resource);
+        _printAudioSource.clip = null;
+        _printAudioSource.resource = resource;
+    }
+
     /// <summary>
     /// Sets the background color with r g b values
     /// </summary>
@@ -438,6 +452,10 @@ public class Dialog : MonoBehaviour
             // If evenly numbered argument, interpret as dialog to add
             foreach (char character in dialog)
             {
+                if (_printAudioSource.clip != null || _printAudioSource.resource != null)
+                {
+                    _printAudioSource.Play();
+                }
                 _dialogText.text += character;
 
                 float interval = CharacterInterval;

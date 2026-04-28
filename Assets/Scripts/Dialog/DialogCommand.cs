@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 //using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 
 /// <summary>
@@ -499,6 +500,27 @@ public class DialogCommand
                     }
                 }
                 CommandError("Syntax error: font size <all/dialog/name> <size> OR font face <path> OR font color <all/dialog/name> <r> <g> <b>", Command, Arguments, 2, 5);
+                break;
+
+            case "set_print_sound":
+                // set_print_sound <clip/container> <path>
+                if (Arguments.Length == 2) 
+                { 
+                    if (Arguments[0] == "clip")
+                    {
+                        AudioClip clip = Resources.Load<AudioClip>("Audio/"+Arguments[1]);
+                        Dialog.Instance.SetPrintSound(clip);
+                        break;
+                    }
+                    else if (Arguments[0] == "resource")
+                    {
+                        AudioResource resource = Resources.Load<AudioResource>("Audio/"+Arguments[1]);
+                        Debug.Log("RES0: " + resource);
+                        Dialog.Instance.SetPrintSound(resource);
+                        break;
+                    }
+                }
+                CommandError("Syntax error: set_print_sound <clip/container> <path>", Command, Arguments, 2);
                 break;
         }
 
