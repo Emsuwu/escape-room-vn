@@ -41,6 +41,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private Image _transitionBackgroundImage;
 
     [Header("...")]
+    [SerializeField] private Animator _backgroundAnimator;
     [SerializeField] private AudioSource _printAudioSource;
     private List<GameObject> _choiceList = new List<GameObject>();
     
@@ -543,8 +544,23 @@ public class Dialog : MonoBehaviour
     public void SetNameFontColor(Color color)
     {
         _characterNameText.color = color;
-        
-       
+    }
+
+    public void SetBackgroundAnimation(string path, float speed)
+    {
+        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>("Animations/"+path);
+        Debug.Log("Animations/" + path + " cont: " + controller);
+        SetBackgroundAnimation(controller, speed);
+    }
+    public void SetBackgroundAnimation(RuntimeAnimatorController controller, float speed)
+    {
+        _backgroundAnimator.enabled = true;
+        _backgroundAnimator.speed = speed;
+        _backgroundAnimator.runtimeAnimatorController = controller;
+    }
+    public void StopBackgroundAnimation()
+    {
+        _backgroundAnimator.enabled = false;
     }
 }
 

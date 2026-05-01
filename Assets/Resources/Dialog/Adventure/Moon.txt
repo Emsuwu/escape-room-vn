@@ -3,6 +3,7 @@ sequence start;
 	narrator;
 
 	dialog "As you travel down the dark narrow hall," 0.2 " the stone brick wall seamlessly transitions into wooden planks.";
+	background Adventure/9 crossfade 0.5;
 	dialog "You enter a room that looks like an antique shop.";
 	dialog "A small, old woman sits behind the counter, and greets you.";
 	

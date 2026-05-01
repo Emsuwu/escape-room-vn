@@ -14,6 +14,7 @@ public class Desk : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("Open");
 
+        await Task.Delay(1000);
         InputHint.Instance.Show(InputHint.Instance.ThoughtBubble, "The desk draw popped open...");
         await Task.Delay(8000);
         InputHint.Instance.Hide();

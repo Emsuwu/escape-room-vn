@@ -2,11 +2,13 @@ sequence start;
 
 	narrator;
 	dialog "You head through the sun door.";
+	background Adventure/7 crossfade 0.5;
 	dialog "THUD!";
 	dialog "The door slams behind you.";
 	dialog "The room is plain," 0.2 " and almost cubic in shape.";
 	dialog "There is a door on the other side but it seems to be locked like the one behind you.";
 	dialog "You begin to feel sweat trickling down your neck, and arms.";
+	background Adventure/8 crossfade 0.5;
 	dialog "You think it's just stress for a moment but as it gets worse," 0.2 " you realise the room is getting warmer.";
 	dialog "You're being cooked alive.";
 
@@ -19,7 +21,8 @@ end_sequence;
 sequence thief;
 	narrator;
 	dialog "You know this room would be unbearably hot to anyone else," 0.2 " but you've experienced worse.";
-	dialog "You simply cast off your leather outfit," 0.2 " tools and accessories."
+	dialog "You simply cast off your leather outfit," 0.2 " tools and accessories.";
+	background Adventure/7 crossfade 0.5;
 	dialog "Then when the room cools down, you put them back on.";
 	branch Adventure/Cavern start;
 end_sequence;
@@ -46,6 +49,7 @@ sequence ice_spell;
 	narrator;
 	dialog "You say the incantation, and allow your mana to flow through your body, cooling you down.";
 	dialog "Though you can feel the room growing hotter," 0.2 " you put more energy into the spell and the room feels comfortable again.";
+	background Adventure/7 crossfade 0.5;
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
@@ -62,6 +66,7 @@ sequence unarmored;
 	dialog "+ Unarmoured";
 	flag add Unarmored;
 	font color dialog 255 255 255;
+	background Adventure/7 crossfade 0.5;
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
@@ -91,6 +96,7 @@ sequence suffer_through_fighter;
 		if flag HealingPotion font color dialog 255 255 255;
 		if flag HealingPotion flag remove HealingPotion;
 
+	background Adventure/7 crossfade 0.5;
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";
@@ -120,6 +126,7 @@ sequence suffer_through_spellcaster;
 		if flag HealingPotion font color dialog 255 255 255;
 		if flag HealingPotion flag remove HealingPotion;
 
+	background Adventure/7 crossfade 0.5;
 	dialog "The room starts to cool down.";
 	dialog "The cold air isn't fresh, but it's refreshing compared to what you were breathing in just moments before.";
 	dialog "You gulp it down with relief.";

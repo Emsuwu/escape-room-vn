@@ -522,6 +522,22 @@ public class DialogCommand
                 }
                 CommandError("Syntax error: set_print_sound <clip/container> <path>", Command, Arguments, 2);
                 break;
+
+            case "animate_background":
+                if (Arguments.Length == 1 && Arguments[0] == "stop")
+                {
+                    Dialog.Instance.StopBackgroundAnimation();
+                    break;
+                }
+                if (Arguments.Length == 2)
+                {
+                    float.TryParse(Arguments[1], out float animationSpeed);
+                    Dialog.Instance.SetBackgroundAnimation(Arguments[0], animationSpeed);
+                    break;
+                }
+                CommandError("Syntax error: animate_background <animation controller path> <speed> OR animate_background stop", Command, Arguments, 1, 2);
+                break;
+
         }
 
     }

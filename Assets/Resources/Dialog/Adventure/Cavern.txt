@@ -2,9 +2,11 @@ sequence start;
 
 	narrator;
 	
+	background Adventure/10 crossfade 0.5;
 	dialog "The next hallway has caved in."; 
 	dialog "Part of the wall has gone with it," 0.2 " revealing a cavern."; 
 	dialog "You can see where the cave has intercepted another dungeon hallway," 0.2 " but in the centre of the cavern is a goblin camp."; 
+	background Adventure/11 crossfade 0.5;
 	dialog "They seem to be having a party.";
 	dialog "Goblins bang and pluck on improvised instruments made of animal hide, crates, and rope in accordance with no particular melody or rhythm."; 
 	dialog "The cavern is dimly illuminated by the goblins' torches and campfires, wall-to-wall, except for sparse shadows cast by rocks and the cave terrain.";

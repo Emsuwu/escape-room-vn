@@ -1,5 +1,6 @@
 sequence start;
 
+	background Adventure/12a crossfade 0.5;
 	narrator;
 	dialog "You find yourself in a long corridor, unremarkable, with an ornate door at the end.";
 
@@ -13,6 +14,7 @@ end_sequence;
 
 sequence keep_going;
 	dialog "As you walk," 0.2 " you feel the floor shift as it begins to fall down beneath you!";
+	background Adventure/12b crossfade 0.1;
 	dialog "Spikes begin to emerge through the swiftly descending floor," 0.2 " stabbing out at you!";
 
 	# I find these conditionals quite confusing;
@@ -42,6 +44,7 @@ end_sequence;
 
 sequence pit_death;
 	background Red crossfade 0.1;
+	background Adventure/12b crossfade 0.1 no_pause;
 	play_oneshot Adventure/Impale; 
 	fade_music 0.5;
 	dialog "You are already weakened and, unable to act in time, are plunged into the spikes.";
@@ -67,6 +70,7 @@ end_sequence;
 
 
 sequence other_side;
+	background Adventure/12b crossfade 0.1 no_pause;
 	if flag GoblinsPursuing branch goblins_fall_into_pit;
 	branch Adventure/Heart start;
 end_sequence;
