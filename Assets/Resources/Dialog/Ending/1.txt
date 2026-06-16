@@ -27,9 +27,11 @@ sequence good_ending;
 	fade_ambience 1;
 	dialog "And then you feel your body crash into the ground.";
 	dialog "You pick yourself up and look around.";
+	background Ending/1 crossfade 0.5;
 	dialog "You're back home.";
 	dialog "Soon you return to your everday routine.";
 	dialog "You go back to work as if nothing has happened.";
+	background Black crossfade 0.5;
 	dialog "With time you forget about that room as if it was fading from existence itself.";
 
 	if flag UnicornDealMade branch bad_ending;
@@ -51,6 +53,7 @@ end_sequence;
 
 sequence bad_ending;
 	dialog "But the image of the unicorn never leaves your nightmares...";
+	background Black crossfade 0.5;
 	dialog "And one night as you are falling asleep...";
 	ambience Ending/VoidWindQuiet 1.5;
 	dialog "You hear the wind pick up outside your house.";
@@ -87,6 +90,7 @@ sequence neutral_ending;
 	fade_ambience 1;
 	dialog "And then you feel your body crash into the ground.";
 	dialog "You pick yourself up and look around.";
+	background Ending/2 crossfade 0.5;
 	dialog "You're back home.";
 	dialog "Soon you return to your everday routine.";
 	dialog "You go back to work as if nothing has happened.";
