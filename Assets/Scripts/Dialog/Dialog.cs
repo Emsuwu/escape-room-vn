@@ -86,7 +86,7 @@ public class Dialog : MonoBehaviour
         DialogParser.LoadDialog(_file);
         Branch(SequenceNameOnStart);
         StartSequence();
-
+        DialogLog.ClearLog();
     }
 
 
@@ -464,6 +464,13 @@ public class Dialog : MonoBehaviour
                 yield return new WaitUntil(() => !DialogPauseHandler.Instance.IsPaused);
                 yield return new WaitForSeconds(interval);
             }
+        }
+
+        // Log dialog
+        if (!clearLastDialog) { DialogLog.ReplaceLast(_dialogText.text); }
+        else { 
+            if (!_characterNameBox.activeSelf) DialogLog.Log(string.Empty, _dialogText.text);
+            else { DialogLog.Log(_characterNameText.text, _dialogText.text); }
         }
 
         yield return new WaitUntil(() => _advanceAction.WasPressedThisFrame() && !DialogPauseHandler.Instance.IsPaused);
